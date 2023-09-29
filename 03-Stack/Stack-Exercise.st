@@ -230,40 +230,35 @@ testReturnsTheOnlyOneThatMatchesWhenTwoSentencesStoredInInverseOrder
     self assertSentencesPrefixedBy: self prefix match: 	(OrderedCollection with: self sentence)! !
 
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 4/23/2023 21:17:20'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:40:48'!
 anotherPrefix
 
-	^ 'My'! !
+	^ 'Did'! !
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 4/23/2023 21:17:38'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:39:13'!
 anotherSentence
 
-	^ 'Regina is the queen bee'! !
+	^ 'Identity is something I lack'! !
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 4/23/2023 21:17:05'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:37:43'!
 prefix
 
-	^ 'Regina'! !
+	^ 'Identity'! !
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'SG 4/24/2023 13:46:03'!
-prefixWithBlankSpaceAtTheEnd
-
-	^ 'Regina '! !
-
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 4/23/2023 21:16:52'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:37:04'!
 sentence
 
-	^ 'Regina is a fugly cow'! !
+	^ 'Identity theft is not a joke, Jim'! !
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'SG 4/24/2023 13:24:41'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:37:17'!
 sentenceInLowerCase
 
-	^ 'regina is a fugly cow'! !
+	^ self sentence asLowercase! !
 
-!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 4/23/2023 21:16:22'!
+!SentenceFinderByPrefixTest methodsFor: 'support - accessing' stamp: 'IB 9/18/2023 16:40:43'!
 unmatchingSentence
 
-	^ 'My name is Regina George'! !
+	^ 'Did I stutter?!!'! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'running' stamp: 'IB 4/23/2023 18:58:14'!
@@ -285,17 +280,15 @@ initialize
 	elements := OrderedCollection with: (OOStackBase for: self)! !
 
 
-!OOStack methodsFor: 'managing' stamp: 'ff 9/18/2023 13:20:02'!
+!OOStack methodsFor: 'managing' stamp: 'IB 9/18/2023 16:41:43'!
 pop
 	
-	
-	^elements last pop: self.! !
+	^elements last pop: self! !
 
-!OOStack methodsFor: 'managing' stamp: 'ff 9/18/2023 13:24:18'!
+!OOStack methodsFor: 'managing' stamp: 'IB 9/18/2023 16:41:47'!
 popOfAnNonEmptyStack
 	
-	
-	^elements removeLast underlyingElement .! !
+	^elements removeLast underlyingElement! !
 
 !OOStack methodsFor: 'managing' stamp: 'IB 4/24/2023 00:38:52'!
 push: aElementToPush
@@ -308,17 +301,15 @@ size
 
 	^elements size - 1! !
 
-!OOStack methodsFor: 'querying' stamp: 'ff 9/18/2023 13:18:50'!
+!OOStack methodsFor: 'querying' stamp: 'IB 9/18/2023 16:41:34'!
 top
 	
-	
-	^elements last top: self.! !
+	^elements last top: self! !
 
-!OOStack methodsFor: 'querying' stamp: 'ff 9/18/2023 13:23:47'!
+!OOStack methodsFor: 'querying' stamp: 'IB 9/18/2023 16:41:29'!
 topOfAnNonEmptyOOStack
 	
-	
-	^elements last underlyingElement .! !
+	^elements last underlyingElement! !
 
 
 !OOStack methodsFor: 'error' stamp: 'IB 4/24/2023 00:33:28'!
@@ -362,13 +353,15 @@ initializeFor: anOOStack
 
 	stack := anOOStack! !
 
-!OOStackBase methodsFor: 'initialization' stamp: 'ff 9/18/2023 13:17:49'!
+!OOStackBase methodsFor: 'initialization' stamp: 'IB 9/18/2023 16:42:07'!
 pop: anOOStack
-	^anOOStack raiseErrorBecauseCantRemoveStackBase.! !
 
-!OOStackBase methodsFor: 'initialization' stamp: 'ff 9/18/2023 13:17:56'!
+	^anOOStack raiseErrorBecauseCantRemoveStackBase! !
+
+!OOStackBase methodsFor: 'initialization' stamp: 'IB 9/18/2023 16:42:02'!
 top: anOOStack
-	^anOOStack raiseErrorBecauseCantRemoveStackBase.! !
+
+	^anOOStack raiseErrorBecauseCantRemoveStackBase! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -404,13 +397,15 @@ initializeFor: anUnderlyingElement
 
 	element := anUnderlyingElement ! !
 
-!OOStackElement methodsFor: 'initialization' stamp: 'ff 9/18/2023 13:24:18'!
+!OOStackElement methodsFor: 'initialization' stamp: 'IB 9/18/2023 16:42:13'!
 pop: anOOStack
-	^anOOStack popOfAnNonEmptyStack.! !
 
-!OOStackElement methodsFor: 'initialization' stamp: 'ff 9/18/2023 13:23:47'!
+	^anOOStack popOfAnNonEmptyStack! !
+
+!OOStackElement methodsFor: 'initialization' stamp: 'IB 9/18/2023 16:42:16'!
 top: anOOStack
-	^anOOStack topOfAnNonEmptyOOStack.! !
+
+	^anOOStack topOfAnNonEmptyOOStack! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
