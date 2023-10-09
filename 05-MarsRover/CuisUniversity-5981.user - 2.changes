@@ -1,0 +1,679 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (9 October 2023 11:26:12) as C:\Users\iboaretto\Desktop\UBA\Inge1\cuis\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\iboaretto\Desktop\UBA\Inge1\cuis\windows64\Mars Rover.st----!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:31:48'!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialPosition initialFacingDirection|
+	
+	initialPosition := 0@0.
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: initialPosition facing: initialFacingDirection.
+	marsRover executeCommand: 'Xf' .
+	
+	self assert: marsRover placedAt: initialPosition facing: initialFacingDirection.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:33:04' prior: 50650754!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialPosition initialFacingDirection|
+	
+	initialPosition := 0@0.
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: initialPosition facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'Xf'] 
+		raise: Error 
+		description: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: initialPosition facing: initialFacingDirection.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:33:57' prior: 50650769!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		description: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:34:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:06'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:23'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:34:33'!
+testInvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		description: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!methodRemoval: MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:33'!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		description: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.!
+
+!testRun: #MarsRoversTests #testInvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+
+!testRun: #MarsRoversTests #testInvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:35'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:34:49' prior: 50650951!
+testInvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	self halt.
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		description: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!testRun: #MarsRoversTests #testInvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:34:55'!
+PASSED!
+
+marsRover!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:35:54' prior: 50651058!
+testInvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	self halt.
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:36:02' prior: 50651079!
+testInvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!testRun: #MarsRoversTests #testInvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:36:03'!
+FAILURE!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:36:12'!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!methodRemoval: MarsRoversTests #testInvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:36:12'!
+testInvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:37:27'!
+FAILURE!
+
+marsRover executeCommand: 'fXf'!
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:39:23' prior: 50650671!
+executeCommand: aCommandToExecute 
+	
+	aCommandToExecute 
+		do:[:command|
+			[(commandProcedures at: command) value] 
+				on: Error 
+				do: [:signal | self error: 'Comando inesperado!! Se detiene ejecución.']]
+		
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:39:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:39:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:39:33'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:39:33'!
+FAILURE!
+
+expected!
+
+actual!
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:39:56' prior: 50651115!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución.'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:39:58'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:40:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:40:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:40:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:40:02'!
+PASSED!
+
+----SNAPSHOT----(9 October 2023 11:40:06) CuisUniversity-5981.image priorSource: 10197292!
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:40:46'!
+raiseUnexpectedCommandError
+
+	^ self error: 'Comando inesperado!! Se detiene ejecución.'! !
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:40:46' prior: 50651153!
+executeCommand: aCommandToExecute 
+	
+	aCommandToExecute 
+		do:[:command|
+			[(commandProcedures at: command) value] 
+				on: Error 
+				do: [:signal | self raiseUnexpectedCommandError]]
+		
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:40:52' prior: 50651407!
+executeCommand: aCommandToExecute 
+	
+	aCommandToExecute 
+		do:[:command|
+			[(commandProcedures at: command) value] 
+				on: Error 
+				do: [self raiseUnexpectedCommandError]]
+		
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'IB 10/9/2023 11:40:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:40:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'IB 10/9/2023 11:40:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'IB 10/9/2023 11:40:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'IB 10/9/2023 11:40:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test19GeneralCase stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+!testRun: #MarsRoversTests #test20InvalidCommandFailsAndStopsExecutingSubsequentCommands stamp: 'IB 10/9/2023 11:40:57'!
+PASSED!
+
+----SNAPSHOT----(9 October 2023 11:41:00) CuisUniversity-5981.image priorSource: 10231929!
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:41:49'!
+executeSingleCommand: command
+
+	^ [(commandProcedures at: command) value] 
+				on: Error 
+				do: [self raiseUnexpectedCommandError]! !
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:41:50' prior: 50651416!
+executeCommand: aCommandToExecute 
+	
+	aCommandToExecute 
+		do:[:command|
+			self executeSingleCommand: command]
+		
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:41:58' prior: 50651505!
+executeCommand: aCommandToExecute 
+	
+	aCommandToExecute do:[:command| self executeSingleCommand: command]
+		
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute--private' stamp: 'IB 10/9/2023 11:42:35' prior: 50651498!
+executeSingleCommand: aCommandToExecute
+
+	^ [(commandProcedures at: aCommandToExecute) value] 
+				on: Error 
+				do: [self raiseUnexpectedCommandError]! !
+
+----SNAPSHOT----(9 October 2023 11:42:41) CuisUniversity-5981.image priorSource: 10235022!
