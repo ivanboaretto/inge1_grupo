@@ -1,4 +1,3961 @@
 
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (8 October 2023 19:15:28) as /home/totorroto/Desktop/MarsRovers/linux64/CuisUniversity-5981.image!
+
+
+TestCase subclass: #xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rovers'!
+
+TestCase subclass: #XX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rovers'!
+
+!classDefinition: #XX category: 'Mars Rovers' stamp: 'TAO 10/8/2023 19:16:35'!
+TestCase subclass: #XX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rovers'!
+
+!classRenamed: #XX as: #MarsRoversTests stamp: 'TAO 10/8/2023 19:16:50'!
+Smalltalk renameClassNamed: #XX as: #MarsRoversTests!
+!MarsRoversTests methodsFor: 'nil' stamp: 'TAO 10/8/2023 19:18:23'!
+test01
+	
+	| marsRover |
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+
+!classDefinition: #MarsRover category: 'Mars Rovers' stamp: 'TAO 10/8/2023 19:19:55'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rovers'!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:19:39' prior: 50650340!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover positionedAt: 0@0 facing:#North.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:20:10'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:20:19'!
+positionedAt: aRenameMe1 facing: aRenameMe2 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'TAO 10/8/2023 19:21:43' prior: 50650366!
+positionedAt: anInitialPosition facing:  aInitialCardinalPoint
+	! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'TAO 10/8/2023 19:22:18' prior: 50650372!
+positionedAt: anInitialPosition facing:  aInitialCardinalPoint
+	^self new.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:22:31' prior: 50650354!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover .
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:22:35' prior: 50650384!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover new.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+
+!methodRemoval: MarsRover class #positionedAt:facing: stamp: 'TAO 10/8/2023 19:22:40'!
+positionedAt: anInitialPosition facing:  aInitialCardinalPoint
+	^self new.!
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:22:47'!
+ERROR!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:22:57'!
+executeCommand: aRenameMe1 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:23:14' prior: 50650409!
+executeCommand: aCommandToExecute 
+	
+	! !
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:23:15'!
+ERROR!
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:23:25'!
+position
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:23:33' prior: 50650420!
+position
+	^0@0.! !
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:23:35'!
+ERROR!
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:23:39'!
+direction
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:23:44' prior: 50650430!
+direction
+	^#North! !
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:23:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:23:45'!
+PASSED!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:24:49'!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover := MarsRover new.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+
+!methodRemoval: MarsRoversTests #test01 stamp: 'TAO 10/8/2023 19:24:53'!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover new.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:24:55'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:24:55'!
+PASSED!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:25:38'!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover := MarsRover new.
+	marsRover executeCommand: 'f'.
+	
+	self assert: marsRover position equals: 0@1.
+	self assert: marsRover direction equals: #North.! !
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:25:39'!
+FAILURE!
+
+!classDefinition: #MarsRover category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:27:04'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:26:59' prior: 50650414!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' 
+		ifTrue: [] 
+		ifFalse:[position:= 0@1.].
+	
+	
+	! !
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:27:11' prior: 50650424!
+position
+	^position.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:27:43' prior: 50650468!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	self assert: marsRover position equals: 0@1.
+	self assert: marsRover direction equals: #North.! !
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:27:47'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'TAO 10/8/2023 19:28:00'!
+placedAt: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializePlacedAt: aRenameMe1 ! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'TAO 10/8/2023 19:28:09' prior: 50650512!
+placedAt: anInitialPosition 
+	
+	^self new initializePlacedAt: anInitialPosition ! !
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:13'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:28:24'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position initialPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 19:28:24'!
+initializePlacedAt: anInitialPosition 
+	self shouldBeImplemented.
+	initialPosition := anInitialPosition.! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 19:28:31' prior: 50650537!
+initializePlacedAt: anInitialPosition 
+	position := anInitialPosition.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:33'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:33'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:39'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:39'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:39'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:39'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:46'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:50'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:50'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:28:50'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:50'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:54'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:28:54'!
+FAILURE!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:29:06' prior: 50650443!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:0@0.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover position equals: 0@0.
+	self assert: marsRover direction equals: #North.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:29:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:29:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:29:07'!
+PASSED!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:29:55' prior: 50650499!
+test02MovingFowardFacingNorth
+	
+	| marsRover finalPosition |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	finalPosition := 0@1.
+	self assert: marsRover position equals: finalPosition.
+	self assert: marsRover direction equals: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:30:18' prior: 50650616!
+test02MovingFowardFacingNorth
+	
+	| marsRover finalPosition finalFacingDirection |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	finalPosition := 0@1.
+	self assert: marsRover position equals: finalPosition.
+	finalFacingDirection := #North.
+	self assert: marsRover direction equals: finalFacingDirection.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:30:30' prior: 50650628!
+test02MovingFowardFacingNorth
+	
+	| marsRover finalPosition finalFacingDirection |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	finalPosition := 0@1.
+	finalFacingDirection := #North.
+	
+	self assert: marsRover position equals: finalPosition.
+	self assert: marsRover direction equals: finalFacingDirection.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:31:33'!
+assert: marsRover placedAt: finalPosition facing: finalFacingDirection
+
+	self assert: marsRover position equals: finalPosition.
+	self assert: marsRover direction equals: finalFacingDirection! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:31:33' prior: 50650642!
+test02MovingFowardFacingNorth
+	
+	| marsRover finalPosition finalFacingDirection |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	finalPosition := 0@1.
+	finalFacingDirection := #North.
+	
+	self assert: marsRover placedAt: finalPosition facing: finalFacingDirection.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:32:05' prior: 50650666!
+test02MovingFowardFacingNorth
+	
+	| marsRover finalFacingDirection |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	finalFacingDirection := #North.
+	
+	self assert: marsRover placedAt: 0@1 facing: finalFacingDirection.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:32:21' prior: 50650679!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt: 0@0.
+	marsRover executeCommand: 'f'.
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:32:38' prior: 50650596!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:0@0.
+	marsRover executeCommand: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: #North.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:32:39'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:32:39'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:32:39'!
+PASSED!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:32:51' prior: 50650690!
+test02MovingFowardFacingNorth
+	
+	| marsRover initialPosition |
+	
+	initialPosition := 0@0.
+	marsRover := MarsRover placedAt: initialPosition.
+	marsRover executeCommand: 'f'.
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+
+'f'!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:33:04' prior: 50650718!
+test02MovingFowardFacingNorth
+	
+	| marsRover initialPosition commandToExecute |
+	
+	initialPosition := 0@0.
+	marsRover := MarsRover placedAt: initialPosition.
+	commandToExecute := 'f'.
+	marsRover executeCommand: commandToExecute.
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:33:23' prior: 50650729!
+test02MovingFowardFacingNorth
+	
+	| marsRover initialPosition commandToExecute |
+	
+	initialPosition := 0@0.
+	commandToExecute := 'f'.
+	
+	marsRover := MarsRover placedAt: initialPosition.
+	marsRover executeCommand: commandToExecute.
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:35:15'!
+marsRoverInitiallyPlacedAt: initialPosition afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:0@0.
+	marsRover executeCommand: ''.
+	
+	^marsRover.
+	! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:35:43' prior: 50650699!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 afterExecuting: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:36:22' prior: 50650742!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 afterExecuting: 'f'.
+	
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:36:24' prior: 50650772!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:36:24'!
+FAILURE!
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:36:45' prior: 50650754!
+marsRoverInitiallyPlacedAt: initialPosition afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:36:46'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:36:46'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:38:11'!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #East.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:38:32' prior: 50650809!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 1@0 facing: #East.! !
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:38:33'!
+FAILURE!
+!MarsRoversTests methodsFor: 'support' stamp: 'TAO 10/8/2023 19:40:42'!
+marsRoverInitiallyPlacedAt: initialPosition initiallyFacingAt: intialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:40:42' prior: 50650763!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 initiallyFacingAt: self halt afterExecuting: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:40:42' prior: 50650818!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 initiallyFacingAt: self halt afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 1@0 facing: #East.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:40:42' prior: 50650781!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 initiallyFacingAt: self halt afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+
+!methodRemoval: MarsRoversTests #marsRoverInitiallyPlacedAt:afterExecuting: stamp: 'TAO 10/8/2023 19:40:42'!
+marsRoverInitiallyPlacedAt: initialPosition afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	!
+!MarsRoversTests methodsFor: 'support' stamp: 'TAO 10/8/2023 19:41:07'!
+marsRoverInitiallyPlacedAt: initialPosition facingAt: intialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:41:07' prior: 50650861!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: self halt afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:41:07' prior: 50650851!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: self halt afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 1@0 facing: #East.! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:41:07' prior: 50650841!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: self halt afterExecuting: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: #North.! !
+
+!methodRemoval: MarsRoversTests #marsRoverInitiallyPlacedAt:initiallyFacingAt:afterExecuting: stamp: 'TAO 10/8/2023 19:41:07'!
+marsRoverInitiallyPlacedAt: initialPosition initiallyFacingAt: intialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:41:19' prior: 50650901!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: #East afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 1@0 facing: #East.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:41:24' prior: 50650891!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: #North afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: #North.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:41:33' prior: 50650911!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt:#North afterExecuting: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: #North.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:41:44' prior: 50650933!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: #East afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 1@0 facing: #East.! !
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:41:45'!
+FAILURE!
+
+!classDefinition: #MarsRover category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:42:04'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position initialPosition direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRover methodsFor: 'accesing' stamp: 'TAO 10/8/2023 19:42:02' prior: 50650434!
+direction
+	^direction! !
+!MarsRoversTests methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:43:24' prior: 50650880!
+marsRoverInitiallyPlacedAt: initialPosition facingAt: intialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition facing: self halt.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'TAO 10/8/2023 19:43:57'!
+placedAt: anInitialPosition facing: anInitialFacingDirection
+	
+	^self new initializePlacedAt: anInitialPosition facing: anInitialFacingDirection .! !
+
+!methodRemoval: MarsRover class #placedAt: stamp: 'TAO 10/8/2023 19:44:00'!
+placedAt: anInitialPosition 
+	
+	^self new initializePlacedAt: anInitialPosition !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 19:44:25'!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	direction:= anInitialDirection ! !
+
+!methodRemoval: MarsRover #initializePlacedAt: stamp: 'TAO 10/8/2023 19:44:27'!
+initializePlacedAt: anInitialPosition 
+	position := anInitialPosition.!
+!MarsRoversTests methodsFor: 'support' stamp: 'TAO 10/8/2023 19:45:02' prior: 50650984!
+marsRoverInitiallyPlacedAt: initialPosition facingAt: intialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition facing: intialFacingDirection.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:45:04'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:45:05'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:45:08'!
+FAILURE!
+!MarsRoversTests methodsFor: 'support' stamp: 'TAO 10/8/2023 19:45:18' prior: 50651019!
+marsRoverInitiallyPlacedAt: initialPosition facingAt: initialFacingDirection afterExecuting: aCommandToBeExecute
+	
+	| marsRover |
+	
+	marsRover := MarsRover placedAt:initialPosition facing: initialFacingDirection.
+	marsRover executeCommand: aCommandToBeExecute .
+	
+	^marsRover.
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:45:20'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:45:20'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:45:20'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:45:20'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:46:44' prior: 50650488!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	direction = #North ifTrue: [position := 0@1] ifFalse: [position := 1@0].
+	
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:46:46'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:46:46'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:46:46'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:47:31'!
+test04MovingFowardFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: #South afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: #South.! !
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:47:33'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:48:23' prior: 50651066!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1.
+	
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:48:24'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:48:24'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:48:24'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:48:24'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:49:43' prior: 50651095!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	position := direction fowardMovement.
+	"direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1."
+	
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:49:54' prior: 50651117!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	position := direction fowardMovement.
+	
+	"direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1."
+	
+	
+	! !
+
+Object subclass: #CardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+
+!classDefinition: #CardinalPoint category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:50:29'!
+Object subclass: #CardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+
+!classDefinition: #North category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:51:18'!
+CardinalPoint subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:50:47' prior: 50650951!
+test01WhenNoCommandExecutedStayStill
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt:North new afterExecuting: ''.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:51:28' prior: 50650942!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: North new.! !
+
+!classDefinition: #East category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:51:45'!
+CardinalPoint subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:51:35' prior: 50650960!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 1@0 facing: East new.! !
+
+!classDefinition: #South category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:52:16'!
+CardinalPoint subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:52:10' prior: 50651083!
+test04MovingFowardFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: South new.! !
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:52:20'!
+ERROR!
+!South methodsFor: 'category-name' stamp: 'TAO 10/8/2023 19:52:30'!
+fowardMovement
+	self shouldBeImplemented.! !
+!South methodsFor: 'category-name' stamp: 'TAO 10/8/2023 19:52:44' prior: 50651210!
+fowardMovement
+	 ^0@-1.! !
+!South methodsFor: 'category-name' stamp: 'TAO 10/8/2023 19:52:48' prior: 50651215!
+fowardMovement
+	 ^0@-1.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:52:55'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:52:55'!
+ERROR!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:52:55'!
+ERROR!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:52:55'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:52:57'!
+FAILURE!
+!CardinalPoint methodsFor: 'no messages' stamp: 'TAO 10/8/2023 19:53:47' overrides: 16901772!
+= anCardinalPointToCompare
+	self class = anCardinalPointToCompare class.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:54:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:54:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:54:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:54:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:54:03'!
+ERROR!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:54:16' prior: 50651239 overrides: 16901772!
+= anCardinalPointToCompare
+	^self class = anCardinalPointToCompare class.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:54:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:54:19'!
+ERROR!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:54:19'!
+ERROR!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:54:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:54:20'!
+ERROR!
+!North methodsFor: 'x' stamp: 'TAO 10/8/2023 19:54:31'!
+fowardMovement
+	self shouldBeImplemented.! !
+!North methodsFor: 'x' stamp: 'TAO 10/8/2023 19:54:43' prior: 50651281!
+fowardMovement
+	^0@1.! !
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:54:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:54:46'!
+ERROR!
+!East methodsFor: 'x' stamp: 'TAO 10/8/2023 19:54:50'!
+fowardMovement
+	self shouldBeImplemented.! !
+!East methodsFor: 'x' stamp: 'TAO 10/8/2023 19:54:56' prior: 50651294!
+fowardMovement
+	^1@0.! !
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:54:57'!
+PASSED!
+!CardinalPoint methodsFor: 'x' stamp: 'TAO 10/8/2023 19:55:06'!
+fowardMovement
+	^0@1.! !
+
+!methodRemoval: North #fowardMovement stamp: 'TAO 10/8/2023 19:55:06'!
+fowardMovement
+	^0@1.!
+!CardinalPoint methodsFor: 'x' stamp: 'TAO 10/8/2023 19:55:21' prior: 50651304!
+fowardMovement
+	self subclassResponsibility .! !
+!North methodsFor: 'nil' stamp: 'TAO 10/8/2023 19:55:35' overrides: 50651311!
+fowardMovement
+	^0@1.! !
+!CardinalPoint methodsFor: 'x' stamp: 'TAO 10/8/2023 19:57:17'!
+direction
+	self subclassResponsibility .! !
+!East methodsFor: 'x' stamp: 'TAO 10/8/2023 19:57:17' overrides: 50651318!
+direction
+	^1@0.! !
+!North methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:57:17' overrides: 50651318!
+direction
+	^0@1.! !
+!South methodsFor: 'category-name' stamp: 'TAO 10/8/2023 19:57:17' overrides: 50651318!
+direction
+	 ^0@-1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:57:17' prior: 50651128!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	position := direction direction.
+	
+	"direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1."
+	
+	
+	! !
+
+!methodRemoval: CardinalPoint #fowardMovement stamp: 'TAO 10/8/2023 19:57:17'!
+fowardMovement
+	self subclassResponsibility .!
+
+!methodRemoval: East #fowardMovement stamp: 'TAO 10/8/2023 19:57:17'!
+fowardMovement
+	^1@0.!
+
+!methodRemoval: North #fowardMovement stamp: 'TAO 10/8/2023 19:57:17'!
+fowardMovement
+	^0@1.!
+
+!methodRemoval: South #fowardMovement stamp: 'TAO 10/8/2023 19:57:17'!
+fowardMovement
+	 ^0@-1.!
+
+!classDefinition: #MarsRover category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:57:50'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position initialPosition facingDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:57:50' prior: 50651334!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	position := facingDirection direction.
+	
+	"direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1."
+	
+	
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:57:50' prior: 50651007!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	facingDirection:= anInitialDirection ! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:57:50' prior: 50650980!
+direction
+	^facingDirection! !
+!CardinalPoint methodsFor: 'x' stamp: 'TAO 10/8/2023 19:58:38'!
+pointDirection
+	self subclassResponsibility .! !
+!East methodsFor: 'x' stamp: 'TAO 10/8/2023 19:58:38' overrides: 50651388!
+pointDirection
+	^1@0.! !
+!North methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 19:58:38' overrides: 50651388!
+pointDirection
+	^0@1.! !
+!South methodsFor: 'category-name' stamp: 'TAO 10/8/2023 19:58:38' overrides: 50651388!
+pointDirection
+	 ^0@-1.! !
+
+!methodRemoval: CardinalPoint #direction stamp: 'TAO 10/8/2023 19:58:38'!
+direction
+	self subclassResponsibility .!
+
+!methodRemoval: East #direction stamp: 'TAO 10/8/2023 19:58:38'!
+direction
+	^1@0.!
+
+!methodRemoval: North #direction stamp: 'TAO 10/8/2023 19:58:38'!
+direction
+	^0@1.!
+
+!methodRemoval: South #direction stamp: 'TAO 10/8/2023 19:58:38'!
+direction
+	 ^0@-1.!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:58:59' prior: 50651366!
+executeCommand: aCommandToExecute 
+	aCommandToExecute = '' ifTrue: [^self].
+	position := facingDirection pointDirection .
+	
+	"direction = #North ifTrue: [^position := 0@1.] .
+	direction = #East ifTrue:[^position := 1@0].
+	position:= 0@-1."
+	
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:59:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:59:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:59:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:59:00'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 19:59:04' prior: 50651416!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	position := facingDirection pointDirection .
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 19:59:27'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 19:59:27'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 19:59:27'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 19:59:27'!
+PASSED!
+
+!classDefinition: #West category: 'Mars Rover' stamp: 'TAO 10/8/2023 19:59:56'!
+CardinalPoint subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 19:59:49'!
+test05MovingFowardFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: -1@0 facing: West new.! !
+
+!testRun: #MarsRoversTests #test05MovingFowardFacingWest stamp: 'TAO 10/8/2023 20:00:01'!
+ERROR!
+!West methodsFor: 'x' stamp: 'TAO 10/8/2023 20:00:08' overrides: 50651388!
+pointDirection
+	self shouldBeImplemented.! !
+!West methodsFor: 'x' stamp: 'TAO 10/8/2023 20:00:20' prior: 50651478 overrides: 50651388!
+pointDirection
+	^-1@0.! !
+
+!testRun: #MarsRoversTests #test05MovingFowardFacingWest stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardFacingWest stamp: 'TAO 10/8/2023 20:00:22'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:00:45'!
+test02MovingFowardOneTimeFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: North new.! !
+
+!methodRemoval: MarsRoversTests #test02MovingFowardFacingNorth stamp: 'TAO 10/8/2023 20:00:45'!
+test02MovingFowardFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'f'.
+	
+	
+	self assert: marsRover placedAt: 0@1 facing: North new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:00:50'!
+test03MovingFowardOneTimeFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 1@0 facing: East new.! !
+
+!methodRemoval: MarsRoversTests #test03MovingFowardFacingEast stamp: 'TAO 10/8/2023 20:00:50'!
+test03MovingFowardFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 1@0 facing: East new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:00:54'!
+test04MovingFowardOneTimeFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: South new.! !
+
+!methodRemoval: MarsRoversTests #test04MovingFowardFacingSouth stamp: 'TAO 10/8/2023 20:00:54'!
+test04MovingFowardFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: South new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:01:00'!
+test05MovingFowardOneTimeFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: -1@0 facing: West new.! !
+
+!methodRemoval: MarsRoversTests #test05MovingFowardFacingWest stamp: 'TAO 10/8/2023 20:01:00'!
+test05MovingFowardFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: -1@0 facing: West new.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:01:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:01:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:01:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:01:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:01:07'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:02:17'!
+test06MovingBackwardOneTimeFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: -1@0 facing: West new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:02:43' prior: 50651596!
+test06MovingBackwardOneTimeFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'f'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: North new.! !
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:02:47'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:04:41' prior: 50651440!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute first = $f ifTrue: [^position := facingDirection pointDirection].
+	position := facingDirection opositePointDirection.
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:04:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:04:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:04:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:04:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:04:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:04:45'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:04:45'!
+FAILURE!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:05:07' prior: 50651606!
+test06MovingBackwardOneTimeFacingNorth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'b'.
+	
+	self assert: marsRover placedAt: 0@-1 facing: North new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:05:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:05:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:05:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:05:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:05:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:05:09'!
+ERROR!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:05:09'!
+ERROR!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:05:16'!
+opositePointDirection
+	self shouldBeImplemented.! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:05:22' prior: 50651686!
+opositePointDirection
+	self subclassResponsibility .! !
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:05:25'!
+ERROR!
+!North methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:05:31' overrides: 50651691!
+opositePointDirection
+	self shouldBeImplemented.! !
+!North methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:06:01' prior: 50651700 overrides: 50651691!
+opositePointDirection
+	^self pointDirection negated.! !
+
+self!
+
+self pointDirection negated!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:06:17'!
+PASSED!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:06:45' prior: 50651691!
+opositePointDirection
+	^self pointDirection negated.! !
+
+!methodRemoval: North #opositePointDirection stamp: 'TAO 10/8/2023 20:06:45'!
+opositePointDirection
+	^self pointDirection negated.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:08:10'!
+test07MovingBackwardOneTimeFacingEast
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'b'.
+	
+	self assert: marsRover placedAt: -1@0 facing: East new.! !
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:08:36' overrides: 50651733!
+opositePointDirection
+	^self pointDirection negated.! !
+
+!methodRemoval: CardinalPoint #opositePointDirection stamp: 'TAO 10/8/2023 20:08:36'!
+opositePointDirection
+	^self pointDirection negated.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:08:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:08:45'!
+ERROR!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:08:45'!
+ERROR!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:08:55'!
+opositePointDirection
+	self shouldBeImplemented.! !
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:09:05' prior: 50651787!
+opositePointDirection
+	^self pointDirection negated.! !
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:09:06'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:09:11'!
+PASSED!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:09:23'!
+opositePointDirection
+	^self pointDirection negated.! !
+
+!methodRemoval: North #opositePointDirection stamp: 'TAO 10/8/2023 20:09:23'!
+opositePointDirection
+	^self pointDirection negated.!
+
+!methodRemoval: East #opositePointDirection stamp: 'TAO 10/8/2023 20:09:23'!
+opositePointDirection
+	^self pointDirection negated.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:10:01'!
+test08MovingBackwardOneTimeFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'b'.
+	
+	self assert: marsRover placedAt: 0@1 facing: South new.! !
+
+!testRun: #MarsRoversTests #test08MovingBackwardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!testRun: #MarsRoversTests #test08MovingBackwardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:10:02'!
+PASSED!
+
+!methodRemoval: MarsRoversTests #test08MovingBackwardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:10:15'!
+test08MovingBackwardOneTimeFacingSouth
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'b'.
+	
+	self assert: marsRover placedAt: 0@1 facing: South new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:11:03'!
+test09MovingFowardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'b'.
+	
+	self assert: marsRover placedAt: -1@0 facing: East new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:11:55' prior: 50651885!
+test09MovingFowardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'fff'.
+	
+	self assert: marsRover placedAt: 0@3 facing: North new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:12:01' prior: 50651895!
+test09MovingFowardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'ff'.
+	
+	self assert: marsRover placedAt: 0@2 facing: North new.! !
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:12:09'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:14:57' prior: 50651619!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [position :=position + facingDirection pointDirection]
+			ifFalse:[position := position + facingDirection opositePointDirection.]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:14:59'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:15:50' prior: 50651918!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [position :=position + facingDirection pointDirection]
+			ifFalse:[^position :=  facingDirection opositePointDirection.]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:15:52'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:16:03'!
+test10MovingBackwardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'ff'.
+	
+	self assert: marsRover placedAt: 0@2 facing: North new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:16:06' prior: 50651995!
+test10MovingBackwardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'bb'.
+	
+	self assert: marsRover placedAt: 0@2 facing: North new.! !
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:07'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:16:16' prior: 50651957!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [position :=position + facingDirection pointDirection]
+			ifFalse:[position := position+  facingDirection opositePointDirection.]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:19'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:19'!
+FAILURE!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:16:24' prior: 50652005!
+test10MovingBackwardMoreThanOneTime
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'bb'.
+	
+	self assert: marsRover placedAt: 0@-2 facing: North new.! !
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:16:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:16:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:16:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:16:26'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:16:51'!
+moveFowardOneTime
+
+	^ position :=position + facingDirection pointDirection! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:16:51' prior: 50652018!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[position := position+  facingDirection opositePointDirection.]].
+				
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:16:59'!
+moveBackwardOneTime
+
+	^ position := position+  facingDirection opositePointDirection! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:16:59' prior: 50652111!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[self moveBackwardOneTime.]].
+				
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:17:32' prior: 50652106!
+moveFowardOneTime
+
+	 position :=position + facingDirection pointDirection! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:17:34' prior: 50652122!
+moveBackwardOneTime
+
+	 position := position+  facingDirection opositePointDirection! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:17:58' prior: 50652143!
+moveBackwardOneTime
+	self moveInDirection: facingDirection opositePointDirection
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:03'!
+ERROR!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:18:07'!
+moveInDirection: aRenameMe1 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:18:18' prior: 50652188!
+moveInDirection: aRenameMe1 
+	 position := position+  aRenameMe1! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:18:29' prior: 50652193!
+moveInDirection: aDirectionToMove 
+	 position := position+  aDirectionToMove! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:31'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:18:44' prior: 50652138!
+moveFowardOneTime
+
+	 self moveInDirection: facingDirection pointDirection! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:18:45'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:21:01'!
+test11RotateToLeftFacingNorthLeftYouFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'bb'.
+	
+	self assert: marsRover placedAt: 0@-2 facing: North new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:22:24'!
+test11RotateLeftFacingNorthLeftYouFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'bb'.
+	
+	self assert: marsRover placedAt: 0@-2 facing: North new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateToLeftFacingNorthLeftYouFacingWest stamp: 'TAO 10/8/2023 20:22:26'!
+test11RotateToLeftFacingNorthLeftYouFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'bb'.
+	
+	self assert: marsRover placedAt: 0@-2 facing: North new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:23:22' prior: 50652279!
+test11RotateLeftFacingNorthLeftYouFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:23:38'!
+test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWest stamp: 'TAO 10/8/2023 20:23:40'!
+test11RotateLeftFacingNorthLeftYouFacingWest
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:23:53'!
+FAILURE!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:24:24'!
+test11RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:24:37'!
+test11RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:25:17' prior: 50652128!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[]]].
+				
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:25:30' prior: 50652354!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[self rotateLeft]]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:25:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:25:38'!
+ERROR!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:25:38'!
+ERROR!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:25:47'!
+rotateLeft
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:26:08' prior: 50652414!
+rotateLeft
+	^West! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:26:13' prior: 50652418!
+rotateLeft
+	^West new! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:26:14'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:26:14'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:26:14'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:26:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:26:28'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:26:28'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:27:00' prior: 50652422!
+rotateLeft
+	facingDirection:= West new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:27:01'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:27:54'!
+test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:02'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:28:31' prior: 50652502!
+rotateLeft
+	facingDirection := facingDirection whatIsInYourLeft! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:28:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:33'!
+ERROR!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:33'!
+ERROR!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:35'!
+ERROR!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:28:43'!
+test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:43'!
+test11RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:28:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:48'!
+ERROR!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:48'!
+ERROR!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:28:49'!
+ERROR!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:28:57'!
+whatIsInYourLeft
+	self shouldBeImplemented.! !
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:01' prior: 50652664!
+whatIsInYourLeft
+	self subclassResponsibility .! !
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:29:03'!
+ERROR!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:08' overrides: 50652669!
+whatIsInYourLeft
+	self shouldBeImplemented.! !
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:15' prior: 50652678 overrides: 50652669!
+whatIsInYourLeft
+	^South new.! !
+
+self!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:28' prior: 50652683 overrides: 50652669!
+whatIsInYourLeft
+
+	^South new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:29:30'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:29:30'!
+ERROR!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:29:30'!
+ERROR!
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:39' overrides: 50652669!
+whatIsInYourLeft
+	self shouldBeImplemented.! !
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:29:58' prior: 50652734 overrides: 50652669!
+whatIsInYourLeft
+	^West new.! !
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:29:59'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:30:00'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:30:08'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:30:50'!
+test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:30:51'!
+ERROR!
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:30:56' overrides: 50652669!
+whatIsInYourLeft
+	self shouldBeImplemented.! !
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:31:09' prior: 50652803 overrides: 50652669!
+whatIsInYourLeft
+	^East new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:31:10'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:32:04'!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:05'!
+ERROR!
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:32:10' overrides: 50652669!
+whatIsInYourLeft
+	self shouldBeImplemented.! !
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:32:18' prior: 50652868 overrides: 50652669!
+whatIsInYourLeft
+	^North new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:32:19'!
+PASSED!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:34:03'!
+anticlockwise90DegreeCardinalPoint
+	self subclassResponsibility .! !
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:34:03' overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+
+	^South new.! !
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:34:03' overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+	^West new.! !
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:34:03' overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+	^East new.! !
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:34:03' overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+	^North new.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:34:03' prior: 50652554!
+rotateLeft
+	facingDirection := facingDirection anticlockwise90DegreeCardinalPoint! !
+
+!methodRemoval: CardinalPoint #whatIsInYourLeft stamp: 'TAO 10/8/2023 20:34:03'!
+whatIsInYourLeft
+	self subclassResponsibility .!
+
+!methodRemoval: East #whatIsInYourLeft stamp: 'TAO 10/8/2023 20:34:03'!
+whatIsInYourLeft
+
+	^South new.!
+
+!methodRemoval: North #whatIsInYourLeft stamp: 'TAO 10/8/2023 20:34:03'!
+whatIsInYourLeft
+	^West new.!
+
+!methodRemoval: South #whatIsInYourLeft stamp: 'TAO 10/8/2023 20:34:03'!
+whatIsInYourLeft
+	^East new.!
+
+!methodRemoval: West #whatIsInYourLeft stamp: 'TAO 10/8/2023 20:34:04'!
+whatIsInYourLeft
+	^North new.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:11'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:34:42' prior: 50652854!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'll'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:43'!
+FAILURE!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:34:47' prior: 50653021!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'll'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:34:48'!
+FAILURE!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:35:15' prior: 50652932 overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+
+	^North new.! !
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:35:36' prior: 50652947 overrides: 50652927!
+anticlockwise90DegreeCardinalPoint
+	^South new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:35:54' prior: 50652540!
+test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:36:02' prior: 50653035!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:03'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:36:08' prior: 50653070!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'll'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:09'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:36:15' prior: 50653131!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:36:21'!
+test14RotateLeftFacingWestLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!methodRemoval: MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:25'!
+test14RotateLeftFacingWestLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:36:31'!
+test11RotateLeftFacingEastLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:31'!
+test11RotateLeftFacingEastLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:36:38'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:37:33'!
+test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+
+!methodRemoval: MarsRoversTests #test11RotateLeftFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:37:37'!
+test11RotateLeftFacingEastLeftYouFacingNorthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:37:43'!
+test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+
+!methodRemoval: MarsRoversTests #test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:37:43'!
+test12RotateLeftFacingNorthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:37:57'!
+test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+
+!methodRemoval: MarsRoversTests #test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:37:57'!
+test13RotateLeftFacingSouthLeftYouFacingEastAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:38:02'!
+test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!methodRemoval: MarsRoversTests #test14RotateLeftFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:38:02'!
+test14RotateLeftFacingWestLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'l'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:40:28'!
+test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: West new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: North new.! !
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:41:07'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:41:57' prior: 50652365!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[command = $r
+					 ifTrue: [self rotateLeft]
+					 ifFalse:[self rotateRight]]]].
+				
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:42:03' prior: 50653393!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute = '' ifTrue: [^self].
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[command = $l
+					 ifTrue: [self rotateLeft]
+					 ifFalse:[self rotateRight]]]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+ERROR!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:07'!
+ERROR!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:42:12'!
+rotateRight
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:42:22' prior: 50653476!
+rotateRight
+	^North new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:23'!
+FAILURE!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:42:46' prior: 50653480!
+rotateRight
+	facingDirection := facingDirection clockwise90DegreeCardinalPoint! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+ERROR!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:42:56'!
+ERROR!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:43:14'!
+clockwise90DegreeCardinalPoint
+	self subclassResponsibility .! !
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:43:18' overrides: 50653601!
+clockwise90DegreeCardinalPoint
+
+	^North new.! !
+
+!methodRemoval: East #clockwise90DegreeCardinalPoint stamp: 'TAO 10/8/2023 20:43:25'!
+clockwise90DegreeCardinalPoint
+
+	^North new.!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+ERROR!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:28'!
+ERROR!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:43:44' prior: 50653601!
+clockwise90DegreeCardinalPoint
+	^North new.! !
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:43:51'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:44:13'!
+test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:14'!
+FAILURE!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:44:41' overrides: 50653670!
+clockwise90DegreeCardinalPoint
+	^North new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+FAILURE!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:44:45'!
+FAILURE!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:44:58' prior: 50653670!
+clockwise90DegreeCardinalPoint
+	^self subclassResponsibility .! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:01'!
+ERROR!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:06'!
+ERROR!
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:45:23' overrides: 50653814!
+clockwise90DegreeCardinalPoint
+	^East new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+ERROR!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:45:25'!
+ERROR!
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:45:38' prior: 50653879 overrides: 50653814!
+clockwise90DegreeCardinalPoint
+	^East new.! !
+
+!methodRemoval: East #clockwise90DegreeCardinalPoint stamp: 'TAO 10/8/2023 20:45:57'!
+clockwise90DegreeCardinalPoint
+	^North new.!
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:46:07' overrides: 50653814!
+clockwise90DegreeCardinalPoint
+	^North new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:10'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:46:39'!
+test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: North new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: East new.! !
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:46:45' prior: 50654013!
+test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: South new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: West new.! !
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:46:48'!
+ERROR!
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:46:55' overrides: 50653814!
+clockwise90DegreeCardinalPoint
+	self shouldBeImplemented.! !
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:47:10' prior: 50654039 overrides: 50653814!
+clockwise90DegreeCardinalPoint
+	^West new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:47:11'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:12'!
+PASSED!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 20:47:35'!
+test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:36'!
+ERROR!
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:47:47' overrides: 50653814!
+clockwise90DegreeCardinalPoint
+
+	^South new.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:47:49'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:48:47' prior: 50653407!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute do:[:command| 
+		command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[command = $l
+					 ifTrue: [self rotateLeft]
+					 ifFalse:[self rotateRight]]]].
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:48:48'!
+PASSED!
+
+!classDefinition: #MarsRover category: 'Mars Rover' stamp: 'TAO 10/8/2023 20:49:39'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position initialPosition facingDirection commandProcedures'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars Rover'!
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:49:38' prior: 50651377!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	facingDirection:= anInitialDirection.
+	commandProcedures:= Dictionary new.! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:50:54' prior: 50654277!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	facingDirection:= anInitialDirection.
+	commandProcedures:= Dictionary new.
+	commandProcedures at:$f put: [self moveFowardOneTime].
+	commandProcedures at:$b put: [self moveBackwardOneTime].
+	commandProcedures at:$l put: [self rotateLeft].
+	commandProcedures at:$r put: [self rotateRight].! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:51:42' prior: 50654192!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute do:[:command|( commandProcedures at:command)value.]
+		"command=$f 
+			ifTrue: [self moveFowardOneTime]
+			ifFalse:[command=$b
+				ifTrue:[self moveBackwardOneTime.]
+				ifFalse:[command = $l
+					 ifTrue: [self rotateLeft]
+					 ifFalse:[self rotateRight]]]]."
+				
+			
+	
+	
+
+	
+	! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:51:43'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:51:47' prior: 50654301!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute do:[:command|( commandProcedures at:command)value.]
+		
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:51:54' prior: 50654379!
+executeCommand: aCommandToExecute 
+
+	aCommandToExecute do:[:command|( commandProcedures at:command) value.]
+		
+			
+	
+	
+
+	
+	! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:52:16'!
+initializeCommandProcedures
+
+	commandProcedures at:$f put: [self moveFowardOneTime].
+	commandProcedures at:$b put: [self moveBackwardOneTime].
+	commandProcedures at:$l put: [self rotateLeft].
+	commandProcedures at:$r put: [self rotateRight]! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:52:16' prior: 50654286!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	facingDirection:= anInitialDirection.
+	commandProcedures:= Dictionary new.
+	self initializeCommandProcedures.! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:52:26' prior: 50654404!
+initializePlacedAt: anInitialPosition facing: anInitialDirection
+	position := anInitialPosition.
+	facingDirection:= anInitialDirection.
+	
+	self initializeCommandProcedures.! !
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:52:31' prior: 50654393!
+initializeCommandProcedures
+	commandProcedures:= Dictionary new.
+	commandProcedures at:$f put: [self moveFowardOneTime].
+	commandProcedures at:$b put: [self moveBackwardOneTime].
+	commandProcedures at:$l put: [self rotateLeft].
+	commandProcedures at:$r put: [self rotateRight]! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:52:33'!
+PASSED!
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:53:00' prior: 50654423!
+initializeCommandProcedures
+	commandProcedures:= Dictionary new;
+	at:$f put: [self moveFowardOneTime];
+	 at:$b put: [self moveBackwardOneTime];
+	at:$l put: [self rotateLeft];
+	at:$r put: [self rotateRight]; yourself.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:02'!
+ERROR!
+!MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:53:09' prior: 50654499!
+initializeCommandProcedures
+	commandProcedures:= Dictionary new
+	at:$f put: [self moveFowardOneTime];
+	at:$b put: [self moveBackwardOneTime];
+	at:$l put: [self rotateLeft];
+	at:$r put: [self rotateRight]; yourself.! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:10'!
+PASSED!
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:53:12'!
+PASSED!
+
+----SNAPSHOT----(8 October 2023 20:53:22) CuisUniversity-5981.image priorSource: 10197292!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:54:59'!
+changeFacingDirectionTo
+
+	^ facingDirection := facingDirection clockwise90DegreeCardinalPoint! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:54:59' prior: 50653540!
+rotateRight
+	self changeFacingDirectionTo! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:55:32'!
+changeFacingDirectionTo: aCardinalPoint
+
+	^ facingDirection := aCardinalPoint! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:55:35' prior: 50654723!
+changeFacingDirectionTo: aCardinalPoint
+
+	^facingDirection := aCardinalPoint! !
+
+!methodRemoval: MarsRover #changeFacingDirectionTo stamp: 'TAO 10/8/2023 20:55:39'!
+changeFacingDirectionTo
+
+	^ facingDirection := facingDirection clockwise90DegreeCardinalPoint!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:56:04' prior: 50654719!
+rotateRight
+	self changeFacingDirectionTo: facingDirection  clockwise90DegreeCardinalPoint .! !
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:56:14' prior: 50652952!
+rotateLeft
+	self changeFacingDirectionTo: facingDirection  anticlockwise90DegreeCardinalPoint .! !
+
+!testRun: #MarsRoversTests #test01WhenNoCommandExecutedStayStill stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test02MovingFowardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test03MovingFowardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test04MovingFowardOneTimeFacingSouth stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test05MovingFowardOneTimeFacingWest stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test06MovingBackwardOneTimeFacingNorth stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test07MovingBackwardOneTimeFacingEast stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test09MovingFowardMoreThanOneTime stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test10MovingBackwardMoreThanOneTime stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test11RotateLeftOneTimeFacingEastLeftYouFacingNorthAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test12RotateLeftOneTimeFacingNorthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test13RotateLeftOneTimeFacingSouthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test14RotateLeftOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test15RotateRightOneTimeFacingWestLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test16RotateRightOneTimeFacingNorthLeftYouFacingEastAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test17RotateRightOneTimeFacingSouthLeftYouFacingWestAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+
+!testRun: #MarsRoversTests #test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace stamp: 'TAO 10/8/2023 20:56:15'!
+PASSED!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:56:32' prior: 50652198!
+moveInDirection: aDirectionToMove 
+	 position := position +  aDirectionToMove! !
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:29'!
+directionVector
+	self subclassResponsibility .! !
+!East methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:29' overrides: 50654821!
+directionVector
+	^1@0.! !
+!North methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:29' overrides: 50654821!
+directionVector
+	^0@1.! !
+!South methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:29' overrides: 50654821!
+directionVector
+	 ^0@-1.! !
+!West methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:29' overrides: 50654821!
+directionVector
+	^-1@0.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:58:29' prior: 50652234!
+moveFowardOneTime
+
+	 self moveInDirection: facingDirection directionVector! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:58:29' prior: 50651823!
+opositePointDirection
+	^self directionVector negated.! !
+
+!methodRemoval: CardinalPoint #pointDirection stamp: 'TAO 10/8/2023 20:58:29'!
+pointDirection
+	self subclassResponsibility .!
+
+!methodRemoval: East #pointDirection stamp: 'TAO 10/8/2023 20:58:29'!
+pointDirection
+	^1@0.!
+
+!methodRemoval: North #pointDirection stamp: 'TAO 10/8/2023 20:58:29'!
+pointDirection
+	^0@1.!
+
+!methodRemoval: South #pointDirection stamp: 'TAO 10/8/2023 20:58:29'!
+pointDirection
+	 ^0@-1.!
+
+!methodRemoval: West #pointDirection stamp: 'TAO 10/8/2023 20:58:29'!
+pointDirection
+	^-1@0.!
+!CardinalPoint methodsFor: 'accesing' stamp: 'TAO 10/8/2023 20:58:56'!
+inverseDirectionVector
+	^self directionVector negated.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'TAO 10/8/2023 20:58:56' prior: 50652149!
+moveBackwardOneTime
+	self moveInDirection: facingDirection inverseDirectionVector
+	! !
+
+!methodRemoval: CardinalPoint #opositePointDirection stamp: 'TAO 10/8/2023 20:58:56'!
+opositePointDirection
+	^self directionVector negated.!
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/8/2023 21:01:00'!
+test19GeneralCase
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.! !
+
+!methodRemoval: MarsRoversTests #test19GeneralCase stamp: 'TAO 10/8/2023 21:03:08'!
+test19GeneralCase
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 0@0 facingAt: East new afterExecuting: 'r'.
+	
+	self assert: marsRover placedAt: 0@0 facing: South new.!
 !MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/9/2023 00:17:05'!
 test19GeneralCase
 	
