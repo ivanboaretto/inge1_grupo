@@ -178,6 +178,15 @@ test18RotateRightOneTimeFacingEastLeftYouFacingSouthAtTheSamePlace
 	
 	self assert: marsRover placedAt: 0@0 facing: South new.! !
 
+!MarsRoversTests methodsFor: 'tests' stamp: 'TAO 10/9/2023 00:27:38'!
+test19GeneralCase
+	
+	| marsRover |
+	
+	marsRover:= self marsRoverInitiallyPlacedAt: 4@3 facingAt: North new afterExecuting: 'ffrrblffflbbbrffbblrlffbblrfff'.
+	
+	self assert: marsRover placedAt: 7@6 facing: North new.! !
+
 
 !classDefinition: #CardinalPoint category: 'Mars Rover'!
 Object subclass: #CardinalPoint
@@ -292,14 +301,14 @@ directionVector
 
 !classDefinition: #MarsRover category: 'Mars Rover'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position initialPosition facingDirection commandProcedures'
+	instanceVariableNames: 'position facingDirection commandProcedures'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Mars Rover'!
 
-!MarsRover methodsFor: 'execute' stamp: 'TAO 10/8/2023 20:51:54'!
+!MarsRover methodsFor: 'execute' stamp: 'TAO 10/9/2023 00:24:51'!
 executeCommand: aCommandToExecute 
-
+	
 	aCommandToExecute do:[:command|( commandProcedures at:command) value.]
 		
 			
