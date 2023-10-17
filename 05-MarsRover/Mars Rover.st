@@ -187,6 +187,20 @@ test19GeneralCase
 	
 	self assert: marsRover placedAt: 7@6 facing: North new.! !
 
+!MarsRoversTests methodsFor: 'tests' stamp: 'IB 10/9/2023 11:39:56'!
+test20InvalidCommandFailsAndStopsExecutingSubsequentCommands
+	
+	| marsRover initialFacingDirection|
+	
+	initialFacingDirection := North new.
+	marsRover := MarsRover placedAt: 0@0 facing: initialFacingDirection.
+	
+	self should: [marsRover executeCommand: 'fXf'] 
+		raise: Error 
+		withMessageText: 'Comando inesperado!! Se detiene ejecución.'.
+	
+	self assert: marsRover placedAt: 0@1 facing: initialFacingDirection.! !
+
 
 !classDefinition: #CardinalPoint category: 'Mars Rover'!
 Object subclass: #CardinalPoint
@@ -306,10 +320,10 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'Mars Rover'!
 
-!MarsRover methodsFor: 'execute' stamp: 'TAO 10/9/2023 00:24:51'!
+!MarsRover methodsFor: 'execute' stamp: 'IB 10/9/2023 11:41:58'!
 executeCommand: aCommandToExecute 
 	
-	aCommandToExecute do:[:command|( commandProcedures at:command) value.]
+	aCommandToExecute do:[:command| self executeSingleCommand: command]
 		
 			
 	
@@ -333,6 +347,13 @@ changeFacingDirectionTo: aCardinalPoint
 
 	^facingDirection := aCardinalPoint! !
 
+!MarsRover methodsFor: 'execute--private' stamp: 'IB 10/9/2023 11:42:35'!
+executeSingleCommand: aCommandToExecute
+
+	^ [(commandProcedures at: aCommandToExecute) value] 
+				on: Error 
+				do: [self raiseUnexpectedCommandError]! !
+
 !MarsRover methodsFor: 'execute--private' stamp: 'TAO 10/8/2023 20:58:56'!
 moveBackwardOneTime
 	self moveInDirection: facingDirection inverseDirectionVector
@@ -354,6 +375,12 @@ rotateLeft
 !MarsRover methodsFor: 'execute--private' stamp: 'TAO 10/8/2023 20:56:04'!
 rotateRight
 	self changeFacingDirectionTo: facingDirection  clockwise90DegreeCardinalPoint .! !
+
+
+!MarsRover methodsFor: 'error' stamp: 'IB 10/9/2023 11:40:46'!
+raiseUnexpectedCommandError
+
+	^ self error: 'Comando inesperado!! Se detiene ejecución.'! !
 
 
 !MarsRover methodsFor: 'initialize' stamp: 'TAO 10/8/2023 20:53:09'!
