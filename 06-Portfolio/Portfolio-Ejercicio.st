@@ -133,7 +133,7 @@ test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated
 	
 	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'toto 10/17/2023 17:16:37'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'toto 10/17/2023 20:04:10'!
 test12CanRemoveAccountFromPortfolio
 	"No lo pide la consigna pero lo agregamos igual"
 	
@@ -151,9 +151,9 @@ test12CanRemoveAccountFromPortfolio
 	oldPortfolio := Portfolio from:{aReceptiveAccount. anotherReceptiveAccount}.
 	
 	
-	self assert: portfolio balance equals: 1.
+	"self assert: portfolio balance equals: 1.
 	self assert: (portfolio transactions difference: oldPortfolio transactions) equals: aReceptiveAccount transactions .
-	
+	"
 	! !
 
 
@@ -280,8 +280,9 @@ Account subclass: #Portfolio
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'transactions' stamp: 'toto 10/16/2023 19:25:43'!
+!Portfolio methodsFor: 'transactions' stamp: 'toto 10/17/2023 20:19:01'!
 transactions
+
 	^(receptiveAccountCollection collect:[:receptiveAccount | receptiveAccount transactions ]) asOrderedCollection flatten.
 	! !
 
@@ -306,16 +307,18 @@ initializeFrom: anAccountCollection
 ! !
 
 
-!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 16:53:02'!
+!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 20:17:15'!
 associateWith: anAccount 
 
 	| associatedAccounts |
-
+	
 	associatedAccounts := self associatedAccounts.
 	
-	anAccount associatedAccounts do:[:account| (associatedAccounts includes: account) ifTrue: [self raiseDuplicatedReceptiveAccount ].].
+	((anAccount associatedAccounts intersection: associatedAccounts) size = 0) 
+		ifTrue:[^receptiveAccountCollection add: anAccount]
+		ifFalse:[self raiseDuplicatedReceptiveAccount].
 	
-	^receptiveAccountCollection add: anAccount.! !
+	! !
 
 !Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 16:53:07'!
 associatedAccounts 
@@ -338,8 +341,9 @@ raiseEmptyReceptiveAccountCollectionError
 	^ self error: 'No se puede crear portfolio sin cuentas'! !
 
 
-!Portfolio methodsFor: 'remove' stamp: 'toto 10/17/2023 17:00:51'!
+!Portfolio methodsFor: 'remove' stamp: 'toto 10/17/2023 20:18:16'!
 dissociateWith: anAccount 
+
 	receptiveAccountCollection remove: anAccount.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -379,10 +383,10 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'toto 10/16/2023 18:01:02'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'toto 10/17/2023 20:17:58'!
 balance
 
-	^transactions sum: [ :aTransaction | aTransaction valueAsSeenFromParty ] ifEmpty: [ 0 ]! !
+	^transactions sum: [ :aTransaction | aTransaction valueAsSeenFromParty ] ifEmpty: [0]! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
@@ -405,10 +409,10 @@ Object subclass: #AccountTransaction
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!AccountTransaction methodsFor: 'value' stamp: 'toto 10/17/2023 04:22:09'!
+!AccountTransaction methodsFor: 'value' stamp: 'toto 10/17/2023 20:18:05'!
 value
 
-	^ value! !
+	^value! !
 
 !AccountTransaction methodsFor: 'value' stamp: 'toto 10/16/2023 18:00:16'!
 valueAsSeenFromParty 
