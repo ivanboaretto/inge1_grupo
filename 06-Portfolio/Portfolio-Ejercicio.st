@@ -307,14 +307,14 @@ initializeFrom: anAccountCollection
 ! !
 
 
-!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 20:17:15'!
+!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 22:45:39'!
 associateWith: anAccount 
 
 	| associatedAccounts |
 	
 	associatedAccounts := self associatedAccounts.
 	
-	((anAccount associatedAccounts intersection: associatedAccounts) size = 0) 
+	((anAccount associatedAccounts intersection: associatedAccounts) isEmpty) 
 		ifTrue:[^receptiveAccountCollection add: anAccount]
 		ifFalse:[self raiseDuplicatedReceptiveAccount].
 	
