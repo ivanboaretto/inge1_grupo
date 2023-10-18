@@ -133,11 +133,11 @@ test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated
 	
 	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'toto 10/17/2023 20:04:10'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'toto 10/18/2023 02:21:17'!
 test12CanRemoveAccountFromPortfolio
 	"No lo pide la consigna pero lo agregamos igual"
 	
-	| aReceptiveAccount portfolio  anotherReceptiveAccount oldPortfolio |
+	| aReceptiveAccount portfolio  anotherReceptiveAccount |
 	
 	aReceptiveAccount := ReceptiveAccount new.
 	aReceptiveAccount register: (Deposit for: 1).
@@ -148,12 +148,10 @@ test12CanRemoveAccountFromPortfolio
 	portfolio := Portfolio from:{aReceptiveAccount. anotherReceptiveAccount}.
 	portfolio dissociateWith: anotherReceptiveAccount.
 	
-	oldPortfolio := Portfolio from:{aReceptiveAccount. anotherReceptiveAccount}.
 	
+	self assert: portfolio balance equals: 1.
+	self assert: portfolio transactions equals: aReceptiveAccount transactions.
 	
-	"self assert: portfolio balance equals: 1.
-	self assert: (portfolio transactions difference: oldPortfolio transactions) equals: aReceptiveAccount transactions .
-	"
 	! !
 
 
@@ -280,47 +278,7 @@ Account subclass: #Portfolio
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'transactions' stamp: 'toto 10/17/2023 20:19:01'!
-transactions
-
-	^(receptiveAccountCollection collect:[:receptiveAccount | receptiveAccount transactions ]) asOrderedCollection flatten.
-	! !
-
-
-!Portfolio methodsFor: 'balance' stamp: 'toto 10/16/2023 18:35:52'!
-balance 
-	^receptiveAccountCollection sum:[:receptiveAccount | receptiveAccount balance].
-	
-
-	! !
-
-
-!Portfolio methodsFor: 'initialize' stamp: 'toto 10/17/2023 16:43:00'!
-initializeFrom: anAccountCollection
-	
-	anAccountCollection ifEmpty: [self raiseEmptyReceptiveAccountCollectionError].
-	
-	receptiveAccountCollection:= Set new.
-	
-	anAccountCollection do:[:account| self associateWith: account].
-		
-! !
-
-
-!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 22:45:39'!
-associateWith: anAccount 
-
-	| associatedAccounts |
-	
-	associatedAccounts := self associatedAccounts.
-	
-	((anAccount associatedAccounts intersection: associatedAccounts) isEmpty) 
-		ifTrue:[^receptiveAccountCollection add: anAccount]
-		ifFalse:[self raiseDuplicatedReceptiveAccount].
-	
-	! !
-
-!Portfolio methodsFor: 'asociatedAccounts' stamp: 'toto 10/17/2023 16:53:07'!
+!Portfolio methodsFor: 'accesing' stamp: 'toto 10/17/2023 16:53:07'!
 associatedAccounts 
 
 	^(receptiveAccountCollection collect:[:account| account associatedAccounts ] ) asOrderedCollection flatten asSet.
@@ -329,19 +287,40 @@ associatedAccounts
 
 	! !
 
+!Portfolio methodsFor: 'accesing' stamp: 'toto 10/16/2023 18:35:52'!
+balance 
+	^receptiveAccountCollection sum:[:receptiveAccount | receptiveAccount balance].
+	
 
-!Portfolio methodsFor: 'exceptions' stamp: 'toto 10/17/2023 16:37:59'!
-raiseDuplicatedReceptiveAccount
+	! !
 
-	^ self error:'No se puede crear portfolio con cuentas duplicadas'! !
+!Portfolio methodsFor: 'accesing' stamp: 'toto 10/17/2023 20:19:01'!
+transactions
 
-!Portfolio methodsFor: 'exceptions' stamp: 'toto 10/17/2023 16:38:03'!
-raiseEmptyReceptiveAccountCollectionError
-
-	^ self error: 'No se puede crear portfolio sin cuentas'! !
+	^(receptiveAccountCollection collect:[:receptiveAccount | receptiveAccount transactions ]) asOrderedCollection flatten.
+	! !
 
 
-!Portfolio methodsFor: 'remove' stamp: 'toto 10/17/2023 20:18:16'!
+!Portfolio methodsFor: 'initialize' stamp: 'toto 10/18/2023 02:38:32'!
+initializeFrom: anAccountCollection
+
+	receptiveAccountCollection := anAccountCollection asSet.! !
+
+
+!Portfolio methodsFor: 'register' stamp: 'toto 10/18/2023 02:10:21'!
+associateWith: anAccount 
+
+	| associatedAccounts |
+	
+	associatedAccounts := self associatedAccounts.
+	
+	(anAccount associatedAccounts intersection: associatedAccounts) 
+		ifEmpty:[^receptiveAccountCollection add: anAccount]
+		ifNotEmpty:[self class raiseDuplicatedReceptiveAccount].
+	
+	! !
+
+!Portfolio methodsFor: 'register' stamp: 'toto 10/17/2023 20:18:16'!
 dissociateWith: anAccount 
 
 	receptiveAccountCollection remove: anAccount.! !
@@ -352,10 +331,39 @@ dissociateWith: anAccount
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'instance creation' stamp: 'toto 10/17/2023 16:36:16'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'toto 10/18/2023 02:37:30'!
 from: anAccountCollection 
+
+	| associatedAccounts |
 	
-	^self new initializeFrom: anAccountCollection ! !
+	anAccountCollection ifEmpty: [self raiseEmptyReceptiveAccountCollectionError].
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
+	(self containsDuplicated: associatedAccounts) 
+		ifTrue: [ self raiseDuplicatedReceptiveAccount ]
+		ifFalse:[^self new initializeFrom: anAccountCollection]
+	
+	
+	! !
+
+
+!Portfolio class methodsFor: 'exceptions' stamp: 'toto 10/18/2023 02:02:01'!
+raiseDuplicatedReceptiveAccount
+
+	^ self error:'No se puede crear portfolio con cuentas duplicadas'! !
+
+!Portfolio class methodsFor: 'exceptions' stamp: 'toto 10/18/2023 02:02:07'!
+raiseEmptyReceptiveAccountCollectionError
+
+	^ self error: 'No se puede crear portfolio sin cuentas'! !
+
+
+!Portfolio class methodsFor: 'testing--private' stamp: 'toto 10/18/2023 02:35:57'!
+containsDuplicated: aReceptiveAccountCollection
+
+	^ aReceptiveAccountCollection asSet size ~=  aReceptiveAccountCollection size! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -371,22 +379,11 @@ initialize
 	transactions := OrderedCollection new.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+!ReceptiveAccount methodsFor: 'register' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
 	transactions add: aTransaction 
 ! !
-
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
-transactions 
-
-	^ transactions copy! !
-
-
-!ReceptiveAccount methodsFor: 'balance' stamp: 'toto 10/17/2023 20:17:58'!
-balance
-
-	^transactions sum: [ :aTransaction | aTransaction valueAsSeenFromParty ] ifEmpty: [0]! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
@@ -400,6 +397,16 @@ hasRegistered: aTransaction
 associatedAccounts
 
 	^Set with: self. ! !
+
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'toto 10/17/2023 20:17:58'!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction valueAsSeenFromParty ] ifEmpty: [0]! !
+
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+transactions 
+
+	^ transactions copy! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio'!
