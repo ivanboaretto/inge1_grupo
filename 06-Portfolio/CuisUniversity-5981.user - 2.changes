@@ -1,0 +1,2018 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (19 October 2023 12:52:00) as C:\Users\iboaretto\Desktop\UBA\Inge1\windows64\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\iboaretto\Desktop\UBA\Inge1\windows64\windows64\Portfolio-Ejercicio.st----!
+!Portfolio class methodsFor: 'asserting' stamp: 'IB 10/19/2023 12:53:06'!
+assertNotEmptyAccountCollection: anAccountCollection
+
+	^ anAccountCollection ifEmpty: [self raiseEmptyReceptiveAccountCollectionError]! !
+!Portfolio class methodsFor: 'asserting' stamp: 'IB 10/19/2023 12:53:07' prior: 50650722!
+assertCanCreate: anAccountCollection 
+
+	| associatedAccounts |
+	self assertNotEmptyAccountCollection: anAccountCollection.
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedReceptiveAccount ]! !
+!Portfolio class methodsFor: 'exceptions' stamp: 'IB 10/19/2023 12:53:45'!
+raiseEmptyAccountCollectionError
+
+	^ self error: 'No se puede crear portfolio sin cuentas'! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 12:53:45' prior: 50650866!
+assertNotEmptyAccountCollection: anAccountCollection
+
+	^ anAccountCollection ifEmpty: [self raiseEmptyAccountCollectionError]! !
+
+!methodRemoval: Portfolio class #raiseEmptyReceptiveAccountCollectionError stamp: 'IB 10/19/2023 12:53:45'!
+raiseEmptyReceptiveAccountCollectionError
+
+	^ self error: 'No se puede crear portfolio sin cuentas'!
+!Portfolio class methodsFor: 'exceptions' stamp: 'IB 10/19/2023 12:53:52' prior: 50650703!
+raiseDuplicatedReceptiveAccount
+
+	^ self error: 'No se puede crear portfolio con cuentas duplicadas'! !
+!Portfolio class methodsFor: 'exceptions' stamp: 'IB 10/19/2023 12:54:07'!
+raiseDuplicatedAccountError
+
+	^ self error: 'No se puede crear portfolio con cuentas duplicadas'! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 12:54:07' prior: 50650681!
+assertCanAssociate: anAccount 
+	
+	(self associatedAccountsAlsoIn: anAccount) ifNotEmpty:[self class raiseDuplicatedAccountError].! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 12:54:07' prior: 50650874!
+assertCanCreate: anAccountCollection 
+
+	| associatedAccounts |
+	self assertNotEmptyAccountCollection: anAccountCollection.
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ]! !
+
+!methodRemoval: Portfolio class #raiseDuplicatedReceptiveAccount stamp: 'IB 10/19/2023 12:54:07'!
+raiseDuplicatedReceptiveAccount
+
+	^ self error: 'No se puede crear portfolio con cuentas duplicadas'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:54:14' prior: 50650696!
+from: anAccountCollection 
+
+	self assertCanCreate: anAccountCollection.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'testing--private' stamp: 'IB 10/19/2023 12:54:35' prior: 50650715!
+containsDuplicatedAccount: anAccountCollection
+
+	^ anAccountCollection asSet size ~=  anAccountCollection size! !
+
+!methodRemoval: Portfolio class #assertCanCreate: stamp: 'IB 10/19/2023 12:55:09'!
+assertCanCreate: anAccountCollection 
+
+	| associatedAccounts |
+	self assertNotEmptyAccountCollection: anAccountCollection.
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ]!
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:55:09' prior: 50650955!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	self assertNotEmptyAccountCollection: anAccountCollection.
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ].
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:55:20' prior: 50650986!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	
+	self assertNotEmptyAccountCollection: anAccountCollection.
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ].
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+
+Set new flatten!
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:57:24' prior: 50651001!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ].
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:57:58'!
+assertNoDuplicatedAccountsIn: associatedAccounts
+
+	^ (self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedAccountError ]! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:57:59' prior: 50651017!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:58:04' prior: 50651040!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:58:36'!
+receptiveAccountsIn: anAccountCollection
+
+	^ (anAccountCollection collect: [:account | account associatedAccounts]) flatten! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:58:36' prior: 50651054!
+from: anAccountCollection 
+
+	| associatedAccounts |
+	
+	associatedAccounts := self receptiveAccountsIn: anAccountCollection.
+	
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:59:07'!
+assertValidAccountCollection: anAccountCollection
+
+	| associatedAccounts |
+	
+	associatedAccounts := self receptiveAccountsIn: anAccountCollection.
+	
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'IB 10/19/2023 12:59:07' prior: 50651075!
+from: anAccountCollection 
+
+	self assertValidAccountCollection: anAccountCollection.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+!Portfolio class methodsFor: 'asserting' stamp: 'IB 10/19/2023 12:59:56'!
+assertValidAccountsToAssociate: anAccountCollection
+
+	| associatedAccounts |
+	
+	associatedAccounts := self receptiveAccountsIn: anAccountCollection.
+	
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 12:59:56' prior: 50651099!
+from: anAccountCollection 
+
+	self assertValidAccountsToAssociate: anAccountCollection.
+	
+	^self new initializeFrom: anAccountCollection
+	
+	
+	! !
+
+!methodRemoval: Portfolio class #assertValidAccountCollection: stamp: 'IB 10/19/2023 12:59:56'!
+assertValidAccountCollection: anAccountCollection
+
+	| associatedAccounts |
+	
+	associatedAccounts := self receptiveAccountsIn: anAccountCollection.
+	
+	self assertNotEmptyAccountCollection: associatedAccounts.
+	self assertNoDuplicatedAccountsIn: associatedAccounts!
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:01:03' prior: 50650769 overrides: 50650611!
+associatedAccounts
+
+	^Set with: self.! !
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:01:04' prior: 50651138 overrides: 50650611!
+associatedAccounts
+
+	^Set with: self! !
+!Portfolio methodsFor: 'initialize' stamp: 'IB 10/19/2023 13:01:34' prior: 50650664!
+initializeFrom: anAccountCollection
+
+	receptiveAccountCollection := anAccountCollection asSet! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:02:51'!
+PASSED!
+
+----SNAPSHOT----(19 October 2023 13:02:54) CuisUniversity-5981.image priorSource: 10197292!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:02:58'!
+PASSED!
+!Portfolio methodsFor: 'assert' stamp: 'IB 10/19/2023 13:03:15' prior: 50650924!
+assertCanAssociate: anAccount 
+	
+	(self associatedAccountsAlsoIn: anAccount) ifNotEmpty: [self class raiseDuplicatedAccountError].! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'IB 10/19/2023 13:03:53'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'associatedAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50650637 overrides: 50650611!
+associatedAccounts 
+
+	^(associatedAccounts collect:[:account| account associatedAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50651147!
+initializeFrom: anAccountCollection
+
+	associatedAccounts := anAccountCollection asSet! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50650670!
+associateWith: anAccount 
+	
+	self assertCanAssociate: anAccount.
+	^associatedAccounts add: anAccount
+		
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50650676!
+dissociateWith: anAccount 
+
+	associatedAccounts remove: anAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50650657 overrides: 50650619!
+transactions
+
+	^(associatedAccounts collect:[:receptiveAccount | receptiveAccount transactions ]) asOrderedCollection flatten.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:03:53' prior: 50650651 overrides: 50650615!
+balance 
+	^associatedAccounts sum:[:receptiveAccount | receptiveAccount balance].
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:03:57' prior: 50651276 overrides: 50650615!
+balance
+
+	^associatedAccounts sum:[:receptiveAccount | receptiveAccount balance].
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:04:00' prior: 50651283 overrides: 50650615!
+balance
+
+	^associatedAccounts sum:[:receptiveAccount | receptiveAccount balance]
+	
+
+	! !
+!Account methodsFor: 'asociatedAccounts' stamp: 'IB 10/19/2023 13:04:15'!
+associatedReceptiveAccounts
+
+	self subclassResponsibility! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:04:15' overrides: 50651296!
+associatedReceptiveAccounts 
+
+	^(associatedAccounts collect:[:account| account associatedAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:04:15' overrides: 50651296!
+associatedReceptiveAccounts
+
+	^Set with: self! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:04:15' prior: 50651067!
+receptiveAccountsIn: anAccountCollection
+
+	^ (anAccountCollection collect: [:account | account associatedReceptiveAccounts]) flatten! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:04:15' prior: 50650644!
+associatedAccountsAlsoIn: anAccount
+
+	^ self associatedReceptiveAccounts intersection: anAccount associatedReceptiveAccounts! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:04:15' prior: 50651241 overrides: 50650611!
+associatedAccounts 
+
+	^(associatedAccounts collect:[:account| account associatedReceptiveAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:04:15' prior: 50651301 overrides: 50651296!
+associatedReceptiveAccounts 
+
+	^(associatedAccounts collect:[:account| account associatedReceptiveAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+
+!methodRemoval: Account #associatedAccounts stamp: 'IB 10/19/2023 13:04:15'!
+associatedAccounts
+
+	self subclassResponsibility!
+
+!methodRemoval: Portfolio #associatedAccounts stamp: 'IB 10/19/2023 13:04:15'!
+associatedAccounts 
+
+	^(associatedAccounts collect:[:account| account associatedReceptiveAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	!
+
+!methodRemoval: ReceptiveAccount #associatedAccounts stamp: 'IB 10/19/2023 13:04:15'!
+associatedAccounts
+
+	^Set with: self!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:04:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:04:21'!
+PASSED!
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:04:44'!
+associatedReceptiveAccountsAlsoIn: anAccount
+
+	^ self associatedReceptiveAccounts intersection: anAccount associatedReceptiveAccounts! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IB 10/19/2023 13:04:44' prior: 50651225!
+assertCanAssociate: anAccount 
+	
+	(self associatedReceptiveAccountsAlsoIn: anAccount) ifNotEmpty: [self class raiseDuplicatedAccountError].! !
+
+!methodRemoval: Portfolio #associatedAccountsAlsoIn: stamp: 'IB 10/19/2023 13:04:44'!
+associatedAccountsAlsoIn: anAccount
+
+	^ self associatedReceptiveAccounts intersection: anAccount associatedReceptiveAccounts!
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:05'!
+associatedAccounts 
+
+	^associatedAccounts
+	
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:09' prior: 50651339 overrides: 50651296!
+associatedReceptiveAccounts 
+
+	^(self associatedAccounts collect:[:account| account associatedReceptiveAccounts ] ) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:14' prior: 50651290 overrides: 50650615!
+balance
+
+	^self associatedAccounts sum:[:receptiveAccount | receptiveAccount balance]
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:18' prior: 50651268 overrides: 50650619!
+transactions
+
+	^(self associatedAccounts collect:[:receptiveAccount | receptiveAccount transactions ]) asOrderedCollection flatten.
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:23' prior: 50651466 overrides: 50650615!
+balance
+
+	^self associatedAccounts sum: [:receptiveAccount | receptiveAccount balance]
+	
+
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:05:27' prior: 50651481 overrides: 50650615!
+balance
+
+	^self associatedAccounts sum: #balance
+	
+
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:05:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:05:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:05:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:05:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:05:33'!
+PASSED!
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:05:48' prior: 50651262!
+dissociateWith: anAccount 
+
+	^self associatedAccounts remove: anAccount.! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:05:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:05:51'!
+PASSED!
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:06:06' prior: 50651457 overrides: 50651296!
+associatedReceptiveAccounts 
+
+	^(self associatedAccounts collect: #associatedReceptiveAccounts) asOrderedCollection flatten asSet.
+	
+	
+
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:06:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:06:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:06:14'!
+PASSED!
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:06:38' prior: 50651473 overrides: 50650619!
+transactions
+
+	^(self associatedAccounts collect: #transactions) asOrderedCollection flatten.
+	! !
+!Portfolio methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:06:40' prior: 50651714 overrides: 50650619!
+transactions
+
+	^(self associatedAccounts collect: #transactions) asOrderedCollection flatten
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:06:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:06:49'!
+PASSED!
+
+----SNAPSHOT----(19 October 2023 13:06:51) CuisUniversity-5981.image priorSource: 10225423!
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:07:02' prior: 50651255!
+associateWith: anAccount 
+	
+	self assertCanAssociate: anAccount.
+	^self associatedAccounts add: anAccount
+		
+	
+	! !
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:08:18'!
+associateAfterValidityChecksWith: anAccount
+
+	^ self associatedAccounts add: anAccount! !
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:08:18' prior: 50651799!
+associateWith: anAccount 
+	
+	self assertCanAssociate: anAccount.
+	^self associateAfterValidityChecksWith: anAccount
+		
+	
+	! !
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:08:28' prior: 50651811!
+associateWith: anAccount 
+	
+	self assertCanAssociate: anAccount.
+	
+	^self associateAfterValidityChecksWith: anAccount
+		
+	
+	! !
+!Portfolio methodsFor: 'register' stamp: 'IB 10/19/2023 13:08:33' prior: 50651562!
+dissociateWith: anAccount 
+
+	^self associatedAccounts remove: anAccount! !
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:08:49' prior: 50650781 overrides: 50650619!
+transactions
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'IB 10/19/2023 13:09:08' prior: 50650774 overrides: 50650615!
+balance
+
+	^transactions sum: #valueAsSeenFromParty ifEmpty: [0]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:09:11'!
+PASSED!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'IB 10/19/2023 13:09:22' prior: 50650753 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new! !
+!AccountTransaction methodsFor: 'initialization' stamp: 'IB 10/19/2023 13:09:57' prior: 50650806!
+initializeFor: aValue
+
+	value := aValue! !
+!Deposit methodsFor: 'value' stamp: 'IB 10/19/2023 13:10:09' prior: 50650843 overrides: 50650801!
+valueAsSeenFromParty
+
+	^ self value! !
+!Withdraw methodsFor: 'value' stamp: 'IB 10/19/2023 13:10:16' prior: 50650859 overrides: 50650801!
+valueAsSeenFromParty
+
+	^ self value negated! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:10:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:10:20'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:10:54'!
+test10canAssociateWithPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	! !
+
+!methodRemoval: PortfolioTest #test10PortfolioCanAddPortfolio stamp: 'IB 10/19/2023 13:10:54'!
+test10PortfolioCanAddPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:06'!
+test10anAssociateWithPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	! !
+
+!methodRemoval: PortfolioTest #test10canAssociateWithPortfolio stamp: 'IB 10/19/2023 13:11:06'!
+test10canAssociateWithPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:10'!
+test10CanAssociateWithPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	! !
+
+!methodRemoval: PortfolioTest #test10anAssociateWithPortfolio stamp: 'IB 10/19/2023 13:11:10'!
+test10anAssociateWithPortfolio
+	"Cambiar nombre SI O SI"
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:15' prior: 50652025!
+test10CanAssociateWithPortfolio
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:17' prior: 50652060!
+test10CanAssociateWithPortfolio
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: (anotherPortfolio transactions))isEmpty .
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:47' prior: 50650335!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: aReceptiveAccount transactions ) isEmpty .
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:11:58' prior: 50652094!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	receptiveAccount register: (Deposit for: 1).
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: receptiveAccount transactions ) isEmpty .
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:12:30' prior: 50652109!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := 
+		ReceptiveAccount new
+			register: (Deposit for: 1); 
+			yourself.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: receptiveAccount transactions ) isEmpty .
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:12:39' prior: 50652124!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := 
+		ReceptiveAccount new
+			register: (Deposit for: 1); 
+			yourself.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assert: portfolio balance equals: 1.
+	self assert: (portfolio transactions difference: receptiveAccount transactions) isEmpty
+	! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:13:41' prior: 50650372!
+test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self 
+		should: [Portfolio from: {aReceptiveAccount. aReceptiveAccount }] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:13:58' prior: 50652154!
+test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self 
+		should: [Portfolio from: {ReceptiveAccount new. aReceptiveAccount }] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:13:59' prior: 50652167!
+test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self 
+		should: [Portfolio from: {aReceptiveAccount. aReceptiveAccount }] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:14:18' prior: 50650384!
+test05CanNotCreateEmptyPortfolio
+
+	self 
+		should: [Portfolio from: {}] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio sin cuentas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:14:20' prior: 50652193!
+test05CanNotCreateEmptyPortfolio
+
+	self 
+		should: [Portfolio from: {}] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio sin cuentas'! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:14:57' prior: 50650392!
+test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount
+	
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self 
+		should: [ Portfolio from: {portfolio. receptiveAccount} ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:15:03' prior: 50652209!
+test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount
+	
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self 
+		should: [ Portfolio from: {portfolio. receptiveAccount} ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:15:32' prior: 50650408!
+test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel
+	
+	| receptiveAccount aPortfolio anotherPortfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	aPortfolio := Portfolio from: {receptiveAccount}.
+	anotherPortfolio := Portfolio from:{aPortfolio}.
+	
+	self 
+		should: [ Portfolio from: {anotherPortfolio. receptiveAccount }]
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:15:38' prior: 50652241!
+test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel
+	
+	| receptiveAccount portfolio anotherPortfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	anotherPortfolio := Portfolio from:{portfolio}.
+	
+	self 
+		should: [ Portfolio from: {anotherPortfolio. receptiveAccount }]
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:15:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:15:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:15:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:15:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:15:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:15:41'!
+PASSED!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:17:31'!
+assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn: anAccountCollection
+	
+	self 
+		should: [Portfolio from: anAccountCollection] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:18:03' prior: 50652180!
+test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn: {aReceptiveAccount. aReceptiveAccount }! !
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:18:04'!
+PASSED!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:18:27' prior: 50652225!
+test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount
+	
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{portfolio. receptiveAccount}! !
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:18:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:18:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:18:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:18:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:18:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:18:30'!
+PASSED!
+!PortfolioTest methodsFor: 'asserting' stamp: 'IB 10/19/2023 13:18:34' prior: 50652317!
+assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn: anAccountCollection
+	
+	self 
+		should: [Portfolio from: anAccountCollection] 
+		raise: Error - MessageNotUnderstood  
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'.! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:18:54' prior: 50652258!
+test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel
+	
+	| receptiveAccount portfolio anotherPortfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	anotherPortfolio := Portfolio from:{portfolio}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{anotherPortfolio. receptiveAccount}! !
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:18:56'!
+PASSED!
+
+----SNAPSHOT----(19 October 2023 13:18:58) CuisUniversity-5981.image priorSource: 10244640!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:19:22'!
+test04CantCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn: {aReceptiveAccount. aReceptiveAccount }! !
+
+!methodRemoval: PortfolioTest #test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:19:22'!
+test04CanNotCreatePortfolioWithDuplicatedReceptiveAccounts
+
+	| aReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn: {aReceptiveAccount. aReceptiveAccount }!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:19:39'!
+test05CantCreatePortfolioWithoutAssociatedAccounts
+
+	self 
+		should: [Portfolio from: {}] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio sin cuentas'! !
+
+!methodRemoval: PortfolioTest #test05CanNotCreateEmptyPortfolio stamp: 'IB 10/19/2023 13:19:39'!
+test05CanNotCreateEmptyPortfolio
+
+	self 
+		should: [Portfolio from: {}] 
+		raise: Error 
+		withMessageText: 'No se puede crear portfolio sin cuentas'!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:20:03'!
+test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount
+	
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{portfolio. receptiveAccount}! !
+
+!methodRemoval: PortfolioTest #test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:20:03'!
+test06CanNotCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount
+	
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{portfolio. receptiveAccount}!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:20:11'!
+test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel
+	
+	| receptiveAccount portfolio anotherPortfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	anotherPortfolio := Portfolio from:{portfolio}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{anotherPortfolio. receptiveAccount}! !
+
+!methodRemoval: PortfolioTest #test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:20:12'!
+test07CanNotCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel
+	
+	| receptiveAccount portfolio anotherPortfolio |
+	
+	receptiveAccount := ReceptiveAccount new.
+	portfolio := Portfolio from: {receptiveAccount}.
+	anotherPortfolio := Portfolio from:{portfolio}.
+	
+	self assertDuplicatedAccountsErrorRaiseWhenCreatingPortfolioAssociatingAllIn:{anotherPortfolio. receptiveAccount}!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:20:42' prior: 50650446!
+test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated
+	
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self 
+		should: [ portfolio associateWith: aReceptiveAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:21:06'!
+test09CantAddReceptiveAccountAlreadyAsociated
+	
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self 
+		should: [ portfolio associateWith: aReceptiveAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+
+!methodRemoval: PortfolioTest #test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:21:06'!
+test09PortfolioCanNotAddReceptiveAccountAlreadyAsociated
+	
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self 
+		should: [ portfolio associateWith: aReceptiveAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:21:21'!
+test11CantAddPortfolioIfBothHaveTheSameReceptiveAccountAssociated
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	anotherPortfolio:= Portfolio from:{aReceptiveAccount}.
+	
+	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+
+!methodRemoval: PortfolioTest #test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:21:21'!
+test11PortfolioCanNotAddPortfolioIfBothHaveOneSameReceptiveAccountAssociated
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	anotherPortfolio:= Portfolio from:{aReceptiveAccount}.
+	
+	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:21:44'!
+test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	anotherPortfolio:= Portfolio from:{aReceptiveAccount}.
+	
+	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+
+!methodRemoval: PortfolioTest #test11CantAddPortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:21:44'!
+test11CantAddPortfolioIfBothHaveTheSameReceptiveAccountAssociated
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	anotherPortfolio:= Portfolio from:{aReceptiveAccount}.
+	
+	self should: [ portfolio associateWith: anotherPortfolio ]raise: Error - MessageNotUnderstood withMessageText: 'No se puede crear portfolio con cuentas duplicadas'!
+!PortfolioTest methodsFor: 'tests - fails' stamp: 'IB 10/19/2023 13:21:54'!
+test09CantAssociateReceptiveAccountAlreadyAsociated
+	
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self 
+		should: [ portfolio associateWith: aReceptiveAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'! !
+
+!methodRemoval: PortfolioTest #test09CantAddReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:21:54'!
+test09CantAddReceptiveAccountAlreadyAsociated
+	
+	| aReceptiveAccount portfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	self 
+		should: [ portfolio associateWith: aReceptiveAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: 'No se puede crear portfolio con cuentas duplicadas'!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:24:26'!
+assertBalanceOf: aPortfolio equalsTo: aBalance andHasOnlyTransactionsIn: aTransactionCollection
+
+	self 
+		assert: aPortfolio balance equals: aBalance;
+		assert: aPortfolio transactions equals: aTransactionCollection
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:25:03' prior: 50652139!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := 
+		ReceptiveAccount new
+			register: (Deposit for: 1); 
+			yourself.
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assertBalanceOf: portfolio equalsTo: 1 andHasOnlyTransactionsIn: receptiveAccount transactions
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CantCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CantCreatePortfolioWithoutAssociatedAccounts stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAssociateReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:25:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:25:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:25:05'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:25:32' prior: 50650351!
+test03PortfolioWithMoreThanOneReceptiveAccount
+
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register:( Deposit for: 1).
+	
+	anotherReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount. anotherReceptiveAccount }.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: aReceptiveAccount transactions, anotherReceptiveAccount transactions
+	! !
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:25:35'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:25:40'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:25:46' prior: 50652835!
+test03PortfolioWithMoreThanOneReceptiveAccount
+
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register:( Deposit for: 1).
+	
+	anotherReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount. anotherReceptiveAccount }.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+	! !
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:25:48'!
+FAILURE!
+!PortfolioTest methodsFor: 'asserting' stamp: 'IB 10/19/2023 13:27:06' prior: 50652764!
+assertBalanceOf: aPortfolio equalsTo: aBalance andHasOnlyTransactionsIn: aTransactionCollection
+
+	self 
+		assert: aPortfolio balance equals: aBalance;
+		assert: (aPortfolio transactions difference: aTransactionCollection) isEmpty
+	
+	! !
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:27:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CantCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CantCreatePortfolioWithoutAssociatedAccounts stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAssociateReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:27:12'!
+PASSED!
+
+----SNAPSHOT----(19 October 2023 13:27:17) CuisUniversity-5981.image priorSource: 10267842!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:27:46' prior: 50650425!
+test08PortfolioCanAddReceptiveAccount
+	
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount := ReceptiveAccount  new.
+	
+	aReceptiveAccount register: (Deposit  for:1).
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	portfolio associateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+! !
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CantCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CantCreatePortfolioWithoutAssociatedAccounts stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAssociateReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:27:48'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:28:03' prior: 50652949!
+test08PortfolioCanAddReceptiveAccount
+	
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount := ReceptiveAccount  new.
+	aReceptiveAccount register: (Deposit  for:1).
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	portfolio associateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:28:13'!
+test08AssociateReceptiveAccount
+	
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount := ReceptiveAccount  new.
+	aReceptiveAccount register: (Deposit  for:1).
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	portfolio associateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+! !
+
+!methodRemoval: PortfolioTest #test08PortfolioCanAddReceptiveAccount stamp: 'IB 10/19/2023 13:28:13'!
+test08PortfolioCanAddReceptiveAccount
+	
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount := ReceptiveAccount  new.
+	aReceptiveAccount register: (Deposit  for:1).
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	portfolio associateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:28:38' prior: 50652077!
+test10CanAssociateWithPortfolio
+	
+	| aReceptiveAccount portfolio anotherPortfolio |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherPortfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio := Portfolio from:{anotherPortfolio}.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 1
+		andHasOnlyTransactionsIn: anotherPortfolio transactions
+	
+	! !
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CantCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CantCreatePortfolioWithoutAssociatedAccounts stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08AssociateReceptiveAccount stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAssociateReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:28:40'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:28:53' prior: 50650494!
+test12CanRemoveAccountFromPortfolio
+	"No lo pide la consigna pero lo agregamos igual"
+	
+	| aReceptiveAccount portfolio  anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	
+	anotherReceptiveAccount:= ReceptiveAccount new.
+	anotherReceptiveAccount register: (Deposit for: 2).
+	
+	portfolio := Portfolio from:{aReceptiveAccount. anotherReceptiveAccount}.
+	portfolio dissociateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 1
+		andHasOnlyTransactionsIn: aReceptiveAccount transactions
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:29:02' prior: 50653137!
+test12CanRemoveAccountFromPortfolio
+	"No lo pide la consigna pero lo agregamos igual"
+	
+	| aReceptiveAccount portfolio  anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register: (Deposit for: 1).
+	anotherReceptiveAccount:= ReceptiveAccount new.
+	anotherReceptiveAccount register: (Deposit for: 2).
+	portfolio := Portfolio from:{aReceptiveAccount. anotherReceptiveAccount}.
+	
+	portfolio dissociateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 1
+		andHasOnlyTransactionsIn: aReceptiveAccount transactions
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:29:09' prior: 50653035!
+test08AssociateReceptiveAccount
+	
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount := ReceptiveAccount  new.
+	aReceptiveAccount register: (Deposit  for:1).
+	anotherReceptiveAccount register: (Deposit for:2).
+	portfolio := Portfolio from: {aReceptiveAccount}.
+	
+	portfolio associateWith: anotherReceptiveAccount.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:29:13' prior: 50652862!
+test03PortfolioWithMoreThanOneReceptiveAccount
+
+	| aReceptiveAccount portfolio anotherReceptiveAccount |
+	
+	aReceptiveAccount := ReceptiveAccount new.
+	aReceptiveAccount register:( Deposit for: 1).
+	anotherReceptiveAccount := ReceptiveAccount new.
+	anotherReceptiveAccount register: (Deposit for:2).
+	
+	portfolio := Portfolio from: {aReceptiveAccount. anotherReceptiveAccount }.
+	
+	self 
+		assertBalanceOf: portfolio 
+		equalsTo: 3 
+		andHasOnlyTransactionsIn: (aReceptiveAccount transactions, anotherReceptiveAccount transactions)
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'IB 10/19/2023 13:29:17' prior: 50652774!
+test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions
+
+	| receptiveAccount portfolio |
+	
+	receptiveAccount := 
+		ReceptiveAccount new
+			register: (Deposit for: 1); 
+			yourself.
+			
+	portfolio := Portfolio from: {receptiveAccount}.
+	
+	self assertBalanceOf: portfolio equalsTo: 1 andHasOnlyTransactionsIn: receptiveAccount transactions
+	! !
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithSingleReceptiveAccountHasSameBalanceAndTransactions stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04CantCreatePortfolioWithDuplicatedReceptiveAccounts stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05CantCreatePortfolioWithoutAssociatedAccounts stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06CantCreatePortofolioWithReceptiveAccountAndPortfolioWithTheSameReceptiveAccount stamp: 'IB 10/19/2023 13:29:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CantCreatePortofolioWithDuplicatedReceptiveAccountsInAnyDeepLevel stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test08AssociateReceptiveAccount stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAssociateReceptiveAccountAlreadyAsociated stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CanAssociateWithPortfolio stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAssociatePortfolioIfBothHaveTheSameReceptiveAccountAssociated stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanRemoveAccountFromPortfolio stamp: 'IB 10/19/2023 13:29:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/19/2023 13:29:24'!
+PASSED!
+
+----SNAPSHOT----(19 October 2023 13:29:31) CuisUniversity-5981.image priorSource: 10281435!
