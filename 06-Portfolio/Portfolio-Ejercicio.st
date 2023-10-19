@@ -287,6 +287,11 @@ associatedAccounts
 
 	! !
 
+!Portfolio methodsFor: 'accesing' stamp: 'toto 10/19/2023 08:43:18'!
+associatedAccountsAlsoIn: anAccount
+
+	^ self associatedAccounts intersection: anAccount associatedAccounts! !
+
 !Portfolio methodsFor: 'accesing' stamp: 'toto 10/16/2023 18:35:52'!
 balance 
 	^receptiveAccountCollection sum:[:receptiveAccount | receptiveAccount balance].
@@ -307,16 +312,12 @@ initializeFrom: anAccountCollection
 	receptiveAccountCollection := anAccountCollection asSet.! !
 
 
-!Portfolio methodsFor: 'register' stamp: 'toto 10/18/2023 02:10:21'!
+!Portfolio methodsFor: 'register' stamp: 'toto 10/19/2023 08:38:01'!
 associateWith: anAccount 
-
-	| associatedAccounts |
 	
-	associatedAccounts := self associatedAccounts.
-	
-	(anAccount associatedAccounts intersection: associatedAccounts) 
-		ifEmpty:[^receptiveAccountCollection add: anAccount]
-		ifNotEmpty:[self class raiseDuplicatedReceptiveAccount].
+	self assertCanAssociate: anAccount.
+	^receptiveAccountCollection add: anAccount
+		
 	
 	! !
 
@@ -325,25 +326,23 @@ dissociateWith: anAccount
 
 	receptiveAccountCollection remove: anAccount.! !
 
+
+!Portfolio methodsFor: 'assert' stamp: 'toto 10/19/2023 08:43:18'!
+assertCanAssociate: anAccount 
+	
+	(self associatedAccountsAlsoIn: anAccount) ifNotEmpty:[self class raiseDuplicatedReceptiveAccount].! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio'!
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'instance creation' stamp: 'toto 10/18/2023 02:37:30'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'toto 10/19/2023 08:40:17'!
 from: anAccountCollection 
 
-	| associatedAccounts |
-	
-	anAccountCollection ifEmpty: [self raiseEmptyReceptiveAccountCollectionError].
-	
-	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
-	
-	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
-	(self containsDuplicated: associatedAccounts) 
-		ifTrue: [ self raiseDuplicatedReceptiveAccount ]
-		ifFalse:[^self new initializeFrom: anAccountCollection]
+	self assertCanCreate: anAccountCollection.
+	^self new initializeFrom: anAccountCollection
 	
 	
 	! !
@@ -360,10 +359,22 @@ raiseEmptyReceptiveAccountCollectionError
 	^ self error: 'No se puede crear portfolio sin cuentas'! !
 
 
-!Portfolio class methodsFor: 'testing--private' stamp: 'toto 10/18/2023 02:35:57'!
-containsDuplicated: aReceptiveAccountCollection
+!Portfolio class methodsFor: 'testing--private' stamp: 'toto 10/19/2023 08:40:58'!
+containsDuplicatedAccount: aReceptiveAccountCollection
 
 	^ aReceptiveAccountCollection asSet size ~=  aReceptiveAccountCollection size! !
+
+
+!Portfolio class methodsFor: 'asserting' stamp: 'toto 10/19/2023 08:40:51'!
+assertCanCreate: anAccountCollection 
+
+	| associatedAccounts |
+	anAccountCollection ifEmpty: [self raiseEmptyReceptiveAccountCollectionError].
+	
+	associatedAccounts := (anAccountCollection collect: [:account | account associatedAccounts]) flatten.
+	
+	"Esto me gustaria que sea un metodo de Collection, si no se puede no se que nombre ponerle"
+	(self containsDuplicatedAccount: associatedAccounts) ifTrue: [ self raiseDuplicatedReceptiveAccount ]! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -403,9 +414,8 @@ balance
 
 	^transactions sum: [ :aTransaction | aTransaction valueAsSeenFromParty ] ifEmpty: [0]! !
 
-!ReceptiveAccount methodsFor: 'accesing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+!ReceptiveAccount methodsFor: 'accesing' stamp: 'toto 10/19/2023 08:43:28'!
 transactions 
-
 	^ transactions copy! !
 
 
