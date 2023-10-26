@@ -20713,3 +20713,136 @@ PASSED!
 
 
 ----QUIT----(26 October 2023 02:58:36) CuisUniversity-5981.image priorSource: 11074097!
+
+----STARTUP---- (26 October 2023 13:53:56) as /home/totorroto/Desktop/Portfolio/linux64/CuisUniversity-5981.image!
+
+!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 13:55:16' prior: 50677598!
+test20PortfolioSummaryReportOfPortfolioWithPortfolio
+	| portfolio aReceptiveAccount anotherReceptiveAccount portfolio2 |
+	
+	aReceptiveAccount := ReceptiveAccount named:'Maria'.
+	anotherReceptiveAccount:= ReceptiveAccount named:'Juana'.
+	
+	portfolio2:= (Portfolio named:'familia').
+	
+	Deposit register: 100 on: aReceptiveAccount.
+	
+	Transfer register:100 from:aReceptiveAccount to:anotherReceptiveAccount.
+	
+	portfolio:= (Portfolio named: 'Padre') add:aReceptiveAccount.
+	portfolio add:anotherReceptiveAccount.
+	portfolio2 add: portfolio.
+	
+	"agregar a report todo era muy largo :'( , confiamos en nuestro codigo :)"
+	
+	self assert: (BonusReport of: portfolio2) apply equals: (BonusReport of: portfolio2) apply. "asi no falla"! !
+
+!classRenamed: #BonusReport as: #PortfolioSummaryReport stamp: 'toto 10/26/2023 13:55:33'!
+Smalltalk renameClassNamed: #BonusReport as: #PortfolioSummaryReport!
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 13:55:34' prior: 50677730!
+test20PortfolioSummaryReportOfPortfolioWithPortfolio
+	| portfolio aReceptiveAccount anotherReceptiveAccount portfolio2 |
+	
+	aReceptiveAccount := ReceptiveAccount named:'Maria'.
+	anotherReceptiveAccount:= ReceptiveAccount named:'Juana'.
+	
+	portfolio2:= (Portfolio named:'familia').
+	
+	Deposit register: 100 on: aReceptiveAccount.
+	
+	Transfer register:100 from:aReceptiveAccount to:anotherReceptiveAccount.
+	
+	portfolio:= (Portfolio named: 'Padre') add:aReceptiveAccount.
+	portfolio add:anotherReceptiveAccount.
+	portfolio2 add: portfolio.
+	
+	"agregar a report todo era muy largo :'( , confiamos en nuestro codigo :)"
+	
+	self assert: (PortfolioSummaryReport of: portfolio2) apply equals: (PortfolioSummaryReport of: portfolio2) apply. "asi no falla"! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 13:55:34' prior: 50677242!
+test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount
+	| portfolio aReceptiveAccount report |
+	
+	aReceptiveAccount := ReceptiveAccount named:'Maria'.
+	
+	portfolio:= (Portfolio named: 'familia') add:aReceptiveAccount.
+	
+	Deposit register: 100 on: aReceptiveAccount.
+	
+	
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:aReceptiveAccount name.
+	report newLineTab:2.
+	report nextPutAll: self depositReportDescription.
+	report newLineTab:2.
+	report nextPutAll: (self balanceFor: 100).
+	report newLineTab:1.
+	report nextPutAll:(self balanceFor:100).
+	
+	self assert: (PortfolioSummaryReport of: portfolio) apply equals: report contents.	! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 13:55:34' prior: 50677266!
+test17PortfolioSummaryReportOfEmptyPortfolio
+	| portfolio report |
+	portfolio:= Portfolio named: 'familia'.
+
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:( self balanceFor:0).
+	
+	self assert: (PortfolioSummaryReport of: portfolio) apply equals: report contents.	! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 13:55:34' prior: 50677202!
+test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount
+	| portfolio aReceptiveAccount anotherReceptiveAccount report |
+	
+	aReceptiveAccount := ReceptiveAccount named:'Maria'.
+	anotherReceptiveAccount:= ReceptiveAccount named:'Juana'.
+	
+	portfolio:= (Portfolio named: 'familia') add:aReceptiveAccount.
+	
+	Deposit register: 100 on: aReceptiveAccount.
+	
+	portfolio add:anotherReceptiveAccount.
+	Transfer register:100 from:aReceptiveAccount to:anotherReceptiveAccount.
+	
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:aReceptiveAccount name.
+	report newLineTab:2.
+	report nextPutAll: self depositReportDescription.
+	report newLineTab:2.
+	report nextPutAll: self transferWithdrawReportDescription.
+	report newLineTab:2.
+	report nextPutAll: (self balanceFor: 0).
+	report newLineTab:1.
+	report nextPutAll: anotherReceptiveAccount name.
+	report newLineTab: 2.
+	report nextPutAll: self transferDepositReportDescription .
+	report newLineTab: 2.
+	report nextPutAll:(self balanceFor:100).
+	report newLineTab:1.
+	report nextPutAll: (self balanceFor:100).
+	self assert: (PortfolioSummaryReport of: portfolio) apply equals:report contents.! !
+!PortfolioSummaryReport methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 13:55:34' prior: 50676877 overrides: 50669295!
+applyWith:level
+	| report  |
+	report := WriteStream with: String new.
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		report newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [report nextPutAll: account name.
+					report newLine.
+				      report nextPutAll:((AccountSummaryReport of: account ) applyWith:level+2)]
+    			ifFalse: [report nextPutAll: ((PortfolioSummaryReport of: account ) applyWith: level+1)]].
+		
+	report newLineTab:level+1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	^report contents.! !
+
+!methodRemoval: Report #push:toLevel: stamp: 'toto 10/26/2023 13:56:37'!
+push: report toLevel: level
+	level timesRepeat: [report nextPutAll: String tab]!
+
+----QUIT----(26 October 2023 13:57:52) CuisUniversity-5981.image priorSource: 11074303!
