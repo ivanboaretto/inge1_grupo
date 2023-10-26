@@ -683,7 +683,7 @@ TestCase subclass: #TransferTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'toto 10/24/2023 21:01:43'!
+!TransferTest methodsFor: 'test' stamp: 'toto 10/24/2023 21:01:43'!
 test01Transfer
 	| originAccount destinationAccount destinationTransfer transfer originTransfer |
 	
@@ -704,7 +704,7 @@ test01Transfer
 	self assert: destinationAccount  balance equals: 100.
 ! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'toto 10/24/2023 21:02:02'!
+!TransferTest methodsFor: 'test' stamp: 'toto 10/24/2023 21:02:02'!
 test02CantTransferToSelf
 	| anAccount |
 	
@@ -713,7 +713,7 @@ test02CantTransferToSelf
 	self should:[Transfer register: 100 from:anAccount to:anAccount.] raise: Error withMessageText: 'No se pueden hacer autotransferencias'.
 ! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'toto 10/24/2023 21:02:39'!
+!TransferTest methodsFor: 'test' stamp: 'toto 10/24/2023 21:02:39'!
 test03ValueCantBeNegative
 
 	| originAccount destinationAccount |
@@ -723,7 +723,7 @@ test03ValueCantBeNegative
 	self should:[Transfer register: -100 from:originAccount to:destinationAccount.] raise: Error withMessageText: 'Solamente se pueden hacer transferencias con montos positivos'.
 ! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'toto 10/24/2023 21:02:36'!
+!TransferTest methodsFor: 'test' stamp: 'toto 10/24/2023 21:02:36'!
 test04ValueCantBeZero
 
 	| originAccount destinationAccount |
@@ -795,21 +795,27 @@ name
 
 	^name.! !
 
+
+!Account methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:20:29'!
+accept: aVisitor
+
+	self subclassResponsibility! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Account class' category: 'Portfolio-Solucion'!
 Account class
 	instanceVariableNames: ''!
 
-!Account class methodsFor: 'instance creation' stamp: 'toto 10/25/2023 01:29:46'!
+!Account class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:41:38'!
 named: aName 
 
-	^self new initializeNamed: aName ! !
+	^self basicNew initializeNamed: aName ! !
 
-!Account class methodsFor: 'instance creation' stamp: 'toto 10/25/2023 20:17:00'!
+!Account class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:41:46'!
 new
 
-	^self basicNew initializeNamed:''.! !
+	^self named:''! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -900,6 +906,11 @@ addedTo: aPortfolio
 	
 	parents add: aPortfolio ! !
 
+
+!Portfolio methodsFor: 'testing' stamp: 'IB 10/26/2023 16:22:54'!
+accept: aVisitor
+
+	^aVisitor visitPortfolio: self! !
 
 !Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:20:56'!
 anyRootParentIsComposedBy: accountToAdd
@@ -1007,6 +1018,11 @@ balance
 		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
 
 
+!ReceptiveAccount methodsFor: 'testing' stamp: 'IB 10/26/2023 16:23:06'!
+accept: aVisitor
+
+	^aVisitor visitReceptiveAccount: self! !
+
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56'!
 hasRegistered: aTransaction
 
@@ -1024,9 +1040,7 @@ addedTo: aPortfolio
 	
 	! !
 
-
-
-!ReceptiveAccount methodsFor: 'x' stamp: 'toto 10/25/2023 20:56:52'!
+!ReceptiveAccount methodsFor: 'composition' stamp: 'toto 10/25/2023 20:56:52'!
 withAccountsDo: aOneArgBlock 
 	aOneArgBlock value: self.! !
 
@@ -1089,8 +1103,6 @@ AccountTransaction subclass: #Deposit
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-
-
 !Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02'!
 affectBalance: aBalance
 
@@ -1100,7 +1112,6 @@ affectBalance: aBalance
 !Deposit methodsFor: 'print' stamp: 'toto 10/24/2023 21:20:12'!
 printTransaction
 	^'Deposito por ',value asString.! !
-
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1120,8 +1131,6 @@ AccountTransaction subclass: #Withdraw
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
-
 
 !Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
 affectBalance: aBalance
@@ -1152,18 +1161,9 @@ Object subclass: #Report
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Report methodsFor: 'support' stamp: 'toto 10/26/2023 01:51:22'!
-push: report toLevel: level
-	level timesRepeat: [report nextPutAll: String tab]! !
-
 
 !Report methodsFor: 'evaluating' stamp: 'toto 10/25/2023 22:24:11'!
 apply
-
-	self subclassResponsibility! !
-
-!Report methodsFor: 'evaluating' stamp: 'toto 10/26/2023 00:18:52'!
-applyWith: level
 
 	self subclassResponsibility! !
 
@@ -1175,13 +1175,15 @@ Report subclass: #AccountReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountReport methodsFor: 'initialize' stamp: 'toto 10/25/2023 22:25:34'!
+!AccountReport methodsFor: 'initialize' stamp: 'IB 10/26/2023 16:00:39'!
 initializeOf: anAccount 
-	account := anAccount.! !
+
+	account := anAccount! !
 
 
-!AccountReport methodsFor: 'evaluating' stamp: 'toto 10/25/2023 22:28:35'!
+!AccountReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:54:59'!
 apply
+
 	self subclassResponsibility! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -1202,10 +1204,10 @@ AccountReport subclass: #AccountSummaryReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'evaluating' stamp: 'toto 10/25/2023 23:48:07'!
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:57:45'!
 apply
 
-	^self applyWith:0.
+	^self applyWith: 0
 	
 	
 	
@@ -1213,25 +1215,40 @@ apply
 	
 	! !
 
-!AccountSummaryReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:37:35'!
-applyWith:level
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:04:55'!
+applyWith: aLevel
 
 	| report |
+	
 	report := WriteStream with: String new.
 	
 	account withTransactionsDo:[:transaction|  
-		report tab:level.
-		report nextPutAll:transaction printTransaction.
-		report newLine].
-	report tab:level.
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
 	
-	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	self writeLastReportLineOn: report considering: aLevel.
+	
+	^report contents
 	
 	
 	
 	
 	
 	! !
+
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:05:19'!
+writeLastReportLineOn: aReport considering: aLevel
+
+	aReport 
+		tab: aLevel;
+	 	nextPutAll: 'Balance = ' , account balance asString! !
+
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:08'!
+writeReportLineOn: aReport for: transaction onLevel: aLevel
+
+	aReport 
+		tab: aLevel;
+		nextPutAll: transaction printTransaction;
+		newLine! !
 
 
 !classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
@@ -1241,13 +1258,16 @@ AccountReport subclass: #TransferNetReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNetReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 01:45:54'!
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:34'!
 apply
+
 	| transferNet |
-	transferNet:= 0.
-	account withTransactionsDo:[:transaction|transferNet:=  transaction affectBalanceIfTransfer: transferNet].
 	
-	^transferNet.! !
+	transferNet := 0.
+	
+	account withTransactionsDo: [:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet! !
 
 
 !classDefinition: #PortfolioReport category: 'Portfolio-Solucion'!
@@ -1257,18 +1277,32 @@ Report subclass: #PortfolioReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioReport methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 00:18:09'!
+!PortfolioReport methodsFor: 'applying' stamp: 'IB 10/26/2023 15:54:02'!
 apply
-	^self applyWith:0! !
 
-!PortfolioReport methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 00:18:39'!
-applyWith: level
+	^self applyWith: 0! !
+
+!PortfolioReport methodsFor: 'applying' stamp: 'IB 10/26/2023 15:54:10'!
+applyWith: aLevel
 
 	self subclassResponsibility! !
 
-!PortfolioReport methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 00:18:34'!
-initializeOf:aPortfolio
-	portfolio:= aPortfolio.! !
+
+!PortfolioReport methodsFor: 'initialization' stamp: 'IB 10/26/2023 16:06:42'!
+initializeOf: aPortfolio
+
+	portfolio := aPortfolio! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioReport class' category: 'Portfolio-Solucion'!
+PortfolioReport class
+	instanceVariableNames: ''!
+
+!PortfolioReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:53:21'!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio ! !
 
 
 !classDefinition: #BonusReport category: 'Portfolio-Solucion'!
@@ -1278,33 +1312,73 @@ PortfolioReport subclass: #BonusReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!BonusReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:46:19'!
-applyWith:level
+!BonusReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:26:36'!
+procedureToWritePortfolioItemOnReportFor: aPortfolio
+
+	^ [:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+
+!BonusReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:27:42'!
+procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount onLevel: level]! !
+
+!BonusReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:26:36'!
+visitPortfolio: aPortfolio
+
+	^self procedureToWritePortfolioItemOnReportFor: aPortfolio! !
+
+!BonusReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:27:42'!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount! !
+
+
+!BonusReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:14:44'!
+writeFirstReportItemOn: report
+
+	^ report nextPutAll: portfolio name! !
+
+!BonusReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:13:47'!
+writeLastReportItemOn: aReport onLevel: aLevel
+
+	aReport 
+		newLineTab: aLevel + 1;
+		nextPutAll: 'Balance = ', portfolio balance asString! !
+
+!BonusReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:28:18'!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+	(anAccount accept: self) value: aReport value: aLevel! !
+
+!BonusReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:12:25'!
+writeReportPortfolioItemOn: aReport for: anAccount onLevel: aLevel
+
+	^ aReport nextPutAll: ((BonusReport of: anAccount ) applyWith: aLevel+1)! !
+
+!BonusReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:10:44'!
+writeReportReceptiveAccountItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport 
+		nextPutAll: anAccount name;
+		newLine;
+		nextPutAll: ((AccountSummaryReport of: anAccount ) applyWith: aLevel + 2)! !
+
+
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:14:44'!
+applyWith: aLevel
+
 	| report  |
 	report := WriteStream with: String new.
-	report nextPutAll: portfolio name.
+	
+	self writeFirstReportItemOn: report.
 	
 	portfolio withAccountsDo: [:account | 
-		report newLineTab:level+1.
-		account class = ReceptiveAccount 
-			ifTrue:  [report nextPutAll: account name.
-					report newLine.
-				      report nextPutAll:((AccountSummaryReport of: account ) applyWith:level+2)]
-    			ifFalse: [report nextPutAll: ((BonusReport of: account ) applyWith: level+1)]].
+		self writeReportItemOn: report for: account onLevel: aLevel].
 		
-	report newLineTab:level+1.
-	report nextPutAll:'Balance = ', portfolio balance asString.
-	^report contents.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'BonusReport class' category: 'Portfolio-Solucion'!
-BonusReport class
-	instanceVariableNames: ''!
-
-!BonusReport class methodsFor: 'instance creation' stamp: 'toto 10/25/2023 22:28:03'!
-of: portfolio 
-	^self new initializeOf: portfolio ! !
+	self writeLastReportItemOn: report onLevel: aLevel.
+	
+	^report contents! !
 
 
 !classDefinition: #TreeStructureReport category: 'Portfolio-Solucion'!
@@ -1314,29 +1388,61 @@ PortfolioReport subclass: #TreeStructureReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TreeStructureReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:06:34'!
+!TreeStructureReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:33:21'!
+procedureToWritePortfolioItemOnReportFor: aPortfolio
+
+	^ [:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+
+!TreeStructureReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:32:59'!
+procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount]! !
+
+!TreeStructureReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:33:21'!
+visitPortfolio: aPortfolio
+
+	^self procedureToWritePortfolioItemOnReportFor: aPortfolio! !
+
+!TreeStructureReport methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:32:59'!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount! !
+
+
+!TreeStructureReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:32:19'!
+writeFirstReportItemOn: aReport
+
+	^ aReport nextPutAll: portfolio name! !
+
+!TreeStructureReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:32:00'!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel + 1.
+	(anAccount accept: self) value: aReport value: aLevel! !
+
+!TreeStructureReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:18:38'!
+writeReportPortfolioItemOn: aReport for: account onLevel: level
+
+	^ aReport nextPutAll: ((TreeStructureReport of: account) applyWith: level+1)! !
+
+!TreeStructureReport methodsFor: 'building report' stamp: 'IB 10/26/2023 16:17:40'!
+writeReportReceptiveAccountItemOn: aReport for: anAccount
+
+	^ aReport nextPutAll: anAccount name! !
+
+
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:16:48'!
 applyWith:level
 
 	| report  |
 	report := WriteStream with: String new.
-	report nextPutAll: portfolio name.
+	
+	self writeFirstReportItemOn: report.
+	
 	portfolio withAccountsDo: [:account | 
-		report newLineTab:level+1.
-		account class = ReceptiveAccount 
-			ifTrue:  [report nextPutAll: account name]
-    			ifFalse: [report nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]].
+		self writeReportItemOn: report for: account onLevel: level].
 	
 	^report contents.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TreeStructureReport class' category: 'Portfolio-Solucion'!
-TreeStructureReport class
-	instanceVariableNames: ''!
-
-!TreeStructureReport class methodsFor: 'instance creation' stamp: 'toto 10/25/2023 01:44:39'!
-of: aPortfolio 
-	^self new initializeOf: aPortfolio ! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
@@ -1346,9 +1452,10 @@ Object subclass: #Transfer
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'accesing' stamp: 'toto 10/24/2023 20:44:49'!
-value 
-	^value.! !
+!Transfer methodsFor: 'accesing' stamp: 'IB 10/26/2023 15:46:42'!
+value
+
+	^value! !
 
 
 !Transfer methodsFor: 'initialize' stamp: 'toto 10/24/2023 20:57:53'!
@@ -1359,22 +1466,26 @@ initializeFor: aValue
     destinationTransfer := TransferDeposit relatedTo: self! !
 
 
-!Transfer methodsFor: 'legs' stamp: 'toto 10/24/2023 20:57:53'!
+!Transfer methodsFor: 'legs' stamp: 'IB 10/26/2023 15:46:28'!
 destinationTransfer
-	^destinationTransfer.! !
 
-!Transfer methodsFor: 'legs' stamp: 'toto 10/24/2023 20:57:45'!
+	^destinationTransfer! !
+
+!Transfer methodsFor: 'legs' stamp: 'IB 10/26/2023 15:46:31'!
 originTransfer
-	^originTransfer .! !
+
+	^originTransfer! !
 
 
-!Transfer methodsFor: 'balance' stamp: 'toto 10/24/2023 20:57:10'!
-affectBalanceAsDestinationTransfer: currentBalance 
-	^currentBalance + value.! !
+!Transfer methodsFor: 'balance' stamp: 'IB 10/26/2023 15:46:11'!
+affectBalanceAsDestinationTransfer: aBalance
 
-!Transfer methodsFor: 'balance' stamp: 'toto 10/24/2023 20:57:25'!
-affectBalanceAsOriginTransfer: currentBalance 
-	^currentBalance - value.! !
+	^aBalance + value! !
+
+!Transfer methodsFor: 'balance' stamp: 'IB 10/26/2023 15:46:23'!
+affectBalanceAsOriginTransfer: aBalance
+
+	^aBalance - value! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1382,17 +1493,30 @@ affectBalanceAsOriginTransfer: currentBalance
 Transfer class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'instance creation' stamp: 'toto 10/24/2023 20:40:31'!
-for: aValue 
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:55'!
+assert: anOriginAccount isNotTheSameAs: anDestinationAccount
+
+	^ anOriginAccount = anDestinationAccount 
+		ifTrue: [self error: 'No se pueden hacer autotransferencias']! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:07'!
+assertIsStrictlyPositive: aValue
+
+	^ aValue strictlyPositive
+		ifFalse: [self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:46:52'!
+for: aValue
+
 	^self new initializeFor: aValue ! !
 
-!Transfer class methodsFor: 'instance creation' stamp: 'toto 10/24/2023 21:00:44'!
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:46'!
 register: aValue from: anOriginAccount to: anDestinationAccount 
 	
 	| transaction |
 	
-	anOriginAccount = anDestinationAccount ifTrue:[self error:'No se pueden hacer autotransferencias'].
-	aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos'].
+	self assert: anOriginAccount isNotTheSameAs: anDestinationAccount.
+	self assertIsStrictlyPositive: aValue.
 
     	transaction := self for: aValue.
 
@@ -1411,9 +1535,10 @@ Object subclass: #TransferLeg
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferLeg methodsFor: 'initialize' stamp: 'toto 10/24/2023 20:49:28'!
-initializeRelatedTo: aTransfer 
-	transfer := aTransfer.! !
+!TransferLeg methodsFor: 'initialize' stamp: 'IB 10/26/2023 15:45:47'!
+initializeRelatedTo: aTransfer
+
+	transfer := aTransfer! !
 
 
 !TransferLeg methodsFor: 'balance' stamp: 'toto 10/24/2023 20:49:35'!
@@ -1421,16 +1546,27 @@ affectBalance: currentBalance
 
 	self subclassResponsibility! !
 
-!TransferLeg methodsFor: 'balance' stamp: 'toto 10/25/2023 00:00:11'!
-affectBalanceIfTransfer: balance
+!TransferLeg methodsFor: 'balance' stamp: 'IB 10/26/2023 15:44:34'!
+affectBalanceIfTransfer: aBalance
 
-	self subclassResponsibility! !
+	^self affectBalance: aBalance! !
 
 
 !TransferLeg methodsFor: 'print' stamp: 'toto 10/25/2023 00:00:03'!
 printTransaction
 
 	self subclassResponsibility! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferLeg class' category: 'Portfolio-Solucion'!
+TransferLeg class
+	instanceVariableNames: ''!
+
+!TransferLeg class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:45:27'!
+relatedTo: aTransfer 
+
+	^self new initializeRelatedTo: aTransfer ! !
 
 
 !classDefinition: #TransferDeposit category: 'Portfolio-Solucion'!
@@ -1440,30 +1576,16 @@ TransferLeg subclass: #TransferDeposit
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-
-!TransferDeposit methodsFor: 'balance' stamp: 'toto 10/24/2023 21:13:36'!
+!TransferDeposit methodsFor: 'balance' stamp: 'IB 10/26/2023 15:44:12'!
 affectBalance: currentBalance 
-	^transfer affectBalanceAsDestinationTransfer: currentBalance.! !
 
-!TransferDeposit methodsFor: 'balance' stamp: 'toto 10/24/2023 22:29:02'!
-affectBalanceIfTransfer: balance 
-	^self affectBalance: balance.! !
+	^transfer affectBalanceAsDestinationTransfer: currentBalance! !
 
 
-!TransferDeposit methodsFor: 'print' stamp: 'toto 10/24/2023 21:33:44'!
+!TransferDeposit methodsFor: 'print' stamp: 'IB 10/26/2023 15:44:06'!
 printTransaction
-	^'Entrada por transferencia de ', transfer value asString.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferDeposit class' category: 'Portfolio-Solucion'!
-TransferDeposit class
-	instanceVariableNames: ''!
-
-!TransferDeposit class methodsFor: 'instance creation' stamp: 'toto 10/24/2023 20:42:48'!
-relatedTo: aTransfer 
-
-	^self new initializeRelatedTo: aTransfer ! !
+	^'Entrada por transferencia de ', transfer value asString! !
 
 
 !classDefinition: #TransferWithdraw category: 'Portfolio-Solucion'!
@@ -1473,27 +1595,13 @@ TransferLeg subclass: #TransferWithdraw
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
+!TransferWithdraw methodsFor: 'balance' stamp: 'IB 10/26/2023 15:43:33'!
+affectBalance: aBalance 
 
-!TransferWithdraw methodsFor: 'balance' stamp: 'toto 10/24/2023 20:57:25'!
-affectBalance: currentBalance 
-	^transfer affectBalanceAsOriginTransfer: currentBalance.! !
-
-!TransferWithdraw methodsFor: 'balance' stamp: 'toto 10/24/2023 22:26:19'!
-affectBalanceIfTransfer: balance 
-	^self affectBalance: balance.! !
+	^transfer affectBalanceAsOriginTransfer: aBalance! !
 
 
-!TransferWithdraw methodsFor: 'print' stamp: 'toto 10/24/2023 21:33:01'!
+!TransferWithdraw methodsFor: 'print' stamp: 'IB 10/26/2023 15:43:58'!
 printTransaction
-	^'Salida por transferencia de ', transfer value asString.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferWithdraw class' category: 'Portfolio-Solucion'!
-TransferWithdraw class
-	instanceVariableNames: ''!
-
-!TransferWithdraw class methodsFor: 'instance creation' stamp: 'toto 10/24/2023 20:42:17'!
-relatedTo: aTransfer 
-
-	^self new initializeRelatedTo: aTransfer ! !
+	^'Salida por transferencia de ', transfer value asString! !
