@@ -1,0 +1,2218 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (26 October 2023 14:22:18) as C:\Users\iboaretto\Desktop\UBA\Inge1\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\iboaretto\Desktop\UBA\Inge1\windows64\Portfolio-Solucion.st----!
+!Account class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:41:38' prior: 50651234!
+named: aName 
+
+	^self basicNew initializeNamed: aName ! !
+!Account class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:41:44' prior: 50651239 overrides: 16785646!
+new
+
+	^self named:''.! !
+!Account class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:41:46' prior: 50652019 overrides: 16785646!
+new
+
+	^self named:''! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 15:42:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 15:42:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 15:42:08'!
+PASSED!
+!TransferWithdraw methodsFor: 'balance' stamp: 'IB 10/26/2023 15:43:23' prior: 50651978 overrides: 50651908!
+affectBalance: currentBalance 
+
+	^transfer affectBalanceAsOriginTransfer: currentBalance! !
+!TransferWithdraw methodsFor: 'balance' stamp: 'IB 10/26/2023 15:43:33' prior: 50652113 overrides: 50651908!
+affectBalance: aBalance 
+
+	^transfer affectBalanceAsOriginTransfer: aBalance! !
+!TransferWithdraw methodsFor: 'balance' stamp: 'IB 10/26/2023 15:43:47' prior: 50651984 overrides: 50651913!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance.! !
+!TransferWithdraw methodsFor: 'balance' stamp: 'IB 10/26/2023 15:43:49' prior: 50652126 overrides: 50651913!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance! !
+!TransferWithdraw methodsFor: 'print' stamp: 'IB 10/26/2023 15:43:58' prior: 50651990 overrides: 50651918!
+printTransaction
+
+	^'Salida por transferencia de ', transfer value asString! !
+!TransferDeposit methodsFor: 'print' stamp: 'IB 10/26/2023 15:44:06' prior: 50651946 overrides: 50651918!
+printTransaction
+
+	^'Entrada por transferencia de ', transfer value asString! !
+!TransferDeposit methodsFor: 'balance' stamp: 'IB 10/26/2023 15:44:12' prior: 50651935 overrides: 50651908!
+affectBalance: currentBalance 
+
+	^transfer affectBalanceAsDestinationTransfer: currentBalance! !
+!TransferDeposit methodsFor: 'balance' stamp: 'IB 10/26/2023 15:44:23' prior: 50651941 overrides: 50651913!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance! !
+!TransferLeg methodsFor: 'balance' stamp: 'IB 10/26/2023 15:44:34' prior: 50651913!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance! !
+
+!methodRemoval: TransferWithdraw #affectBalanceIfTransfer: stamp: 'IB 10/26/2023 15:44:34'!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance!
+
+!methodRemoval: TransferDeposit #affectBalanceIfTransfer: stamp: 'IB 10/26/2023 15:44:34'!
+affectBalanceIfTransfer: aBalance
+
+	^self affectBalance: aBalance!
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 15:44:58'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 15:44:58'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 15:44:58'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 15:44:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 15:45:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 15:45:07'!
+PASSED!
+!TransferLeg class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:45:27'!
+relatedTo: aTransfer 
+
+	^self new initializeRelatedTo: aTransfer ! !
+
+!methodRemoval: TransferDeposit class #relatedTo: stamp: 'IB 10/26/2023 15:45:28'!
+relatedTo: aTransfer 
+
+	^self new initializeRelatedTo: aTransfer !
+
+!methodRemoval: TransferWithdraw class #relatedTo: stamp: 'IB 10/26/2023 15:45:28'!
+relatedTo: aTransfer 
+
+	^self new initializeRelatedTo: aTransfer !
+!TransferLeg methodsFor: 'initialize' stamp: 'IB 10/26/2023 15:45:47' prior: 50651903!
+initializeRelatedTo: aTransfer
+
+	transfer := aTransfer! !
+!Transfer methodsFor: 'balance' stamp: 'IB 10/26/2023 15:46:11' prior: 50651850!
+affectBalanceAsDestinationTransfer: aBalance
+
+	^aBalance + value! !
+!Transfer methodsFor: 'balance' stamp: 'IB 10/26/2023 15:46:17' prior: 50651855!
+affectBalanceAsOriginTransfer: currentBalance
+
+	^currentBalance - value! !
+!Transfer methodsFor: 'balance' stamp: 'IB 10/26/2023 15:46:23' prior: 50652298!
+affectBalanceAsOriginTransfer: aBalance
+
+	^aBalance - value! !
+!Transfer methodsFor: 'legs' stamp: 'IB 10/26/2023 15:46:28' prior: 50651842!
+destinationTransfer
+
+	^destinationTransfer! !
+!Transfer methodsFor: 'legs' stamp: 'IB 10/26/2023 15:46:31' prior: 50651846!
+originTransfer
+
+	^originTransfer! !
+!Transfer methodsFor: 'accesing' stamp: 'IB 10/26/2023 15:46:42' prior: 50651831 overrides: 16902254!
+value
+
+	^value! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:46:52' prior: 50651868!
+for: aValue
+
+	^self new initializeFor: aValue ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:00' prior: 50651873!
+register: aValue from: anOriginAccount to: anDestinationAccount 
+	
+	| transaction |
+	
+	anOriginAccount = anDestinationAccount ifTrue: [self error:'No se pueden hacer autotransferencias'].
+	aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos'].
+
+    	transaction := self for: aValue.
+
+    	anOriginAccount register: transaction originTransfer.
+    	anDestinationAccount register: transaction destinationTransfer.
+
+    	^transaction
+	
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:04' prior: 50652326!
+register: aValue from: anOriginAccount to: anDestinationAccount 
+	
+	| transaction |
+	
+	anOriginAccount = anDestinationAccount ifTrue: [self error: 'No se pueden hacer autotransferencias'].
+	aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos'].
+
+    	transaction := self for: aValue.
+
+    	anOriginAccount register: transaction originTransfer.
+    	anDestinationAccount register: transaction destinationTransfer.
+
+    	^transaction
+	
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:47'!
+assert: anOriginAccount isNotTheSameAs: anDestinationAccount
+
+	^ anOriginAccount = anDestinationAccount ifTrue: [self error: 'No se pueden hacer autotransferencias']! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:48' prior: 50652345!
+register: aValue from: anOriginAccount to: anDestinationAccount 
+	
+	| transaction |
+	
+	self assert: anOriginAccount isNotTheSameAs: anDestinationAccount.
+	aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos'].
+
+    	transaction := self for: aValue.
+
+    	anOriginAccount register: transaction originTransfer.
+    	anDestinationAccount register: transaction destinationTransfer.
+
+    	^transaction
+	
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:47:55' prior: 50652363!
+assert: anOriginAccount isNotTheSameAs: anDestinationAccount
+
+	^ anOriginAccount = anDestinationAccount 
+		ifTrue: [self error: 'No se pueden hacer autotransferencias']! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:32'!
+assertStrictlyPositive: aValue
+
+	^ aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:32' prior: 50652372!
+register: aValue from: anOriginAccount to: anDestinationAccount 
+	
+	| transaction |
+	
+	self assert: anOriginAccount isNotTheSameAs: anDestinationAccount.
+	self assertStrictlyPositive: aValue.
+
+    	transaction := self for: aValue.
+
+    	anOriginAccount register: transaction originTransfer.
+    	anDestinationAccount register: transaction destinationTransfer.
+
+    	^transaction
+	
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:46'!
+assertIsStrictlyPositive: aValue
+
+	^ aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IB 10/26/2023 15:48:46' prior: 50652405!
+register: aValue from: anOriginAccount to: anDestinationAccount 
+	
+	| transaction |
+	
+	self assert: anOriginAccount isNotTheSameAs: anDestinationAccount.
+	self assertIsStrictlyPositive: aValue.
+
+    	transaction := self for: aValue.
+
+    	anOriginAccount register: transaction originTransfer.
+    	anDestinationAccount register: transaction destinationTransfer.
+
+    	^transaction
+	
+	! !
+
+!methodRemoval: Transfer class #assertStrictlyPositive: stamp: 'IB 10/26/2023 15:48:46'!
+assertStrictlyPositive: aValue
+
+	^ aValue <=0 ifTrue:[self error: 'Solamente se pueden hacer transferencias con montos positivos']!
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:52' prior: 50652420!
+assertIsStrictlyPositive: aValue
+
+	^ aValue <=0 
+		ifTrue: [self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:48:54' prior: 50652451!
+assertIsStrictlyPositive: aValue
+
+	^ aValue <= 0 
+		ifTrue: [self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 15:49:00'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 15:49:00'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 15:49:00'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 15:49:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 15:49:04'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 15:49:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 15:49:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 15:49:16'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 15:49:19) CuisUniversity-5981.image priorSource: 10197292!
+!Transfer class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:07' prior: 50652459!
+assertIsStrictlyPositive: aValue
+
+	^ aValue strictlyPositive
+		ifFalse: [self error: 'Solamente se pueden hacer transferencias con montos positivos']! !
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 15:52:15'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 15:52:15'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 15:52:15'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 15:52:15'!
+PASSED!
+!TreeStructureReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:38' prior: 50651812!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio ! !
+!BonusReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:43' prior: 50651770!
+of: portfolio
+
+	^self new initializeOf: portfolio ! !
+!BonusReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:49' prior: 50652671!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio ! !
+!TreeStructureReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:52:55' prior: 50652666!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio ! !
+!PortfolioReport class methodsFor: 'instance creation' stamp: 'IB 10/26/2023 15:53:21'!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio ! !
+
+!methodRemoval: BonusReport class #of: stamp: 'IB 10/26/2023 15:53:21'!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio !
+
+!methodRemoval: TreeStructureReport class #of: stamp: 'IB 10/26/2023 15:53:21'!
+of: aPortfolio
+
+	^self new initializeOf: aPortfolio !
+!PortfolioReport methodsFor: 'applying' stamp: 'IB 10/26/2023 15:54:02' prior: 50651714 overrides: 50651604!
+apply
+
+	^self applyWith: 0! !
+!PortfolioReport methodsFor: 'applying' stamp: 'IB 10/26/2023 15:54:10' prior: 50651719 overrides: 50651608!
+applyWith: aLevel
+
+	self subclassResponsibility! !
+!PortfolioReport methodsFor: 'initialization' stamp: 'IB 10/26/2023 15:54:40' prior: 50651724!
+initializeOf: aPortfolio
+
+	portfolio:= aPortfolio! !
+!AccountReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:54:59' prior: 50651630 overrides: 50651604!
+apply
+
+	self subclassResponsibility! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:57:45' prior: 50651661 overrides: 50652717!
+apply
+
+	^self applyWith: 0
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:57:53' prior: 50651666 overrides: 50651608!
+applyWith: level
+
+	| report |
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		report tab:level.
+		report nextPutAll:transaction printTransaction.
+		report newLine].
+	report tab:level.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:05' prior: 50651692 overrides: 50652717!
+apply
+
+	| transferNet |
+	transferNet:= 0.
+	
+	account withTransactionsDo:[:transaction|transferNet:=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:08' prior: 50652741 overrides: 50652717!
+apply
+
+	| transferNet |
+	transferNet:= 0.
+	
+	account withTransactionsDo:[:transaction|transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:16' prior: 50652750 overrides: 50652717!
+apply
+
+	| transferNet |
+	transferNet:= 0.
+	
+	account withTransactionsDo:[:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:20' prior: 50652759 overrides: 50652717!
+apply
+
+	| transferNet |
+	transferNet:= 0.
+	
+	account withTransactionsDo: [:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:22' prior: 50652768 overrides: 50652717!
+apply
+
+	| transferNet |
+	
+	transferNet:= 0.
+	
+	account withTransactionsDo: [:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:31' prior: 50652777 overrides: 50652717!
+apply
+
+	| transferNet |
+	
+	transferNet := 0.
+	
+	account withTransactionsDo: [:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet.! !
+!TransferNetReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:34' prior: 50652787 overrides: 50652717!
+apply
+
+	| transferNet |
+	
+	transferNet := 0.
+	
+	account withTransactionsDo: [:transaction| transferNet :=  transaction affectBalanceIfTransfer: transferNet].
+	
+	^transferNet! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:58:46' prior: 50652727 overrides: 50651608!
+applyWith: level
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		report tab:level.
+		report nextPutAll:transaction printTransaction.
+		report newLine].
+	report tab:level.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:03' prior: 50652807 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		report tab: aLevel.
+		report nextPutAll:transaction printTransaction.
+		report newLine].
+	report tab: aLevel.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:10' prior: 50652821 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		report tab: aLevel.
+		report nextPutAll: transaction printTransaction.
+		report newLine].
+	report tab: aLevel.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:43'!
+writeReportLineOn: report for: transaction onLevel: aLevel
+
+	report tab: aLevel.
+		report nextPutAll: transaction printTransaction.
+		report newLine! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:43' prior: 50652835 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	report tab: aLevel.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:56' prior: 50652848!
+writeReportLineOn: aReport for: transaction onLevel: aLevel
+
+	aReport tab: aLevel.
+		aReport nextPutAll: transaction printTransaction.
+		aReport newLine! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 15:59:59' prior: 50652870!
+writeReportLineOn: aReport for: transaction onLevel: aLevel
+
+	aReport tab: aLevel.
+	aReport nextPutAll: transaction printTransaction.
+	aReport newLine! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:00:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:00:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:00:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:00:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:00:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:00:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:00:13'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:13'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:00:13'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:00:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 16:00:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 16:00:19'!
+PASSED!
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 16:00:25'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 16:00:25'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 16:00:25'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 16:00:25'!
+PASSED!
+!AccountReport methodsFor: 'initialize' stamp: 'IB 10/26/2023 16:00:39' prior: 50651625!
+initializeOf: anAccount 
+
+	account := anAccount! !
+
+----SNAPSHOT----(26 October 2023 16:00:41) CuisUniversity-5981.image priorSource: 10271742!
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:08' prior: 50652878!
+writeReportLineOn: aReport for: transaction onLevel: aLevel
+
+	aReport 
+		tab: aLevel;
+		nextPutAll: transaction printTransaction;
+		newLine! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:01:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:01:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:01:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:01:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:01:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:01:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:01:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:01:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:01:20'!
+PASSED!
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:31' prior: 50652857 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	
+	report tab: aLevel.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:56' prior: 50653161 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	
+	report tab: aLevel.
+	report nextPutAll: 'Balance = ' ,account balance asString.
+	^report contents.
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:58' prior: 50653175 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	
+	report tab: aLevel.
+	report nextPutAll: 'Balance = ' ,account balance asString.
+	^report contents
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:01:59' prior: 50653189 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	
+	report tab: aLevel.
+	report nextPutAll: 'Balance = ' ,account balance asString.
+	
+	^report contents
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:02:05'!
+PASSED!
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:04:55'!
+writeLastReportLineOn: report considering: aLevel
+
+	report tab: aLevel.
+	report nextPutAll: 'Balance = ' ,account balance asString! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:04:55' prior: 50653203 overrides: 50651608!
+applyWith: aLevel
+
+	| report |
+	
+	report := WriteStream with: String new.
+	
+	account withTransactionsDo:[:transaction|  
+		self writeReportLineOn: report for: transaction onLevel: aLevel].
+	
+	self writeLastReportLineOn: report considering: aLevel.
+	
+	^report contents
+	
+	
+	
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:05:14' prior: 50653248!
+writeLastReportLineOn: aReport considering: aLevel
+
+	aReport 
+		tab: aLevel;
+	 	nextPutAll: 'Balance = ' ,account balance asString! !
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:05:19' prior: 50653268!
+writeLastReportLineOn: aReport considering: aLevel
+
+	aReport 
+		tab: aLevel;
+	 	nextPutAll: 'Balance = ' , account balance asString! !
+!PortfolioReport methodsFor: 'initialization' stamp: 'IB 10/26/2023 16:06:42' prior: 50652711!
+initializeOf: aPortfolio
+
+	portfolio := aPortfolio! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:08:09'!
+writeReportItemOn: report for: account onLevel: level
+
+	report newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [report nextPutAll: account name.
+					report newLine.
+				      report nextPutAll:((AccountSummaryReport of: account ) applyWith:level+2)]
+    			ifFalse: [report nextPutAll: ((BonusReport of: account ) applyWith: level+1)]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:08:09' prior: 50651741 overrides: 50652706!
+applyWith:level
+	| report  |
+	report := WriteStream with: String new.
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: level].
+		
+	report newLineTab:level+1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	^report contents.! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:08:22' prior: 50653303 overrides: 50652706!
+applyWith: aLevel
+	| report  |
+	report := WriteStream with: String new.
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	report newLineTab: aLevel + 1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	^report contents.! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:08:58' prior: 50653288!
+writeReportItemOn: aReport for: account onLevel: level
+
+	aReport newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [aReport 
+					nextPutAll: account name;
+					newLine;
+				      	nextPutAll: ((AccountSummaryReport of: account ) applyWith:level+2)]
+    			ifFalse: [aReport nextPutAll: ((BonusReport of: account ) applyWith: level+1)]! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:09:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:09:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:09:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:09:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:09:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:09:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:09:05'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:09:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:09:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:09:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:09:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:09:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:09:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:09:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:09:08'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:09:10) CuisUniversity-5981.image priorSource: 10285330!
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:10:29'!
+writeReportReceptiveAccountItemOn: aReport for: account onLevel: level
+
+	aReport 
+		nextPutAll: account name;
+		newLine;
+		nextPutAll: ((AccountSummaryReport of: account ) applyWith: level + 2)! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:10:44' prior: 50653429!
+writeReportReceptiveAccountItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport 
+		nextPutAll: anAccount name;
+		newLine;
+		nextPutAll: ((AccountSummaryReport of: anAccount ) applyWith: aLevel + 2)! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:11:19' prior: 50653331!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+		anAccount class = ReceptiveAccount 
+			ifTrue:  [aReport 
+					nextPutAll: anAccount name;
+					newLine;
+				      	nextPutAll: ((AccountSummaryReport of: anAccount ) applyWith: aLevel+2)]
+    			ifFalse: [aReport nextPutAll: ((BonusReport of: anAccount ) applyWith: aLevel+1)]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:11:24' prior: 50653448!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+		anAccount class = ReceptiveAccount 
+			ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: anAccount onLevel: aLevel]
+    			ifFalse: [aReport nextPutAll: ((BonusReport of: anAccount ) applyWith: aLevel+1)]! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:11:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:11:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:11:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:11:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:11:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:11:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:11:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:11:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:11:35'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:11:37) CuisUniversity-5981.image priorSource: 10296812!
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:12:25'!
+writeReportPortfolioItemOn: aReport for: anAccount onLevel: aLevel
+
+	^ aReport nextPutAll: ((BonusReport of: anAccount ) applyWith: aLevel+1)! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:12:25' prior: 50653463!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+		anAccount class = ReceptiveAccount 
+			ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: anAccount onLevel: aLevel]
+    			ifFalse: [self writeReportPortfolioItemOn: aReport for: anAccount onLevel: aLevel]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:12:43' prior: 50653317 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	report newLineTab: aLevel + 1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	^report contents.! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:12:48' prior: 50653582 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	report newLineTab: aLevel + 1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	
+	^report contents! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:12:51' prior: 50653596 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	report newLineTab: aLevel + 1.
+	report nextPutAll: 'Balance = ', portfolio balance asString.
+	
+	^report contents! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:13:14'!
+writeLastReportLineOn: aReport onLevel: aLevel
+
+	aReport newLineTab: aLevel + 1.
+	aReport nextPutAll: 'Balance = ', portfolio balance asString! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:13:14' prior: 50653610 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	self writeLastReportLineOn: report onLevel: aLevel.
+	
+	^report contents! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:13:35'!
+writeLastReportItemOn: aReport onLevel: aLevel
+
+	aReport newLineTab: aLevel + 1.
+	aReport nextPutAll: 'Balance = ', portfolio balance asString! !
+!BonusReport methodsFor: 'as yet unclassified' stamp: 'IB 10/26/2023 16:13:35' prior: 50653631 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	report nextPutAll: portfolio name.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	self writeLastReportItemOn: report onLevel: aLevel.
+	
+	^report contents! !
+
+!methodRemoval: BonusReport #writeLastReportLineOn:onLevel: stamp: 'IB 10/26/2023 16:13:35'!
+writeLastReportLineOn: aReport onLevel: aLevel
+
+	aReport newLineTab: aLevel + 1.
+	aReport nextPutAll: 'Balance = ', portfolio balance asString!
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:13:47' prior: 50653643!
+writeLastReportItemOn: aReport onLevel: aLevel
+
+	aReport 
+		newLineTab: aLevel + 1;
+		nextPutAll: 'Balance = ', portfolio balance asString! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:13:55' prior: 50653568!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+	anAccount class = ReceptiveAccount 
+		ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: anAccount onLevel: aLevel]
+    		ifFalse: [self writeReportPortfolioItemOn: aReport for: anAccount onLevel: aLevel]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:14:44'!
+writeFirstReportItemOn: report
+
+	^ report nextPutAll: portfolio name! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:14:44' prior: 50653652 overrides: 50652706!
+applyWith: aLevel
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	self writeFirstReportItemOn: report.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: aLevel].
+		
+	self writeLastReportItemOn: report onLevel: aLevel.
+	
+	^report contents! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:15:55'!
+writeFirstReportItemOn: report
+
+	^ report nextPutAll: portfolio name! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:15:55' prior: 50651788 overrides: 50652706!
+applyWith:level
+
+	| report  |
+	report := WriteStream with: String new.
+	self writeFirstReportItemOn: report.
+	portfolio withAccountsDo: [:account | 
+		report newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [report nextPutAll: account name]
+    			ifFalse: [report nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]].
+	
+	^report contents.! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:16:43'!
+writeReportItemOn: report for: account onLevel: level
+
+	report newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [report nextPutAll: account name]
+    			ifFalse: [report nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:16:43' prior: 50653716 overrides: 50652706!
+applyWith:level
+
+	| report  |
+	report := WriteStream with: String new.
+	self writeFirstReportItemOn: report.
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: level].
+	
+	^report contents.! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:16:48' prior: 50653743 overrides: 50652706!
+applyWith:level
+
+	| report  |
+	report := WriteStream with: String new.
+	
+	self writeFirstReportItemOn: report.
+	
+	portfolio withAccountsDo: [:account | 
+		self writeReportItemOn: report for: account onLevel: level].
+	
+	^report contents.! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:17:00' prior: 50653731!
+writeReportItemOn: aReport for: account onLevel: level
+
+	aReport newLineTab:level+1.
+		account class = ReceptiveAccount 
+			ifTrue:  [aReport nextPutAll: account name]
+    			ifFalse: [aReport nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:17:08' prior: 50653765!
+writeReportItemOn: aReport for: account onLevel: level
+
+	aReport newLineTab:level+1.
+	account class = ReceptiveAccount 
+		ifTrue:  [aReport nextPutAll: account name]
+    		ifFalse: [aReport nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:17:33'!
+writeReportReceptiveAccountItemOn: aReport for: account
+
+	^ aReport nextPutAll: account name! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:17:33' prior: 50653777!
+writeReportItemOn: aReport for: account onLevel: level
+
+	aReport newLineTab:level+1.
+	account class = ReceptiveAccount 
+		ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: account]
+    		ifFalse: [aReport nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:17:40' prior: 50653788!
+writeReportReceptiveAccountItemOn: aReport for: anAccount
+
+	^ aReport nextPutAll: anAccount name! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:18:27'!
+writeReportPortfolioItemOn: aReport for: account onLevel: level
+
+	^ aReport nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:18:27' prior: 50653794!
+writeReportItemOn: aReport for: account onLevel: level
+
+	aReport newLineTab:level+1.
+	account class = ReceptiveAccount 
+		ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: account]
+    		ifFalse: [self writeReportPortfolioItemOn: aReport for: account onLevel: level]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:18:35' prior: 50653812!
+writeReportPortfolioItemOn: aReport for: account onLevel: level
+
+	^ aReport nextPutAll: ((TreeStructureReport of: account ) applyWith: level+1)! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:18:38' prior: 50653832!
+writeReportPortfolioItemOn: aReport for: account onLevel: level
+
+	^ aReport nextPutAll: ((TreeStructureReport of: account) applyWith: level+1)! !
+
+1 next!
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:19:02' prior: 50653820!
+writeReportItemOn: aReport for: account onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+	account class = ReceptiveAccount 
+		ifTrue:  [self writeReportReceptiveAccountItemOn: aReport for: account]
+    		ifFalse: [self writeReportPortfolioItemOn: aReport for: account onLevel: aLevel]! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:19:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:19:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:19:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:19:08'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:19:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:19:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:19:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:19:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:19:15'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:20:05) CuisUniversity-5981.image priorSource: 10300992!
+!Account methodsFor: 'visiting' stamp: 'IB 10/26/2023 16:20:29'!
+accept: aVisitor
+
+	self subclassResponsibility! !
+!Portfolio methodsFor: 'testing' stamp: 'IB 10/26/2023 16:22:54' overrides: 50653944!
+accept: aVisitor
+
+	^aVisitor visitPortfolio: self! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'IB 10/26/2023 16:23:06' overrides: 50653944!
+accept: aVisitor
+
+	^aVisitor visitReceptiveAccount: self! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:24:35'!
+visitReceptiveAccount: aReceptiveAccount
+
+	^[:report :account :level | self writeReportReceptiveAccountItemOn: report for: account onLevel: level]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:25:21'!
+procedureToWriteReceptiveAccountItemOnReport
+
+	^ [:report :account :level | self writeReportReceptiveAccountItemOn: report for: account onLevel: level]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:25:21' prior: 50653959!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReport! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:26:10'!
+visitPortfolio: aPortfolio
+
+	^[:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:26:36'!
+procedureToWritePortfolioItemOnReportFor: aPortfolio
+
+	^ [:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:26:36' prior: 50653980!
+visitPortfolio: aPortfolio
+
+	^self procedureToWritePortfolioItemOnReportFor: aPortfolio! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:27:05'!
+procedureToWriteReceptiveAccountItemOnReport: aReceptiveAccount
+
+	^ [:report :account :level | self writeReportReceptiveAccountItemOn: report for: account onLevel: level]! !
+!BonusReport methodsFor: 'as yet unclassified' stamp: 'IB 10/26/2023 16:27:05' prior: 50653974!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReport: self halt! !
+
+!methodRemoval: BonusReport #procedureToWriteReceptiveAccountItemOnReport stamp: 'IB 10/26/2023 16:27:05'!
+procedureToWriteReceptiveAccountItemOnReport
+
+	^ [:report :account :level | self writeReportReceptiveAccountItemOn: report for: account onLevel: level]!
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:27:15' prior: 50654001!
+procedureToWriteReceptiveAccountItemOnReport: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount onLevel: level]! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:27:27' prior: 50654010!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReport: aReceptiveAccount! !
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:27:42'!
+procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount onLevel: level]! !
+!BonusReport methodsFor: 'as yet unclassified' stamp: 'IB 10/26/2023 16:27:42' prior: 50654034!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount! !
+
+!methodRemoval: BonusReport #procedureToWriteReceptiveAccountItemOnReport: stamp: 'IB 10/26/2023 16:27:42'!
+procedureToWriteReceptiveAccountItemOnReport: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount onLevel: level]!
+!BonusReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:28:18' prior: 50653680!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel+1.
+	(anAccount accept: self) value: aReport value: aLevel! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:28:29'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:28:29'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:28:29'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:28:29'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:32'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:28:33'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:33'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:33'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:28:33'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:28:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:28:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:28:34'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:28:50) CuisUniversity-5981.image priorSource: 10313286!
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:30:00'!
+visitPortfolio: aPortfolio
+
+	^[:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:30:43'!
+visitReceptiveAccount: aReceptiveAccount
+
+	^[:report | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:32:00' prior: 50653848!
+writeReportItemOn: aReport for: anAccount onLevel: aLevel
+
+	aReport newLineTab: aLevel + 1.
+	(anAccount accept: self) value: aReport value: aLevel! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:32:09' prior: 50654164!
+visitReceptiveAccount: aReceptiveAccount
+
+	^[:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:32:19' prior: 50653710!
+writeFirstReportItemOn: aReport
+
+	^ aReport nextPutAll: portfolio name! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:32:59'!
+procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount
+
+	^ [:report :level | self writeReportReceptiveAccountItemOn: report for: aReceptiveAccount]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:32:59' prior: 50654179!
+visitReceptiveAccount: aReceptiveAccount
+
+	^self procedureToWriteReceptiveAccountItemOnReportFor: aReceptiveAccount! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:33:21'!
+procedureToWritePortfolioItemOnReportFor: aPortfolio
+
+	^ [:report :level | self writeReportPortfolioItemOn: report for: aPortfolio onLevel: level]! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'IB 10/26/2023 16:33:21' prior: 50654157!
+visitPortfolio: aPortfolio
+
+	^self procedureToWritePortfolioItemOnReportFor: aPortfolio! !
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:34:40'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:34:40'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:34:40'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:34:40'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:42'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:34:44'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:44'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:44'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:34:44'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:34:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:34:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:34:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 16:34:50'!
+PASSED!
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 16:34:56'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 16:34:56'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 16:34:56'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 16:34:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 16:34:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 16:35:01'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:35:04) CuisUniversity-5981.image priorSource: 10320091!
+
+!methodRemoval: Report #push:toLevel: stamp: 'IB 10/26/2023 16:35:29'!
+push: report toLevel: level
+	level timesRepeat: [report nextPutAll: String tab]!
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:35:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:35:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:35:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:35:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:35:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:35:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:35:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:35:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:35:39'!
+PASSED!
+
+!methodRemoval: Report #applyWith: stamp: 'IB 10/26/2023 16:36:06'!
+applyWith: level
+
+	self subclassResponsibility!
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:36:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:36:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:36:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:36:13'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:36:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:36:15'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:36:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:36:16'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:36:16'!
+PASSED!
+
+----SNAPSHOT----(26 October 2023 16:37:09) CuisUniversity-5981.image priorSource: 10328764!
+
+!testRun: #AccountReportTest #test09TransferNetReportOfvirginReceptiveAccount stamp: 'IB 10/26/2023 16:37:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test10TransferNetReportOfReceptiveAccountWithOneTransfer stamp: 'IB 10/26/2023 16:37:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test11TransferNetReportOfReceptiveAccountDoesntTakeInConsiderationOtherTransactions stamp: 'IB 10/26/2023 16:37:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test12TransferNetReportOfReceptiveWithMoreThanOneTransfer stamp: 'IB 10/26/2023 16:37:18'!
+PASSED!
+
+!testRun: #AccountReportTest #test01AccountSummaryReportOfVirginReceptiveAccount stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test02AccountSummaryReportOfReceptiveAccountWithDeposit stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test03AccountSummaryReportOfReceptiveAccountWithWithdraw stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test04AccountSummaryReportOfReceptiveAccountWithTransfer stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test06AccountSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test17PortfolioSummaryReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:37:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test20PortfolioSummaryReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:37:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test13TreeStructureReportOfEmptyPortfolio stamp: 'IB 10/26/2023 16:37:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test14TreeStructureReportOfPortfolioWithOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount stamp: 'IB 10/26/2023 16:37:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test16TreeStructureReportOfPortfolioWithPortfolio stamp: 'IB 10/26/2023 16:37:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IB 10/26/2023 16:37:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IB 10/26/2023 16:37:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IB 10/26/2023 16:37:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IB 10/26/2023 16:37:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IB 10/26/2023 16:37:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IB 10/26/2023 16:37:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IB 10/26/2023 16:37:28'!
+PASSED!
+
+!testRun: #TransferTest #test01Transfer stamp: 'IB 10/26/2023 16:37:34'!
+PASSED!
+
+!testRun: #TransferTest #test02CantTransferToSelf stamp: 'IB 10/26/2023 16:37:34'!
+PASSED!
+
+!testRun: #TransferTest #test03ValueCantBeNegative stamp: 'IB 10/26/2023 16:37:34'!
+PASSED!
+
+!testRun: #TransferTest #test04ValueCantBeZero stamp: 'IB 10/26/2023 16:37:34'!
+PASSED!
+
+----QUIT----(26 October 2023 16:37:57) CuisUniversity-5981.image priorSource: 10334327!
