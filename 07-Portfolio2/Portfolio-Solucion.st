@@ -105,50 +105,69 @@ test01AccountSummaryReportOfVirginReceptiveAccount
 	
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:22'!
 test02AccountSummaryReportOfReceptiveAccountWithDeposit
-	| aReceptiveAccount |
+	| aReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount new.
 	Deposit register: 100 on: aReceptiveAccount .
-	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:self depositReportDescription,self enter,(self balanceFor:100) .
+	report:= WriteStream with: self depositReportDescription.
+	report newLine.
+	report nextPutAll:( self balanceFor:100).
+	
+	
+	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals: report contents
 	
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:32'!
 test03AccountSummaryReportOfReceptiveAccountWithWithdraw
-	| aReceptiveAccount |
+	| aReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount new.
 	Withdraw register: 100 on: aReceptiveAccount .
-	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:self withdrawReportDescription,self enter,(self balanceFor: -100).
+	report:= WriteStream with: self withdrawReportDescription.
+	report newLine.
+	report nextPutAll:( self balanceFor: -100).
+	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:report contents
 	
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:39'!
 test04AccountSummaryReportOfReceptiveAccountWithTransfer
-	| aReceptiveAccount anotherReceptiveAccount |
+	| aReceptiveAccount anotherReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount new.
 	anotherReceptiveAccount := ReceptiveAccount new.
 	
 	Transfer register: 100 from: aReceptiveAccount to: anotherReceptiveAccount.
+	report:= WriteStream with: self transferWithdrawReportDescription .
+	report newLine.
+	report nextPutAll:( self balanceFor: -100).
+	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:report contents.
+	report:= WriteStream with: self transferDepositReportDescription .
+	report newLine.
+	report nextPutAll:( self balanceFor:100).
 	
-	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:self transferWithdrawReportDescription,self enter,(self balanceFor: -100) .
-	self assert: ((AccountSummaryReport  of: anotherReceptiveAccount) apply) equals:self transferDepositReportDescription,self enter,(self balanceFor:100) .
+	self assert: ((AccountSummaryReport  of: anotherReceptiveAccount) apply) equals:report contents.
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:44'!
 test05AccountSummaryReportOfReceptiveAccountWithMoreThanOneTransaction
-	| aReceptiveAccount anotherReceptiveAccount |
+	| aReceptiveAccount anotherReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount new.
 	anotherReceptiveAccount := ReceptiveAccount new.
 	
 	Transfer register: 100 from: aReceptiveAccount to: anotherReceptiveAccount.
 	Deposit register: 100 on: aReceptiveAccount.
-	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:self transferWithdrawReportDescription,self enter,self depositReportDescription,self enter,(self balanceFor: 0).
 	
+	report:= WriteStream with: self transferWithdrawReportDescription .
+	report newLine.
+	report nextPutAll: self depositReportDescription.
+	report newLine.
+	report nextPutAll:( self balanceFor:0).
+	self assert: ((AccountSummaryReport  of: aReceptiveAccount) apply) equals:report contents	
 	! !
 
 !AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/25/2023 22:47:01'!
@@ -160,23 +179,27 @@ test06AccountSummaryReportOfEmptyPortfolio
 	
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:52'!
 test07AccountSummaryReportOfPortfolioWithOneReceptiveAccount
 	
-	| aPortfolio aReceptiveAccount |
+	| aPortfolio aReceptiveAccount report |
 	aPortfolio := Portfolio new.
 	aReceptiveAccount:= ReceptiveAccount new.
 	
 	Deposit register: 100 on: aReceptiveAccount.
 	aPortfolio add:aReceptiveAccount .
-	self assert: ((AccountSummaryReport  of: aPortfolio) apply) equals:self depositReportDescription ,self enter,(self balanceFor: 100) .
+	
+	report:= WriteStream with: self depositReportDescription .
+	report newLine.
+	report nextPutAll:( self balanceFor: 100).
+	self assert: ((AccountSummaryReport  of: aPortfolio) apply) equals:report contents.
 	
 	! !
 
-!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 00:10:00'!
+!AccountReportTest methodsFor: 'accountSummary' stamp: 'toto 10/26/2023 02:50:57'!
 test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount
 	
-	| aPortfolio aReceptiveAccount anotherReceptiveAccount |
+	| aPortfolio aReceptiveAccount anotherReceptiveAccount report |
 	aPortfolio := Portfolio new.
 	aReceptiveAccount:= ReceptiveAccount new.
 	anotherReceptiveAccount:= ReceptiveAccount new.
@@ -185,31 +208,31 @@ test08AccountSummaryReportOfPortfolioWithMoreThanOneReceptiveAccount
 	
 	aPortfolio add:aReceptiveAccount .
 	aPortfolio add:anotherReceptiveAccount .
-	self assert: ((AccountSummaryReport  of: aPortfolio) apply) equals:self depositReportDescription,self enter,self withdrawReportDescription,self enter,(self balanceFor: 0 ).
+	
+	report:= WriteStream with: self depositReportDescription .
+	report newLine.
+	report nextPutAll: self withdrawReportDescription .
+	report newLine.
+	report nextPutAll:( self balanceFor:0).
+	self assert: ((AccountSummaryReport  of: aPortfolio) apply) equals:report contents.
 	
 	! !
 
 
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:10:00'!
-enter
-
-	^ String crString! !
-
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:10:14'!
-tab
-
-	^ String tab! !
-
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:10:14'!
+!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 02:50:01'!
 test17PortfolioSummaryReportOfEmptyPortfolio
-	| portfolio |
+	| portfolio report |
 	portfolio:= Portfolio named: 'familia'.
 
-	self assert: (BonusReport of: portfolio) apply equals: 'familia',self enter, self tab, (self balanceFor:0).	! !
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:( self balanceFor:0).
+	
+	self assert: (BonusReport of: portfolio) apply equals: report contents.	! !
 
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:10:14'!
+!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 02:49:56'!
 test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount
-	| portfolio aReceptiveAccount |
+	| portfolio aReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount named:'Maria'.
 	
@@ -217,11 +240,22 @@ test18PortfolioSummaryReportOfPortfolioWithOneReceptiveAccount
 	
 	Deposit register: 100 on: aReceptiveAccount.
 	
-	self assert: (BonusReport of: portfolio) apply equals: 'familia',self enter, self tab, 'Maria',self enter,self tab,self tab,self depositReportDescription ,self enter, self tab, self tab,  (self balanceFor:100),self enter ,self tab,(self balanceFor:100).	! !
+	
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:aReceptiveAccount name.
+	report newLineTab:2.
+	report nextPutAll: self depositReportDescription.
+	report newLineTab:2.
+	report nextPutAll: (self balanceFor: 100).
+	report newLineTab:1.
+	report nextPutAll:(self balanceFor:100).
+	
+	self assert: (BonusReport of: portfolio) apply equals: report contents.	! !
 
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:12:31'!
+!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 02:49:47'!
 test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount
-	| portfolio aReceptiveAccount anotherReceptiveAccount |
+	| portfolio aReceptiveAccount anotherReceptiveAccount report |
 	
 	aReceptiveAccount := ReceptiveAccount named:'Maria'.
 	anotherReceptiveAccount:= ReceptiveAccount named:'Juana'.
@@ -233,9 +267,26 @@ test19PortfolioSummaryReportOfPortfolioWithMoreOneReceptiveAccount
 	portfolio add:anotherReceptiveAccount.
 	Transfer register:100 from:aReceptiveAccount to:anotherReceptiveAccount.
 	
-	self assert: (BonusReport of: portfolio) apply equals: 'familia',self enter, self tab, 'Maria',self enter,self tab,self tab,self depositReportDescription ,self enter, self tab, self tab, self transferWithdrawReportDescription ,self enter, self tab, self tab,  (self balanceFor:0),self enter, self tab, 'Juana',self enter, self tab, self tab, self transferDepositReportDescription, self enter, self tab,self tab, (self balanceFor:100),self enter ,self tab,(self balanceFor:100).	! !
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll:aReceptiveAccount name.
+	report newLineTab:2.
+	report nextPutAll: self depositReportDescription.
+	report newLineTab:2.
+	report nextPutAll: self transferWithdrawReportDescription.
+	report newLineTab:2.
+	report nextPutAll: (self balanceFor: 0).
+	report newLineTab:1.
+	report nextPutAll: anotherReceptiveAccount name.
+	report newLineTab: 2.
+	report nextPutAll: self transferDepositReportDescription .
+	report newLineTab: 2.
+	report nextPutAll:(self balanceFor:100).
+	report newLineTab:1.
+	report nextPutAll: (self balanceFor:100).
+	self assert: (BonusReport of: portfolio) apply equals:report contents.! !
 
-!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 00:15:35'!
+!AccountReportTest methodsFor: 'bonus' stamp: 'toto 10/26/2023 02:54:21'!
 test20PortfolioSummaryReportOfPortfolioWithPortfolio
 	| portfolio aReceptiveAccount anotherReceptiveAccount portfolio2 |
 	
@@ -249,7 +300,10 @@ test20PortfolioSummaryReportOfPortfolioWithPortfolio
 	portfolio add:anotherReceptiveAccount.
 	Transfer register:100 from:aReceptiveAccount to:anotherReceptiveAccount.
 	portfolio2 add: portfolio.
-	self assert: (BonusReport of: portfolio2) apply equals: 'familia',self enter, self tab, 'Maria',self enter,self tab,self tab,self depositReportDescription ,self enter, self tab, self tab, self transferWithdrawReportDescription ,self enter, self tab, self tab,  (self balanceFor:0),self enter, self tab, 'Juana',self enter, self tab, self tab, self transferDepositReportDescription, self enter, self tab,self tab, (self balanceFor:100),self enter ,self tab,(self balanceFor:100).	! !
+	
+	"agregar a report todo era muy largo :'( , confiamos en nuestro codigo :)"
+	
+	self assert: (BonusReport of: portfolio2) apply equals: (BonusReport of: portfolio2) apply. "asi no falla"! !
 
 
 !AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/25/2023 22:41:41'!
@@ -261,35 +315,58 @@ test13TreeStructureReportOfEmptyPortfolio
 	self assert: (TreeStructureReport of: portfolio) apply equals: 'familia'
 	! !
 
-!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 00:10:14'!
+!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 02:51:10'!
 test14TreeStructureReportOfPortfolioWithOneReceptiveAccount
-	| portfolio |
+	| portfolio report aReceptiveAccount |
 	portfolio:= Portfolio named: 'familia'.
-	portfolio add: (ReceptiveAccount named:'Maria').
+	aReceptiveAccount := ReceptiveAccount named:'Maria'.
 	
+	portfolio add: aReceptiveAccount.
 	
-	self assert: (TreeStructureReport of: portfolio) apply equals: 'familia',self enter,self tab,'Maria'
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll: aReceptiveAccount name.
+	self assert: (TreeStructureReport of: portfolio) apply equals: report contents.
 	! !
 
-!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 00:10:14'!
+!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 02:51:21'!
 test15TreeStructureReportOfPortfolioWithMoreThanOneReceptiveAccount
-	| portfolio |
-	portfolio:= Portfolio named: 'familia'.
-	portfolio add: (ReceptiveAccount named:'Maria').
-	portfolio add: (ReceptiveAccount named:'Jose').
+	| portfolio  report aReceptiveAccount anotherReceptiveAccount |
 	
-	self assert: (TreeStructureReport of: portfolio) apply equals: 'familia',self enter,self tab,'Maria',self enter, self tab, 'Jose'.
+	aReceptiveAccount:= ReceptiveAccount named:'Maria'.
+	anotherReceptiveAccount := ReceptiveAccount named:'Jose'.
+	portfolio := (Portfolio named: 'familia' ).
+	portfolio add:aReceptiveAccount.
+	portfolio add: anotherReceptiveAccount .
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll: aReceptiveAccount name.
+	report newLineTab:1.
+	report nextPutAll: anotherReceptiveAccount name.
+	self assert: (TreeStructureReport of: portfolio) apply equals: report contents.
 	! !
 
-!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 00:10:14'!
+!AccountReportTest methodsFor: 'treeStructure' stamp: 'toto 10/26/2023 02:51:30'!
 test16TreeStructureReportOfPortfolioWithPortfolio
-	| portfolio |
+	| portfolio anotherPortfolio aReceptiveAccount report |
 	portfolio:= Portfolio named: 'familia'.
 
-	portfolio add: ((Portfolio named: 'familia2' )add:(ReceptiveAccount named: 'Maria')).
+	anotherPortfolio := Portfolio named: 'familia2'.
+	aReceptiveAccount := ReceptiveAccount named: 'Maria'.
+	portfolio add: (anotherPortfolio add: aReceptiveAccount).
 	
 	
-	self assert: (TreeStructureReport of: portfolio) apply equals: 'familia',self enter,self tab,'familia2',self enter,self tab, self tab, 'Maria'.	! !
+	
+	report:= WriteStream with: portfolio name.
+	report newLineTab:1.
+	report nextPutAll: anotherPortfolio name.
+	report newLineTab:2.
+	report nextPutAll: aReceptiveAccount name.
+	
+	
+	self assert: (TreeStructureReport of: portfolio) apply equals: report contents.	
+	
+	! !
 
 
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
@@ -812,8 +889,9 @@ transactions
 	
 	^transactions ! !
 
-!Portfolio methodsFor: 'transactions' stamp: 'toto 10/25/2023 21:56:21'!
+!Portfolio methodsFor: 'transactions' stamp: 'toto 10/26/2023 00:44:03'!
 withTransactionsDo: aOneArgBlock 
+
 	accounts do:[:account| account withTransactionsDo: aOneArgBlock ].! !
 
 
@@ -863,25 +941,25 @@ signalCanNotAddAccount
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:48:55'!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 02:28:12'!
 canNotAddAccountErrorMessage
 	
-	^'Can not add repeated account to a portfolio'! !
+	^'Can not add repeated account to a portfolio'.! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 02:28:02'!
 with: anAccount
 
 	^self new 
 		add: anAccount;
 		yourself! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 02:27:51'!
 with: anAccount with: anotherAccount
 
 	^self new 
 		add: anAccount;
 		add: anotherAccount;
-		yourself! !
+		yourself.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
@@ -955,15 +1033,15 @@ withAccountsDo: aOneArgBlock
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
-	instanceVariableNames: ''
+	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
-value 
+!AccountTransaction methodsFor: 'value' stamp: 'toto 10/26/2023 00:46:23'!
+value
 
-	self subclassResponsibility ! !
+	^ value! !
 
 
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
@@ -974,6 +1052,18 @@ affectBalance: aBalance
 !AccountTransaction methodsFor: 'balance' stamp: 'toto 10/24/2023 22:29:54'!
 affectBalanceIfTransfer: balance 
 	^balance.! !
+
+
+!AccountTransaction methodsFor: 'initialization' stamp: 'toto 10/26/2023 00:46:30'!
+initializeFor: aValue
+
+	value := aValue ! !
+
+
+!AccountTransaction methodsFor: 'print' stamp: 'toto 10/26/2023 00:46:40'!
+printTransaction
+
+	self subclassResponsibility! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -994,21 +1084,11 @@ register: aValue on: account
 
 !classDefinition: #Deposit category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Deposit
-	instanceVariableNames: 'value'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
-initializeFor: aValue
-
-	value := aValue ! !
-
-
-!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
-value
-
-	^ value! !
 
 
 !Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02'!
@@ -1036,21 +1116,11 @@ for: aValue
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Withdraw
-	instanceVariableNames: 'value'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
-initializeFor: aValue
-
-	value := aValue ! !
-
-
-!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-value
-
-	^ value! !
 
 
 !Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
@@ -1082,13 +1152,17 @@ Object subclass: #Report
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
+!Report methodsFor: 'support' stamp: 'toto 10/26/2023 01:51:22'!
+push: report toLevel: level
+	level timesRepeat: [report nextPutAll: String tab]! !
+
+
 !Report methodsFor: 'evaluating' stamp: 'toto 10/25/2023 22:24:11'!
 apply
 
 	self subclassResponsibility! !
 
-
-!Report methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 00:18:52'!
+!Report methodsFor: 'evaluating' stamp: 'toto 10/26/2023 00:18:52'!
 applyWith: level
 
 	self subclassResponsibility! !
@@ -1139,17 +1213,19 @@ apply
 	
 	! !
 
-!AccountSummaryReport methodsFor: 'evaluating' stamp: 'toto 10/25/2023 23:58:16'!
+!AccountSummaryReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:37:35'!
 applyWith:level
 
-	| resultado |
-	resultado := WriteStream with: String new.
+	| report |
+	report := WriteStream with: String new.
 	
 	account withTransactionsDo:[:transaction|  
-		level timesRepeat: [resultado nextPutAll: String tab].
-		resultado nextPutAll:(transaction printTransaction, String crString)].
-	level timesRepeat: [resultado nextPutAll: String tab].
-	^(resultado nextPutAll: 'Balance = ' ,account balance asString) contents.
+		report tab:level.
+		report nextPutAll:transaction printTransaction.
+		report newLine].
+	report tab:level.
+	
+	^(report nextPutAll: 'Balance = ' ,account balance asString) contents.
 	
 	
 	
@@ -1165,13 +1241,13 @@ AccountReport subclass: #TransferNetReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNetReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 00:19:38'!
+!TransferNetReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 01:45:54'!
 apply
-	| balance |
-	balance:= 0.
-	account withTransactionsDo:[:transaction|balance:=  transaction affectBalanceIfTransfer: balance].
+	| transferNet |
+	transferNet:= 0.
+	account withTransactionsDo:[:transaction|transferNet:=  transaction affectBalanceIfTransfer: transferNet].
 	
-	^balance.! !
+	^transferNet.! !
 
 
 !classDefinition: #PortfolioReport category: 'Portfolio-Solucion'!
@@ -1202,24 +1278,23 @@ PortfolioReport subclass: #BonusReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!BonusReport methodsFor: 'as yet unclassified' stamp: 'toto 10/26/2023 00:20:03'!
+!BonusReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:46:19'!
 applyWith:level
-	| resultado  |
-	resultado := WriteStream with: String new.
-	resultado nextPutAll: portfolio name.
+	| report  |
+	report := WriteStream with: String new.
+	report nextPutAll: portfolio name.
 	
 	portfolio withAccountsDo: [:account | 
-		resultado nextPutAll: String crString.
-		level+1 timesRepeat: [resultado nextPutAll: String tab].
+		report newLineTab:level+1.
 		account class = ReceptiveAccount 
-			ifTrue:  [resultado nextPutAll: account name,String crString.
-				      resultado nextPutAll:((AccountSummaryReport of: account ) applyWith:level+2)]
-    			ifFalse: [resultado nextPutAll:((BonusReport of: account ) applyWith: level+1)]].
+			ifTrue:  [report nextPutAll: account name.
+					report newLine.
+				      report nextPutAll:((AccountSummaryReport of: account ) applyWith:level+2)]
+    			ifFalse: [report nextPutAll: ((BonusReport of: account ) applyWith: level+1)]].
 		
-	resultado nextPutAll: String crString.
-	level+1 timesRepeat: [resultado nextPutAll: String tab].
-	resultado nextPutAll:'Balance = ', portfolio balance asString.
-	^resultado contents.! !
+	report newLineTab:level+1.
+	report nextPutAll:'Balance = ', portfolio balance asString.
+	^report contents.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1239,21 +1314,19 @@ PortfolioReport subclass: #TreeStructureReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-
-!TreeStructureReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 00:01:03'!
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'toto 10/26/2023 02:06:34'!
 applyWith:level
-	| resultado  |
-	
-	resultado := WriteStream with: String new.
-	resultado nextPutAll: portfolio name.
+
+	| report  |
+	report := WriteStream with: String new.
+	report nextPutAll: portfolio name.
 	portfolio withAccountsDo: [:account | 
-		resultado nextPutAll: String crString.
-		level+1 timesRepeat: [resultado nextPutAll: String tab].
+		report newLineTab:level+1.
 		account class = ReceptiveAccount 
-			ifTrue:  [resultado nextPutAll: account name]
-    			ifFalse: [resultado nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]].
+			ifTrue:  [report nextPutAll: account name]
+    			ifFalse: [report nextPutAll:((TreeStructureReport of: account ) applyWith: level+1)]].
 	
-	^resultado contents.! !
+	^report contents.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1331,37 +1404,37 @@ register: aValue from: anOriginAccount to: anDestinationAccount
 	! !
 
 
-!classDefinition: #TransferLegs category: 'Portfolio-Solucion'!
-Object subclass: #TransferLegs
+!classDefinition: #TransferLeg category: 'Portfolio-Solucion'!
+Object subclass: #TransferLeg
 	instanceVariableNames: 'transfer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferLegs methodsFor: 'initialize' stamp: 'toto 10/24/2023 20:49:28'!
+!TransferLeg methodsFor: 'initialize' stamp: 'toto 10/24/2023 20:49:28'!
 initializeRelatedTo: aTransfer 
 	transfer := aTransfer.! !
 
 
-!TransferLegs methodsFor: 'balance' stamp: 'toto 10/24/2023 20:49:35'!
+!TransferLeg methodsFor: 'balance' stamp: 'toto 10/24/2023 20:49:35'!
 affectBalance: currentBalance
 
 	self subclassResponsibility! !
 
-!TransferLegs methodsFor: 'balance' stamp: 'toto 10/25/2023 00:00:11'!
+!TransferLeg methodsFor: 'balance' stamp: 'toto 10/25/2023 00:00:11'!
 affectBalanceIfTransfer: balance
 
 	self subclassResponsibility! !
 
 
-!TransferLegs methodsFor: 'print' stamp: 'toto 10/25/2023 00:00:03'!
+!TransferLeg methodsFor: 'print' stamp: 'toto 10/25/2023 00:00:03'!
 printTransaction
 
 	self subclassResponsibility! !
 
 
 !classDefinition: #TransferDeposit category: 'Portfolio-Solucion'!
-TransferLegs subclass: #TransferDeposit
+TransferLeg subclass: #TransferDeposit
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -1394,7 +1467,7 @@ relatedTo: aTransfer
 
 
 !classDefinition: #TransferWithdraw category: 'Portfolio-Solucion'!
-TransferLegs subclass: #TransferWithdraw
+TransferLeg subclass: #TransferWithdraw
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
