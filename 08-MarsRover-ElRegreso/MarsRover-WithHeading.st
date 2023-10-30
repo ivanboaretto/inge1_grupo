@@ -131,7 +131,7 @@ test09HeadingLogWhenRotatingLeft
 	self assert: 'West', Character newLineCharacter asString equals: log logs.
 	! !
 
-!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:51:16'!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:57:40'!
 test10WindowWhenMoving
 
 	| marsRover window |
@@ -142,7 +142,7 @@ test10WindowWhenMoving
 	
 	marsRover process: 'ff'.
 	
-	self assert: '1@3 ' equals: window window! !
+	self assert: '1@3' equals: window window! !
 
 !MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:51:51'!
 test11WindowWhenRotateRightToEast
@@ -169,6 +169,45 @@ test12WindowWhenRotateRightToWest
 	marsRover process: 'r'.
 	
 	self assert: ' Apuntando al Oeste' equals: window window! !
+
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:59:02'!
+test13WindowWhenRotateRightToSouth
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingEast.
+	window := MarsRoverWindow new.
+	marsRover addObserver: window.
+	
+	marsRover process: 'r'.
+	
+	self assert: ' Apuntando al Sur' equals: window window! !
+
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:59:54'!
+test14WindowWhenRotateLeft
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingSouth.
+	window := MarsRoverWindow new.
+	marsRover addObserver: window.
+	
+	marsRover process: 'l'.
+	
+	self assert: ' Apuntando al Este' equals: window window! !
+
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 17:00:00'!
+test15WindowWhenRotateRightToNorth
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingWest.
+	window := MarsRoverWindow new.
+	marsRover addObserver: window.
+	
+	marsRover process: 'r'.
+	
+	self assert: ' Apuntando al Norte' equals: window window! !
 
 
 !classDefinition: #MarsRoverTest category: 'MarsRover-WithHeading'!
@@ -739,9 +778,9 @@ typeDescription
 	^'North'! !
 
 
-!MarsRoverHeadingNorth methodsFor: 'accept' stamp: 'toto 10/30/2023 16:46:07'!
+!MarsRoverHeadingNorth methodsFor: 'accept' stamp: 'toto 10/30/2023 16:58:33'!
 accept: aMarsRoverLog 
-	aMarsRoverLog visitMarsRoverHeadingNorth: self.! !
+	^aMarsRoverLog visitMarsRoverHeadingNorth: self.! !
 
 
 !classDefinition: #MarsRoverHeadingSouth category: 'MarsRover-WithHeading'!
@@ -773,9 +812,9 @@ rotateRight
 	^marsRover headWest! !
 
 
-!MarsRoverHeadingSouth methodsFor: 'accept' stamp: 'toto 10/30/2023 16:41:57'!
+!MarsRoverHeadingSouth methodsFor: 'accept' stamp: 'toto 10/30/2023 16:58:38'!
 accept: aMarsRoverLog 
-	aMarsRoverLog visitMarsRoverHeadingSouth: self.! !
+	^aMarsRoverLog visitMarsRoverHeadingSouth: self.! !
 
 
 !classDefinition: #MarsRoverHeadingWest category: 'MarsRover-WithHeading'!
@@ -807,9 +846,9 @@ rotateRight
 	^marsRover headNorth! !
 
 
-!MarsRoverHeadingWest methodsFor: 'accept' stamp: 'toto 10/30/2023 16:42:40'!
+!MarsRoverHeadingWest methodsFor: 'accept' stamp: 'toto 10/30/2023 16:58:43'!
 accept: aMarsRoverLog 
-	aMarsRoverLog visitMarsRoverHeadingWest: self.! !
+	^aMarsRoverLog visitMarsRoverHeadingWest: self.! !
 
 
 !classDefinition: #MarsRoverLog category: 'MarsRover-WithHeading'!
@@ -873,25 +912,25 @@ initialize
 	position:= ''.
 	heading:= ''.! !
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:16:14'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:56:59'!
 visitMarsRoverHeadingEast: aMarsRoverHeadingEast 
-	^'Apuntando al Este'! !
+	^' Apuntando al Este'! !
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:39:21'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:56:56'!
 visitMarsRoverHeadingNorth: aMarsRoverHeadingNorth
-	^'Apuntando al Norte'! !
+	^' Apuntando al Norte'! !
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:39:30'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:56:53'!
 visitMarsRoverHeadingSouth: aMarsRoverHeadingSouth
-	^'Apuntando al Sur'! !
+	^' Apuntando al Sur'! !
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:39:11'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:56:50'!
 visitMarsRoverHeadingWest: aMarsRoverHeadingWest
-	^'Apuntando al Oeste'! !
+	^' Apuntando al Oeste'! !
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:54:27'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'toto 10/30/2023 16:57:15'!
 window
-	^position asString,' ', heading.! !
+	^position asString,heading.! !
 
 
 !MarsRoverWindow methodsFor: 'update' stamp: 'toto 10/30/2023 16:14:39'!
