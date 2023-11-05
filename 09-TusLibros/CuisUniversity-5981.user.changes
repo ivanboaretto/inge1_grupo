@@ -1,0 +1,2228 @@
+
+
+----STARTUP---- (2 November 2023 23:55:59) as /home/totorroto/Desktop/Libros/linux64/CuisUniversity-5981.image!
+
+
+!classRemoval: #Cart stamp: 's 11/2/2023 23:56:04'!
+Object subclass: #Cart
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+!classRemoval: #CartTests stamp: 's 11/2/2023 23:56:04'!
+TestCase subclass: #CartTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+----End fileIn of /home/totorroto/Downloads/TusLibros.st----!
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:57:11'!
+test09CanNotCheckOutEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/2/2023 23:58:02'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:57:59' prior: 50331846!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:58:14' prior: 50331861!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:58:37' prior: 50331871!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	self 
+		should: [cart add:  self itemNotSellByTheStore withOcurrences: 2  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]! !
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:58:46' prior: 50331877!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	self 
+		should: [cashier checkout  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]! !
+!CartTest methodsFor: 'tests' stamp: 's 11/2/2023 23:59:06' prior: 50331892!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	self 
+		should: [cashier checkout  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]! !
+
+!testRun: #CartTest #test09CanNotCheckOutEmptyCart stamp: 's 11/2/2023 23:59:11'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/2/2023 23:59:15'!
+of: cart 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeOf: cart ! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/2/2023 23:59:18' prior: 50331923!
+of: cart 
+	^self new initializeOf: cart ! !
+
+!testRun: #CartTest #test09CanNotCheckOutEmptyCart stamp: 's 11/2/2023 23:59:19'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/2/2023 23:59:28'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialize' stamp: 's 11/2/2023 23:59:28'!
+initializeOf: cart 
+	self shouldBeImplemented.
+	cart_CHANGE_ME := cart.! !
+!Cashier methodsFor: 'initialize' stamp: 's 11/2/2023 23:59:31' prior: 50331945!
+initializeOf: cart 
+	
+	cart_CHANGE_ME := cart.! !
+!Cashier methodsFor: 'initialize' stamp: 's 11/2/2023 23:59:36' prior: 50331950!
+initializeOf: aCart 
+	
+	cart_CHANGE_ME := aCart.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/2/2023 23:59:44'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'as yet unclassified' stamp: 's 11/2/2023 23:59:44' prior: 50331955!
+initializeOf: aCart 
+	
+	cart := aCart.! !
+
+!testRun: #CartTest #test09CanNotCheckOutEmptyCart stamp: 's 11/2/2023 23:59:45'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 's 11/2/2023 23:59:54'!
+checkout
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/2/2023 23:59:57' prior: 50331973!
+checkout
+	! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/3/2023 00:00:12' prior: 50331977!
+checkout
+	! !
+!CartTest methodsFor: 'tests' stamp: 's 11/3/2023 00:00:26'!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	self 
+		should: [cashier checkout  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]! !
+
+!methodRemoval: CartTest #test09CanNotCheckOutEmptyCart stamp: 's 11/3/2023 00:00:26'!
+test09CanNotCheckOutEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier:= Cashier of:cart.
+	
+	self 
+		should: [cashier checkout  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]!
+!CartTest methodsFor: 'tests' stamp: 's 11/3/2023 00:00:42' prior: 50331983!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que nada cambio, todavia no se que" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:00:47'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:00:50'!
+for: cart 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: cart ! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:00:53' prior: 50332027!
+for: cart 
+	
+	^self new initializeFor: cart ! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:00:58' prior: 50332035!
+for: aCart 
+	
+	^self new initializeFor: aCart ! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:00:59'!
+ERROR!
+!Cashier methodsFor: 'initialize' stamp: 's 11/3/2023 00:01:03'!
+initializeFor: aCart 
+	self shouldBeImplemented.
+	cart := aCart.! !
+!Cashier methodsFor: 'initialize' stamp: 's 11/3/2023 00:01:05' prior: 50332047!
+initializeFor: aCart 
+	
+	cart := aCart.! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:01:06'!
+FAILURE!
+
+!methodRemoval: Cashier #initializeOf: stamp: 's 11/3/2023 00:01:14'!
+initializeOf: aCart 
+	
+	cart := aCart.!
+
+!methodRemoval: Cashier #checkout stamp: 's 11/3/2023 00:01:14'!
+checkout
+	!
+
+!methodRemoval: Cashier class #of: stamp: 's 11/3/2023 00:01:23'!
+of: cart 
+	^self new initializeOf: cart !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:01:52' prior: 50332040!
+for: aCart 
+	aCart isEmtpy ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart ! !
+!CartTest methodsFor: 'tests' stamp: 's 11/3/2023 00:02:34' prior: 50332011!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:02:36'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:02:56' prior: 50332069!
+for: aCart 
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:02:57'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:02:57'!
+ERROR!
+!Object class methodsFor: 'as yet unclassified' stamp: 's 11/3/2023 00:03:00'!
+emptyCartErrorMessage
+	self shouldBeImplemented.! !
+
+!methodRemoval: Object class #emptyCartErrorMessage stamp: 's 11/3/2023 00:03:14'!
+emptyCartErrorMessage
+	self shouldBeImplemented.!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:03:16'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:03:16'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:03:16'!
+ERROR!
+!Cashier class methodsFor: 'error messages' stamp: 's 11/3/2023 00:03:24'!
+emptyCartErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error messages' stamp: 's 11/3/2023 00:03:39' prior: 50332171!
+emptyCartErrorMessage
+	^'Can not create cashier for an empty cart'! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:03:40'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:04:20' prior: 50332075!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:04:26' prior: 50332184!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:04:29'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:04:34' prior: 50332199!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:04:35'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:04:52' prior: 50332217!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier class emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:04:53'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:04:58' prior: 50332235!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier  new class emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:04:58'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:05:39' prior: 50332253!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier class emtpyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:05:40'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:05:54' prior: 50332271!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier class emptyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:05:54'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:05:58' prior: 50332289!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"Aca hay que assertear que no se creo Cashier, qcyo como se hace eso, capaz no es necesario porque es obvio?" ]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:05:59'!
+PASSED!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:06:18' prior: 50332307!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			]! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:06:40' prior: 50332353!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ | cashier |cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			]! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:08:25' prior: 50332365!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			self
+				should: [ cashier emptyCartErrorMessage ]
+				raise: Error - MessageNotUnderstood
+				withExceptionDo: [ :anotherError |
+					self assert: anotherError messageText = Cashier new class emptyCartErrorMessage . ]]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:08:26'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:08:37' prior: 50332377!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			self
+				should: [ cashier emptyCartErrorMessage ]
+				raise: Error - MessageNotUnderstood
+				withExceptionDo: [ :anotherError |
+					self assert: anotherError messageText = Cashier new class emptyCartErrorMessage . ]]! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:08:38'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:10:37' prior: 50332399!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			self shouldFail: cashier emptyCartErrorMessage ].! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:10:38'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:10:46' prior: 50332421!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			 ].! !
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:10:48'!
+PASSED!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:10:59' prior: 50332438!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:11:33'!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:11:54' prior: 50332495!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ | creditCard | cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:12:05' prior: 50332509!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:12:20' prior: 50332524!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:12:29' prior: 50332539!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/3/2023 00:13:02' prior: 50332482!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/3/2023 00:13:02' prior: 50332555!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:13:23'!
+for: aCart payingWith: aCreditCard
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart ! !
+
+!methodRemoval: Cashier class #for:payingWith: stamp: 's 11/3/2023 00:13:25'!
+for: aCart payingWith: aCreditCard
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:13:34'!
+for: aCart payingWith: aCreditCard
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart ! !
+
+!methodRemoval: Cashier class #for: stamp: 's 11/3/2023 00:13:36'!
+for: aCart 
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:13:45' prior: 50332615!
+for: aCart payingWith: aCreditCard
+	aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage].
+	^self new initializeFor: aCart payingWith: aCreditCard ! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/3/2023 00:14:09'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialize' stamp: 's 11/3/2023 00:14:08'!
+initializeFor: aCart payingWith: aCreditCard
+	
+	cart := aCart.
+	creditCard:= aCreditCard! !
+
+!methodRemoval: Cashier #initializeFor: stamp: 's 11/3/2023 00:14:12'!
+initializeFor: aCart 
+	
+	cart := aCart.!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:14:33'!
+assertCartIsNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue:[self error: self emptyCartErrorMessage]! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:14:33' prior: 50332628!
+for: aCart payingWith: aCreditCard
+	self assertCartIsNotEmpty: aCart.
+	^self new initializeFor: aCart payingWith: aCreditCard ! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:15:03' prior: 50332585!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:15:06'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 's 11/3/2023 00:15:11'!
+createExpiredCard
+	self shouldBeImplemented.! !
+
+!classDefinition: #Card category: 'TusLibros' stamp: 's 11/3/2023 00:16:05'!
+Object subclass: #Card
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'support' stamp: 's 11/3/2023 00:16:04' prior: 50332684!
+createExpiredCard
+	^Card ! !
+!CartTest methodsFor: 'support' stamp: 's 11/3/2023 00:16:37' prior: 50332695!
+createExpiredCard
+	^Card withCardNumber:1 expiring: FixedGregorianDate theBeginningOfTime monthOfYear ownedBy:'Juan'! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:16:40'!
+ERROR!
+!Card class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:16:44'!
+withCardNumber: aRenameMe1 expiring: aRenameMe2 ownedBy: aRenameMe3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithCardNumber: aRenameMe1 expiring: aRenameMe2 ownedBy: aRenameMe3 ! !
+!Card class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:17:19' prior: 50332709!
+withCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName 
+	^self new initializeWithCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName ! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:17:20'!
+ERROR!
+
+!classDefinition: #Card category: 'TusLibros' stamp: 's 11/3/2023 00:17:27'!
+Object subclass: #Card
+	instanceVariableNames: 'creditCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Card category: 'TusLibros' stamp: 's 11/3/2023 00:17:27'!
+Object subclass: #Card
+	instanceVariableNames: 'creditCardNumber monthOfYearOfExpiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Card category: 'TusLibros' stamp: 's 11/3/2023 00:17:27'!
+Object subclass: #Card
+	instanceVariableNames: 'creditCardNumber monthOfYearOfExpiration creditCardOwnerName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Card methodsFor: 'initialize' stamp: 's 11/3/2023 00:17:27'!
+initializeWithCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName 
+	self shouldBeImplemented.
+	creditCardNumber := aCreditCardNumber.
+	monthOfYearOfExpiration := aMonthOfYearOfExpiration.
+	creditCardOwnerName := aCreditCardOwnerName.! !
+!Card methodsFor: 'initialize' stamp: 's 11/3/2023 00:17:31' prior: 50332755!
+initializeWithCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName 
+	
+	creditCardNumber := aCreditCardNumber.
+	monthOfYearOfExpiration := aMonthOfYearOfExpiration.
+	creditCardOwnerName := aCreditCardOwnerName.! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:17:39'!
+ERROR!
+!Cashier class methodsFor: 'error messages' stamp: 's 11/3/2023 00:17:50'!
+creditCardExpiredMessageDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error messages' stamp: 's 11/3/2023 00:18:11' prior: 50332781!
+creditCardExpiredMessageDescription
+	^'Can not create cashier with an expired creditCard'! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:18:13'!
+FAILURE!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/3/2023 00:18:55' prior: 50332657!
+for: aCart payingWith: aCreditCard
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:18:56'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:18:56'!
+FAILURE!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:18:56'!
+FAILURE!
+
+!classRenamed: #Card as: #CreditCard stamp: 's 11/3/2023 00:19:09'!
+Smalltalk renameClassNamed: #Card as: #CreditCard!
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/3/2023 00:19:09' prior: 50332699!
+createExpiredCard
+	^CreditCard withCardNumber:1 expiring: FixedGregorianDate theBeginningOfTime monthOfYear ownedBy:'Juan'! !
+!CreditCard methodsFor: 'initialize' stamp: 's 11/3/2023 00:19:47'!
+isExpired
+	FixedGregorianDate today monthOfYear > monthOfYearOfExpiration.! !
+!CreditCard methodsFor: 'initialize' stamp: 's 11/3/2023 00:19:51' prior: 50332852!
+isExpired
+	^FixedGregorianDate today monthOfYear > monthOfYearOfExpiration.! !
+!CreditCard methodsFor: 'initialize' stamp: 's 11/3/2023 00:19:56' prior: 50332858!
+isExpired
+	^FixedGregorianDate today monthOfYear >= monthOfYearOfExpiration.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:19:57'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:19:57'!
+FAILURE!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:19:57'!
+FAILURE!
+!CreditCard methodsFor: 'initialize' stamp: 's 11/3/2023 00:20:01' prior: 50332864!
+isExpired
+	^FixedGregorianDate today monthOfYear > monthOfYearOfExpiration.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:20:02'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:20:02'!
+FAILURE!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:20:02'!
+FAILURE!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:20:49' prior: 50332664!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:20:52'!
+PASSED!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:21:39'!
+test11CanCreateCashierPayingWithAnNonExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!methodRemoval: CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/3/2023 00:21:39'!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:21:57'!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!methodRemoval: CartTest #test11CanCreateCashierPayingWithAnNonExpiredCreditCard stamp: 's 11/3/2023 00:21:57'!
+test11CanCreateCashierPayingWithAnNonExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:22:33'!
+test11CanCheckoutCashier
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:22:44' prior: 50333071!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/3/2023 00:24:44' prior: 50333088!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:17:51' prior: 50333105!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard.
+	cashier checkout.
+	self assert: cashier transactionList! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:18:32' prior: 50332571!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard 
+	self 
+		should: [ cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:18:38' prior: 50333134!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ cashier:= Cashier for:cart payingWith: creditCard  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:18:48' prior: 50333035!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:18:55'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:19:02'!
+createNonExpiredCard
+	self shouldBeImplemented.! !
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:19:04' prior: 50333186!
+createNonExpiredCard
+	! !
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:19:13' prior: 50333191!
+createNonExpiredCard
+	^CreditCard withCardNumber:1 expiring: FixedGregorianDate theBeginningOfTime monthOfYear ownedBy:'Juan'! !
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:19:16' prior: 50333195!
+createNonExpiredCard
+	^CreditCard withCardNumber:1 expiring: FixedGregorianDate theEndOfTime monthOfYear ownedBy:'Juan'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:19:18'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:19:18'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:19:18'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:19:24'!
+checkout
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:20:13' prior: 50333245!
+checkout
+	self debit: (cart cost) from: creditCard.! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:20:18'!
+ERROR!
+!Cart methodsFor: 'queries' stamp: 's 11/4/2023 20:20:23'!
+cost
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'queries' stamp: 's 11/4/2023 20:20:53' prior: 50333256!
+cost
+	^catalog do:[].! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:20:54'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:21:33' prior: 50333249!
+checkout
+	self debit: self costOf:(cart listCart) from: creditCard.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:21:43' prior: 50333266!
+checkout
+	self debit: (self costOf:cart listCart) from: creditCard.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:21:47' prior: 50333271!
+checkout
+	self debit: (self costOf: cart listCart) from: creditCard.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:21:49'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:21:49'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:21:49'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:22:03'!
+listCart
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:22:34' prior: 50333318!
+listCart
+	items do:[:item| item]! !
+
+!methodRemoval: Cart #cost stamp: 's 11/4/2023 20:22:43'!
+cost
+	^catalog do:[].!
+!Cart methodsFor: 'initialization' stamp: 's 11/4/2023 20:23:06' prior: 50331803!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:23:07'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:23:07'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:23:07'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:23:52' prior: 50333322!
+listCart
+	items sum:[:item| catalog at: item * (self occurrencesOf: item)].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:23:58' prior: 50333372!
+listCart
+	items sum:[:item| (catalog at: item)* (self occurrencesOf: item)].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:24:00' prior: 50333378!
+listCart
+	items sum:[:item| (catalog at: item) * (self occurrencesOf: item)].! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:24:09'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:24:09'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:24:09'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:26:13' prior: 50331756!
+defaultCatalog
+	
+	^ Dictionary new at: self itemSellByTheStore put:100.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:26:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:26:16'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:26:16'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:26:16'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:26:16'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:26:18'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:27:19'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:27:19'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:27:19'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:27:19'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:27:19'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:27:20'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 's 11/4/2023 20:27:25' prior: 50331790!
+assertIsValidItem: anItem
+
+	(catalog keys includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:27:26'!
+ERROR!
+
+catalog!
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:28:33' prior: 50333427!
+defaultCatalog
+	
+	^ Dictionary new at: self itemSellByTheStore put: 100.! !
+!Cart methodsFor: 'assertions' stamp: 's 11/4/2023 20:29:15' prior: 50333507!
+assertIsValidItem: anItem
+
+	(catalog includesKey: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:29:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:29:16'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:29:16'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:29:16'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:29:16'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:29:17'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:29:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:29:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:29:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:29:54'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:29:54'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 's 11/4/2023 20:30:00' prior: 50333329!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	self halt.
+	items := Bag new.! !
+
+catalog!
+
+aCatalog!
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:30:30' prior: 50333517!
+defaultCatalog
+	
+	^ Dictionary new at: self itemSellByTheStore put: 100;yourself.! !
+!Cart methodsFor: 'initialization' stamp: 's 11/4/2023 20:30:36' prior: 50333600!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	
+	items := Bag new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:30:37'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:30:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:30:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:30:39'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:30:39'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:30:39'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:30:40'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:30:40'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:30:40'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:30:40'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:30:41'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:30:57'!
+costOf: aRenameMe1 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:31:04' prior: 50333653!
+costOf: aList 
+	self shouldBeImplemented.! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:31:05'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:31:44' prior: 50333384!
+listCart
+	^catalog! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:32:04' prior: 50333658!
+costOf: aCatalog 
+	! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:33:02' prior: 50333669!
+costOf: aCatalog 
+	^aCatalog  sum:[:item| (cart occurrencesOf: item) * (aCatalog at: item)]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:33:03'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:33:03'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:33:03'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:33:18'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:33:18'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:33:18'!
+ERROR!
+
+cart!
+
+aCatalog!
+
+cart occurrencesOf: item!
+
+item!
+
+aCatalog!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:35:35' prior: 50333673!
+costOf: anItemList 
+	^anItemList  sum:[:item| (cart occurrencesOf:item)]! !
+!Cart methodsFor: 'assertions' stamp: 's 11/4/2023 20:36:07' prior: 50333522!
+assertIsValidItem: anItem
+
+	(catalog includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:36:26' prior: 50333665!
+listCart
+	^items! !
+!CartTest methodsFor: 'support' stamp: 'HernanWilkinson 6/17/2013 17:43' prior: 50333607!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore! !
+!CartTest methodsFor: 'support' stamp: 's 11/4/2023 20:36:57'!
+defaultPriceCatalog
+	
+	^Dictionary new at: self itemSellByTheStore put: 100;yourself.! !
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:37:40' prior: 50333122!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPriceCatalog: self defaultPriceCatalog .
+	cashier checkout.
+	self assert: cashier transactionList! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:37:41'!
+ERROR!
+!CartTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:37:46' prior: 50333781!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard  .
+	cashier checkout.
+	self assert: cashier transactionList! !
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/4/2023 20:39:15'!
+for: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog 
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:39:15' prior: 50333797!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard aPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:39:15' prior: 50333150!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ cashier:= Cashier for:cart payingWith: creditCard aPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:39:15' prior: 50333166!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard aPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+
+!methodRemoval: Cashier class #for:payingWith: stamp: 's 11/4/2023 20:39:15'!
+for: aCart payingWith: aCreditCard
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard !
+!Cashier methodsFor: 'initialize' stamp: 's 11/4/2023 20:40:02'!
+initializeFor: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard:= aCreditCard! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:40:02' prior: 50333809!
+for: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog 
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog ! !
+
+!methodRemoval: Cashier #initializeFor:payingWith: stamp: 's 11/4/2023 20:40:02'!
+initializeFor: aCart payingWith: aCreditCard
+	
+	cart := aCart.
+	creditCard:= aCreditCard!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/4/2023 20:40:33'!
+for: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:40:33' prior: 50333820!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:40:33' prior: 50333850!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart cashier  creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	
+	self 
+		should: [cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.
+			"falta ver que no se creo el objeto?" ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:40:33' prior: 50333833!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart cashier creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage.
+			"falta ver que no se creo el objeto?" ].! !
+
+!methodRemoval: Cashier class #for:payingWith:aPricedCatalog: stamp: 's 11/4/2023 20:40:33'!
+for: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog 
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog !
+!Cashier methodsFor: 'initialize' stamp: 's 11/4/2023 20:40:45'!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard:= aCreditCard! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 's 11/4/2023 20:40:45' prior: 50333902!
+for: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog ! !
+
+!methodRemoval: Cashier #initializeFor:payingWith:aPricedCatalog: stamp: 's 11/4/2023 20:40:45'!
+initializeFor: aCart payingWith: aCreditCard aPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard:= aCreditCard!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/4/2023 20:41:02'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard pricedCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialize' stamp: 's 11/4/2023 20:41:01' prior: 50333974!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard:= aCreditCard.
+	pricedCatalog:= aPricedCatalog.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:41:31' prior: 50333755!
+costOf: anItemList 
+	^anItemList  sum:[:item| (cart occurrencesOf:item) * pricedCatalog at: item]! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:41:36' prior: 50334015!
+costOf: anItemList 
+	^anItemList  sum:[:item| (cart occurrencesOf:item) * (pricedCatalog at: item)]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:41:42'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:41:42'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:41:42'!
+ERROR!
+!Cashier methodsFor: 'debit' stamp: 's 11/4/2023 20:41:52'!
+debit: aRenameMe1 from: aCreditCard 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'debit' stamp: 's 11/4/2023 20:41:57' prior: 50334064!
+debit: aCart from: aCreditCard 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'debit' stamp: 's 11/4/2023 20:42:00' prior: 50334069!
+debit: aCart from: aCreditCard 
+	! !
+
+!testRun: #CartTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:42:00'!
+ERROR!
+
+!classRenamed: #CartTest as: #MarketTest stamp: 's 11/4/2023 20:42:41'!
+Smalltalk renameClassNamed: #CartTest as: #MarketTest!
+!MarketTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:45:51' prior: 50333914!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList equals: (Bag  with: self itemNotSellByTheStore)! !
+!MarketTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:46:14' prior: 50334085!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList equals: (Bag with: self itemNotSellByTheStore)! !
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:46:16'!
+ERROR!
+!Cashier methodsFor: 'transactions' stamp: 's 11/4/2023 20:46:34'!
+transactionList
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 's 11/4/2023 20:47:03'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard pricedCatalog transactionList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'transactions' stamp: 's 11/4/2023 20:47:01' prior: 50334117!
+transactionList
+	^transactionList ! !
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:47:09'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:47:41' prior: 50333276!
+checkout
+	transactionList add: cart listCart.
+	self debit: (self costOf: cart listCart) from: creditCard.! !
+
+!testRun: #MarketTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:47:45'!
+PASSED!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:47:45'!
+ERROR!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:47:45'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 20:47:51' prior: 50334136!
+checkout
+	transactionList addAll: cart listCart.
+	self debit: (self costOf: cart listCart) from: creditCard.! !
+
+!testRun: #MarketTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:47:52'!
+PASSED!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:47:52'!
+ERROR!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:47:52'!
+ERROR!
+!Cashier methodsFor: 'initialize' stamp: 's 11/4/2023 20:48:04' prior: 50334007!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard:= aCreditCard.
+	pricedCatalog:= aPricedCatalog.
+	transactionList:= Bag new.! !
+
+!testRun: #MarketTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:48:07'!
+PASSED!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:48:07'!
+FAILURE!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:48:07'!
+FAILURE!
+!MarketTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:48:16' prior: 50334100!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList equals: (Bag with: self itemSellByTheStore)! !
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:48:17'!
+PASSED!
+
+!testRun: #MarketTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 20:48:19'!
+PASSED!
+!MarketTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 20:49:03' prior: 50334271!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList equals: (Bag with: self itemSellByTheStore) "aca falta que tambien agregue la suma de los costos, capaz tenerlo como otra variable puede estar bien, ni idea"! !
+
+!testRun: #MarketTest #test01NewCartsAreCreatedEmpty stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test04CanNotAddNonPositiveNumberOfItems stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test06CartRemembersAddedItems stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test07CartDoesNotHoldNotAddedItems stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test08CartRemembersTheNumberOfAddedItems stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test09CanNotCreateCashierOfEmptyCart stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+
+!testRun: #MarketTest #test11CanCheckoutCashier stamp: 's 11/4/2023 21:00:17'!
+PASSED!
+!MarketTest methodsFor: 'tests -- cashier' stamp: 's 11/4/2023 21:15:31' prior: 50334324!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier transactionList equals: (Bag with: self itemSellByTheStore) "aca falta que tambien agregue la suma de los costos, capaz tenerlo como otra variable puede estar bien, ni idea"! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/4/2023 21:16:16' prior: 50334180!
+checkout
+	transactionList addAll: cart listCart."esto no se si tiene que estar adentro de debit o aca"
+	self debit: (self costOf: cart listCart) from: creditCard.! !
+
+----QUIT----(4 November 2023 21:16:31) CuisUniversity-5981.image priorSource: 10215977!
