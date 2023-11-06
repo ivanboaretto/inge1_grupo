@@ -1,0 +1,3468 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (6 November 2023 01:29:43) as C:\Users\ivanb\Desktop\Cuis\windows64 (1)\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\ivanb\Downloads\TusLibros.st----!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 01:30:26'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 01:30:28'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 01:30:28'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 01:30:28'!
+PASSED!
+
+!testRun: #APIMockTest #test01InvalidUserForCartCreation stamp: 'IB 11/6/2023 01:30:36'!
+PASSED!
+
+!testRun: #APIMockTest #test02WrongPasswordForCartCreation stamp: 'IB 11/6/2023 01:30:36'!
+PASSED!
+
+!testRun: #APIMockTest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 01:30:36'!
+PASSED!
+
+!testRun: #APIMockTest #test04CreateCart stamp: 'IB 11/6/2023 01:30:36'!
+ERROR!
+
+!testRun: #APIMockTest #test04CreateCart stamp: 'IB 11/6/2023 01:30:36'!
+ERROR!
+
+!classRenamed: #APIMockTest as: #StoreAPITest stamp: 'IB 11/6/2023 01:30:59'!
+Smalltalk renameClassNamed: #APIMockTest as: #StoreAPITest!
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:31:28' prior: 50650756!
+isExpired
+	
+	^FixedGregorianDate today monthOfYear > monthOfYearOfExpiration.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 01:31:42' prior: 50650769!
+withCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName
+
+	^self new 
+		initializeWithCardNumber: aCreditCardNumber 
+		expiring: aMonthOfYearOfExpiration 
+		ownedBy: aCreditCardOwnerName ! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 01:32:15' prior: 50650557!
+createExpiredCard
+	
+	^CreditCard 
+		withCardNumber: 1 
+		expiring: FixedGregorianDate theBeginningOfTime monthOfYear 
+		ownedBy: 'Juan'! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 01:34:10' prior: 50650564!
+createNonExpiredCard
+
+	^CreditCard 
+		withCardNumber: 1
+		expiring: FixedGregorianDate theEndOfTime monthOfYear 
+		ownedBy: 'Juan'! !
+
+----SNAPSHOT----(6 November 2023 01:34:18) CuisUniversity-5981.image priorSource: 10197292!
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:35:00' prior: 50650745!
+initializeWithCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName 
+	
+	monthOfYearOfExpiration := aMonthOfYearOfExpiration! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 01:35:24' prior: 50650981!
+withCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName
+
+	^self new initializeExpiring: aMonthOfYearOfExpiration! !
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:35:38'!
+initializeExpiring: aMonthOfYearOfExpiration
+	
+	monthOfYearOfExpiration := aMonthOfYearOfExpiration! !
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:35:45' prior: 50651027!
+initializeExpiring: aMonth
+	
+	monthOfYearOfExpiration := aMonth! !
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:35:49' prior: 50651033!
+initializeExpiring: aMonth
+	self halt.
+	monthOfYearOfExpiration := aMonth! !
+
+!methodRemoval: CreditCard #initializeWithCardNumber:expiring:ownedBy: stamp: 'IB 11/6/2023 01:35:55'!
+initializeWithCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName 
+	
+	monthOfYearOfExpiration := aMonthOfYearOfExpiration!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 01:36:08'!
+PASSED!
+
+aMonth!
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:36:36' prior: 50651038!
+initializeExpiring: aMonth
+
+	monthOfYearOfExpiration := aMonth! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 01:36:37'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 01:36:40'!
+PASSED!
+!CreditCard class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 01:39:09'!
+expiringOn: aMonthOfYearOfExpiration
+
+	^self new initializeExpiring: aMonthOfYearOfExpiration! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 01:39:23' prior: 50650992!
+createExpiredCard
+	
+	^CreditCard
+		expiringOn: FixedGregorianDate theBeginningOfTime monthOfYear! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 01:39:25' prior: 50651127!
+createExpiredCard
+	
+	^CreditCard expiringOn: FixedGregorianDate theBeginningOfTime monthOfYear! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 01:39:43' prior: 50651000!
+createNonExpiredCard
+
+	^CreditCard expiringOn: FixedGregorianDate theEndOfTime monthOfYear! !
+
+!methodRemoval: CreditCard class #withCardNumber:expiring:ownedBy: stamp: 'IB 11/6/2023 01:39:51'!
+withCardNumber: aCreditCardNumber expiring: aMonthOfYearOfExpiration ownedBy: aCreditCardOwnerName
+
+	^self new initializeExpiring: aMonthOfYearOfExpiration!
+!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:40:05'!
+initializeExpiringOn: aMonth
+
+	monthOfYearOfExpiration := aMonth! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 01:40:05' prior: 50651121!
+expiringOn: aMonthOfYearOfExpiration
+
+	^self new initializeExpiringOn: aMonthOfYearOfExpiration! !
+
+!methodRemoval: CreditCard #initializeExpiring: stamp: 'IB 11/6/2023 01:40:05'!
+initializeExpiring: aMonth
+
+	monthOfYearOfExpiration := aMonth!
+
+Object subclass: #CreditCard
+	instanceVariableNames: ' monthOfYearOfExpiration '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'IB 11/6/2023 01:40:13'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'monthOfYearOfExpiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 01:40:38' prior: 50650636!
+listCart
+
+	^items! !
+!Cart methodsFor: 'assertions' stamp: 'IB 11/6/2023 01:42:52' prior: 50650596!
+assertIsValidItem: anItem
+
+	(catalog includes: anItem) 
+		ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'assertions' stamp: 'IB 11/6/2023 01:43:04' prior: 50650602!
+assertIsValidQuantity: aQuantity
+
+	aQuantity strictlyPositive 
+		ifFalse: [ self error: self invalidQuantityErrorMessage ]! !
+!StoreTest methodsFor: 'tests -- cart' stamp: 'IB 11/6/2023 01:44:46' prior: 50650454!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOcurrences: 2  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:04' prior: 50650834!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	clientId:= aRequest at: #clientId ifAbsent:[^Response withCode:400].
+	password:= aRequest at: #password ifAbsent:[^Response withCode:400].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:09' prior: 50651214!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	clientId := aRequest at: #clientId ifAbsent:[^Response withCode:400].
+	password := aRequest at: #password ifAbsent:[^Response withCode:400].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:11' prior: 50651230!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^Response withCode:400].
+	password := aRequest at: #password ifAbsent:[^Response withCode:400].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:18' prior: 50651246!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^Response withCode: 400].
+	password := aRequest at: #password ifAbsent:[^Response withCode: 400].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:50'!
+badRequestResponse
+
+	^ Response withCode: 400! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:50' prior: 50651262!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^Response withCode: 400].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:46:50' prior: 50651283!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart:= storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:47:13' prior: 50651299!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^Response withCode:200 withBody: '1|', anError messageText].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:47:56'!
+internalErrorResponseBasedOn: anError
+
+	^ Response withCode:200 withBody: '1|', anError messageText! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:47:56' prior: 50651315!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^Response withCode:200 withBody:'0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:48:45' prior: 50651337!
+createCartBasedOn: aRequest
+	| clientId password cart responseBody |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	responseBody := '0|', cart.
+	^Response withCode:200 withBody:responseBody.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:48:48' prior: 50651353!
+createCartBasedOn: aRequest
+	| clientId password cart responseBody |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	responseBody := '0|', cart.
+	^Response withCode: 200 withBody:responseBody.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:49:04'!
+successfulResponseWith: responseBody
+
+	^ Response withCode: 200 withBody:responseBody! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:49:04' prior: 50651370!
+createCartBasedOn: aRequest
+	| clientId password cart responseBody |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	responseBody := '0|', cart.
+	^self successfulResponseWith: responseBody.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:49:12' prior: 50651393!
+createCartBasedOn: aRequest
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:49:17' prior: 50651410!
+createCartBasedOn: aRequest
+
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem createCartFor: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|', cart.
+	! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:54:15' prior: 50650894!
+createCartFor: clientId withPassword: password 
+	self authenticate: clientId withPassword: password! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:54:40'!
+authenticateUserIdentifiedBy: clientId withPassword: password 
+	self authenticate: clientId withPassword: password! !
+!StoreAPI methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 01:54:40' prior: 50651426!
+createCartBasedOn: aRequest
+
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := storeSystem authenticateUserIdentifiedBy: clientId withPassword: password] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|', cart.
+	! !
+
+!methodRemoval: StoreSystem #createCartFor:withPassword: stamp: 'IB 11/6/2023 01:54:40'!
+createCartFor: clientId withPassword: password 
+	self authenticate: clientId withPassword: password!
+
+!methodRemoval: StoreSystem #authenticate:withPassword: stamp: 'IB 11/6/2023 01:54:55'!
+authenticate: clientId withPassword: password
+
+	self assertRegisteredClientId: clientId.
+	self assert: clientId hasPassword: password!
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:54:55' prior: 50651448!
+authenticateUserIdentifiedBy: clientId withPassword: password 
+	self assertRegisteredClientId: clientId.
+self assert: clientId hasPassword: password! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:55:01' prior: 50651484!
+authenticateUserIdentifiedBy: clientId withPassword: password 
+	
+	self assertRegisteredClientId: clientId.
+	self assert: clientId hasPassword: password! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:55:22'!
+assertUserIdentifiedBy: clientId hasPassword: password
+
+	^ ((usersDatabase at: clientId) = password) ifFalse:[self error: 'Wrong password']! !
+!StoreSystem methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 01:55:22' prior: 50651492!
+authenticateUserIdentifiedBy: clientId withPassword: password 
+	
+	self assertRegisteredClientId: clientId.
+	self assertUserIdentifiedBy: clientId hasPassword: password! !
+
+!methodRemoval: StoreSystem #assert:hasPassword: stamp: 'IB 11/6/2023 01:55:22'!
+assert: clientId hasPassword: password
+
+	^ ((usersDatabase at: clientId) = password) ifFalse:[self error: 'Wrong password']!
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:55:31' prior: 50651507!
+authenticateUserIdentifiedBy: aClientId withPassword: password 
+	
+	self assertRegisteredClientId: aClientId.
+	self assertUserIdentifiedBy: aClientId hasPassword: password! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:55:46' prior: 50651522!
+authenticateUserIdentifiedBy: aClientId withPassword: password 
+	
+	self 
+		assertRegisteredClientId: aClientId;
+	 	assertUserIdentifiedBy: aClientId hasPassword: password! !
+!StoreSystem methodsFor: 'metodos' stamp: 'IB 11/6/2023 01:55:54' prior: 50651531!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+	
+	self 
+		assertRegisteredClientId: aClientId;
+	 	assertUserIdentifiedBy: aClientId hasPassword: aPassword! !
+!StoreSystem methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:56:26' prior: 50650900!
+initializeWithUserDataBase: aUserDatabase 
+	
+	usersDatabase := aUserDatabase! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:56:33' prior: 50650881!
+assertRegisteredClientId: clientId
+
+	^ (usersDatabase includesKey: clientId) ifFalse: [self error:'Invalid user']! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:56:34' prior: 50651555!
+assertRegisteredClientId: clientId
+
+	^(usersDatabase includesKey: clientId) ifFalse: [self error:'Invalid user']! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:56:46' prior: 50651562!
+assertRegisteredClientId: aClientId
+
+	^(usersDatabase includesKey: aClientId) ifFalse: [self error:'Invalid user']! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:56:53' prior: 50651499!
+assertUserIdentifiedBy: aClientId hasPassword: password
+
+	^ ((usersDatabase at: aClientId) = password) ifFalse:[self error: 'Wrong password']! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:57:07' prior: 50651576!
+assertUserIdentifiedBy: aClientId hasPassword: password
+
+	^ ((usersDatabase at: aClientId) = password) ifFalse: [ self error: 'Wrong password' ]! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:57:43' prior: 50651540!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+	
+	self 
+		assertRegisteredClientId: aClientId.
+	 	self assertUserIdentifiedBy: aClientId hasPassword: aPassword! !
+
+!methodRemoval: StoreSystem #assertRegisteredClientId: stamp: 'IB 11/6/2023 01:57:54'!
+assertRegisteredClientId: aClientId
+
+	^(usersDatabase includesKey: aClientId) ifFalse: [self error:'Invalid user']!
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:57:54' prior: 50651592!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+	
+	(usersDatabase includesKey: aClientId) ifFalse: [self error:'Invalid user'].
+	 	self assertUserIdentifiedBy: aClientId hasPassword: aPassword! !
+
+!methodRemoval: StoreSystem #assertUserIdentifiedBy:hasPassword: stamp: 'IB 11/6/2023 01:58:03'!
+assertUserIdentifiedBy: aClientId hasPassword: password
+
+	^ ((usersDatabase at: aClientId) = password) ifFalse: [ self error: 'Wrong password' ]!
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 01:58:03' prior: 50651607!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+	
+	(usersDatabase includesKey: aClientId) ifFalse: [self error:'Invalid user'].
+	 	 ((usersDatabase at: aClientId) = aPassword) ifFalse: [ self error: 'Wrong password' ]! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 02:00:05' prior: 50651625!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+
+	usersDatabase 
+		at: aClientId 
+		ifPresent: [:password | aPassword = password ifFalse: [self error: 'Wrong password']] 
+		ifAbsent: [self error:'Invalid user']! !
+!StoreSystem methodsFor: 'authentication' stamp: 'IB 11/6/2023 02:00:18' prior: 50651636!
+authenticateUserIdentifiedBy: aClientId withPassword: aPassword 
+
+	usersDatabase 
+		at: aClientId 
+		ifPresent: [:password | aPassword = password ifFalse: [self error: 'Wrong password']] 
+		ifAbsent: [self error: 'Invalid user']! !
+
+----SNAPSHOT----(6 November 2023 02:00:30) CuisUniversity-5981.image priorSource: 10219397!
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:00:44' prior: 50651455!
+createCartBasedOn: aRequest
+
+	| clientId password cart |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ cart := 1] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|', cart.
+	! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:01:20' prior: 50651660!
+createCartBasedOn: aRequest
+
+	| clientId password  |
+	
+	clientId := aRequest at: #clientId ifAbsent:[^self badRequestResponse].
+	password := aRequest at: #password ifAbsent:[^self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|'
+	! !
+
+Dictionary new!
+
+self at: 'f'!
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:03:03' prior: 50651674!
+createCartBasedOn: aRequest
+
+	| clientId password  |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] on: Error do: [^self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|'
+	! !
+
+!testRun: #StoreAPITest #test01InvalidUserForCartCreation stamp: 'IB 11/6/2023 02:03:06'!
+PASSED!
+
+!testRun: #StoreAPITest #test02WrongPasswordForCartCreation stamp: 'IB 11/6/2023 02:03:06'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:03:06'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:03:06'!
+FAILURE!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:03:06'!
+FAILURE!
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:03:18' prior: 50651691!
+createCartBasedOn: aRequest
+
+	| clientId password  |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] on: Error do: [^self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|1'
+	! !
+
+!testRun: #StoreAPITest #test01InvalidUserForCartCreation stamp: 'IB 11/6/2023 02:03:21'!
+PASSED!
+
+!testRun: #StoreAPITest #test02WrongPasswordForCartCreation stamp: 'IB 11/6/2023 02:03:21'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:03:21'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:03:21'!
+PASSED!
+
+----SNAPSHOT----(6 November 2023 02:03:24) CuisUniversity-5981.image priorSource: 10240199!
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:06:34' prior: 50651720!
+createCartBasedOn: aRequest
+
+	| clientId password  |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [^self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|1'
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:07:56' prior: 50650333!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	request:= Dictionary new.
+	request at: #clientId put:'Juan'.
+	request at: #password put:'pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:07' prior: 50651765!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	request:= Dictionary new.
+	request at: #clientId put: 'Juan'.
+	request at: #password put: 'pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:23' prior: 50651781!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:27' prior: 50651797!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:30' prior: 50651812!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:33' prior: 50651827!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:08:37' prior: 50651842!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:09:36'!
+test01TryingToCreateACartForAnUnregisteredUser
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+
+!methodRemoval: StoreAPITest #test01InvalidUserForCartCreation stamp: 'IB 11/6/2023 02:09:36'!
+test01InvalidUserForCartCreation
+
+	| request api response |
+	
+	request:= Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:10:30'!
+test02TryingToCreateACartProvidingWrongPassword
+	| request api response |
+	request:= Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'wrong pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.! !
+
+!methodRemoval: StoreAPITest #test02WrongPasswordForCartCreation stamp: 'IB 11/6/2023 02:10:30'!
+test02WrongPasswordForCartCreation
+	| request api response |
+	request:= Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'wrong pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:11:08' prior: 50651872!
+test01TryingToCreateACartForAnUnregisteredUser
+
+	| request api response |
+	
+	request := Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:11:21' prior: 50651902!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'wrong pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:11:33' prior: 50651950!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		 at: #clientId put:'Pedro';
+		 at: #password put:'wrong pass'.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:04' prior: 50651967!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		 at: #clientId put:'Pedro';
+		 at: #password put:'wrong pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:16' prior: 50651983!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		 at: #clientId put: 'Pedro';
+		 at: #password put: 'wrong pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody.! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:20' prior: 50651999!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		 at: #clientId put: 'Pedro';
+		 at: #password put: 'wrong pass'.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:40' prior: 50650363!
+test03InvalidRequestForCartCreation
+
+	| request api response |
+	
+	request := Dictionary new.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 400.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:51' prior: 50652031!
+test03InvalidRequestForCartCreation
+
+	| api response |
+	
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: Dictionary new.
+	
+	self assert: response code equals: 400.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:12:58' prior: 50652043!
+test03InvalidRequestForCartCreation
+
+	| api response |
+	
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: Dictionary new.
+	
+	self assert: response code equals: 400
+	! !
+!Response methodsFor: 'accesing' stamp: 'IB 11/6/2023 02:13:16' prior: 50650794!
+body
+
+	^body! !
+!Response methodsFor: 'accesing' stamp: 'IB 11/6/2023 02:13:20' prior: 50650797!
+code
+
+	^code! !
+!Response methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:13:24' prior: 50650789!
+initializeWithCode: aCode withBody: aBody 
+	
+	code := aCode.
+	body := aBody! !
+!StoreAPI class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 02:13:38' prior: 50650857!
+workingWith: aSystem
+
+	^self new initializeWorkingWith: aSystem ! !
+!StoreAPI methodsFor: 'metodos' stamp: 'IB 11/6/2023 02:13:46' prior: 50651278!
+badRequestResponse
+
+	^Response withCode: 400! !
+!StoreAPI methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:14:27' prior: 50650829!
+initializeWorkingWith: aStoreSystem
+
+	storeSystem:= aStoreSystem! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:14:36' prior: 50651331!
+internalErrorResponseBasedOn: anError
+
+	^ Response withCode: 200 withBody: '1|', anError messageText! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:14:44' prior: 50651387!
+successfulResponseWith: aResponseBody
+
+	^ Response withCode: 200 withBody: aResponseBody! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:19:53' prior: 50651750!
+createCartBasedOn: aRequest
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [^self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError| ^self internalErrorResponseBasedOn: anError].
+		
+	^self successfulResponseWith: '0|1'
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:23:40'!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)]
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:24:19' prior: 50652106!
+createCartBasedOn: aRequest
+
+	self execute: [] afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: [:errorResponse | ^errorResponse].
+	^self successfulResponseWith: '0|1'
+	! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:24:24'!
+FAILURE!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:24:24'!
+FAILURE!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:24:24'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:24:24'!
+PASSED!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:24:25'!
+FAILURE!
+
+ response body !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:25:25' prior: 50652138!
+createCartBasedOn: aRequest
+
+	self 
+		execute: [] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse].
+	^self successfulResponseWith: '0|1'
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:25:38' prior: 50652120!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [self halt. aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)]
+	! !
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:25:41'!
+PASSED!
+
+aRequest!
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:26:20' prior: 50652164!
+createCartBasedOn: aRequest
+
+	self halt.
+	self 
+		execute: [] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse].
+	^self successfulResponseWith: '0|1'
+	! !
+
+aRequest!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:26:38' prior: 50651934!
+test01TryingToCreateACartForAnUnregisteredUser
+
+	| request api response |
+	
+	request := Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'; 
+		yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:26:50' prior: 50652015!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		 at: #clientId put: 'Pedro';
+		 at: #password put: 'wrong pass'; 
+		yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:26:57' prior: 50650374!
+test04CreateCart
+	| request api response |
+	request:= Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'pass'; 
+		yourself.
+	
+	api:= StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:27:00' prior: 50652238!
+test04CreateCart
+	| request api response |
+	request := Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'pass'; 
+		yourself.
+	
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:27:02' prior: 50652253!
+test04CreateCart
+	| request api response |
+	request := Dictionary new.
+	request at: #clientId put:'Pedro'.
+	request at: #password put:'pass'; 
+		yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:27:24' prior: 50652268!
+test04CreateCart
+	| request api response |
+	request := 
+		Dictionary new
+			at: #clientId put:'Pedro';
+			at: #password put:'pass'; 
+			yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:27:35' prior: 50652195!
+createCartBasedOn: aRequest
+
+	self 
+		execute: [] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse].
+	^self successfulResponseWith: '0|1'
+	! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:27:36'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:27:37'!
+PASSED!
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:27:47' prior: 50652173!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)]
+	! !
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:27:48'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:27:49'!
+PASSED!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:27:51'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:27:51'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:27:51'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:27:51'!
+PASSED!
+
+----SNAPSHOT----(6 November 2023 02:27:53) CuisUniversity-5981.image priorSource: 10243064!
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:28:12' prior: 50652314!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)].
+	
+	aBlock value
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:30:18' prior: 50652298!
+createCartBasedOn: aRequest
+
+	self 
+		execute: [^self successfulResponseWith: '0|1'] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse]
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:30:23' prior: 50652373!
+createCartBasedOn: aRequest
+
+	^self 
+		execute: [self successfulResponseWith: '0|1'] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse]
+	! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:30:26'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:30:26'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:30:26'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:30:26'!
+ERROR!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:30:26'!
+ERROR!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:30:29'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:30:29'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:30:29'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:30:29'!
+ERROR!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:30:29'!
+ERROR!
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:30:40' prior: 50652354!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)].
+	
+	^aBlock value
+	! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:30:46'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:30:46'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:30:46'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:30:46'!
+PASSED!
+
+----SNAPSHOT----(6 November 2023 02:30:48) CuisUniversity-5981.image priorSource: 10262397!
+!StoreAPI methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:30:54' prior: 50652089!
+initializeWorkingWith: aStoreSystem
+
+	storeSystem := aStoreSystem! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:31:06' prior: 50652094!
+internalErrorResponseBasedOn: anError
+
+	^Response 
+		withCode: 200 
+		withBody: '1|', anError messageText! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:31:08' prior: 50652462!
+internalErrorResponseBasedOn: anError
+
+	^Response 
+		withCode: 200 
+		withBody: '1|', anError messageText! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:31:10' prior: 50652468!
+internalErrorResponseBasedOn: anError
+
+	^Response 
+		withCode: 200 
+		withBody: '1|', anError messageText! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:31:13' prior: 50652474!
+internalErrorResponseBasedOn: anError
+
+	^Response 
+		withCode: 200 
+		withBody: '1|' , anError messageText! !
+!StoreAPI methodsFor: 'responses' stamp: 'IB 11/6/2023 02:31:27' prior: 50652100!
+successfulResponseWith: aResponseBody
+
+	^Response 
+		withCode: 200 
+		withBody: aResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:32:00' prior: 50652283!
+test04CreateCart
+
+	| request api response |
+	request := 
+		Dictionary new
+			at: #clientId put:'Pedro';
+			at: #password put:'pass'; 
+			yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:32:12' prior: 50652492!
+test04CreateCart
+
+	| request api response |
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pass'; 
+			yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:32:41' prior: 50652221!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request api response |
+	
+	request := Dictionary new
+		at: #clientId put: 'Pedro';
+		at: #password put: 'wrong pass'; 
+		yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody! !
+
+----SNAPSHOT----(6 November 2023 02:33:43) CuisUniversity-5981.image priorSource: 10265686!
+
+Random new!
+
+self next!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:42:13'!
+test04CreateOneCart
+
+	| request api response |
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pass'; 
+			yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+
+!methodRemoval: StoreAPITest #test04CreateCart stamp: 'IB 11/6/2023 02:42:13'!
+test04CreateCart
+
+	| request api response |
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pass'; 
+			yourself.
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := api createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:42:44'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:42:44'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:42:44'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 02:42:44'!
+PASSED!
+
+!classDefinition: #StoreAPITest category: 'TusLibros' stamp: 'IB 11/6/2023 02:43:31'!
+TestCase subclass: #StoreAPITest
+	instanceVariableNames: 'storeAPI'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:43:30' overrides: 16961394!
+setUp
+
+	storeAPI := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase)! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:00' prior: 50652205!
+test01TryingToCreateACartForAnUnregisteredUser
+
+	| request response |
+	
+	request := Dictionary new 
+		at: #clientId put: 'Juan';
+		at: #password put: 'pass'; 
+		yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:05' prior: 50652522!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request response |
+	
+	request := Dictionary new
+		at: #clientId put: 'Pedro';
+		at: #password put: 'wrong pass'; 
+		yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:09' prior: 50652054!
+test03InvalidRequestForCartCreation
+
+	| api response |
+	
+	api := StoreAPI workingWith: (StoreSystem withUserDataBase: self defaultUserDataBase).
+	
+	response := storeAPI createCartBasedOn: Dictionary new.
+	
+	self assert: response code equals: 400
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:16' prior: 50652624!
+test03InvalidRequestForCartCreation
+
+	| response |
+
+	
+	response := storeAPI createCartBasedOn: Dictionary new.
+	
+	self assert: response code equals: 400
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:18' prior: 50652635!
+test03InvalidRequestForCartCreation
+
+	| response |
+
+	response := storeAPI createCartBasedOn: Dictionary new.
+	
+	self assert: response code equals: 400
+	! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:44:26' prior: 50652542!
+test04CreateOneCart
+
+	| request response |
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:44:32'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:44:32'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:44:32'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 02:44:32'!
+PASSED!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:45:42'!
+test04CreateMoreThanOneCart
+
+	| request response |
+	
+	self test04CreateOneCart.
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro2';
+			at: #password put: 'pass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|2'! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:45:59'!
+test05CreateMoreThanOneCart
+
+	| request response |
+	
+	self test04CreateOneCart.
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro2';
+			at: #password put: 'pass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|2'! !
+
+!methodRemoval: StoreAPITest #test04CreateMoreThanOneCart stamp: 'IB 11/6/2023 02:45:59'!
+test04CreateMoreThanOneCart
+
+	| request response |
+	
+	self test04CreateOneCart.
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro2';
+			at: #password put: 'pass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|2'!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:46:10' prior: 50652651!
+test04CreateOneCart
+
+	| request response |
+	
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+
+----SNAPSHOT----(6 November 2023 02:47:39) CuisUniversity-5981.image priorSource: 10268397!
+!StoreAPITest methodsFor: 'support' stamp: 'IB 11/6/2023 02:48:13' prior: 50650388!
+defaultUserDataBase
+	| userDatabase |
+	userDatabase:= Dictionary  new.
+	userDatabase at: 'Pedro' put: 'pedroPass'.
+	userDatabase at: 'Tomas' put: 'TomasPass'.
+	^userDatabase.! !
+!StoreAPITest methodsFor: 'support' stamp: 'IB 11/6/2023 02:48:43' prior: 50652730!
+defaultUserDataBase
+	
+	^Dictionary new
+		at: 'Pedro' put: 'pedroPass';
+		at: 'Tomas' put: 'TomasPass';
+		yourself! !
+!StoreAPITest methodsFor: 'support' stamp: 'IB 11/6/2023 02:48:47' prior: 50650396!
+invalidUserResponseBody
+
+	^'1|Invalid user'! !
+!StoreAPITest methodsFor: 'support' stamp: 'IB 11/6/2023 02:48:50' prior: 50650400!
+wrongPasswordResponseBody
+
+	^'1|Wrong password'! !
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:49:15' prior: 50652597!
+test01TryingToCreateACartForAnUnregisteredUser
+
+	| request response |
+	
+	request := Dictionary new 
+		at: #clientId put: 'Usuario No Registrado';
+		at: #password put: 'pass'; 
+		yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self invalidUserResponseBody! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:49:16'!
+PASSED!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:49:16'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:49:16'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:49:16'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 02:49:16'!
+FAILURE!
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 02:49:16'!
+FAILURE!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:49:24' prior: 50652715!
+test04CreateOneCart
+
+	| request response |
+	
+	request := 
+		Dictionary new
+			at: #clientId put: 'Pedro';
+			at: #password put: 'pedroPass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|1'.
+	! !
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 02:49:25'!
+PASSED!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:49:45' prior: 50652610!
+test02TryingToCreateACartProvidingWrongPassword
+
+	| request response |
+	
+	request := Dictionary new
+		at: #clientId put: 'Pedro';
+		at: #password put: 'Wrong password'; 
+		yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: self wrongPasswordResponseBody! !
+
+----SNAPSHOT----(6 November 2023 02:49:48) CuisUniversity-5981.image priorSource: 10274436!
+!StoreAPITest methodsFor: 'tests' stamp: 'IB 11/6/2023 02:50:20' prior: 50652689!
+test05CreateMoreThanOneCart
+
+	| request response |
+	
+	self test04CreateOneCart.
+	request := 
+		Dictionary new
+			at: #clientId put: 'Tomas';
+			at: #password put: 'tomasPass'; 
+			yourself.
+	
+	response := storeAPI createCartBasedOn: request.
+	
+	self assert: response code equals: 200.
+	self assert: response body equals: '0|2'! !
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 02:50:22'!
+FAILURE!
+!StoreAPITest methodsFor: 'support' stamp: 'IB 11/6/2023 02:50:32' prior: 50652739!
+defaultUserDataBase
+	
+	^Dictionary new
+		at: 'Pedro' put: 'pedroPass';
+		at: 'Tomas' put: 'tomasPass';
+		yourself! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 02:50:39'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 02:50:39'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 02:50:39'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 02:50:39'!
+PASSED!
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 02:50:39'!
+FAILURE!
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 02:50:39'!
+FAILURE!
+
+----SNAPSHOT----(6 November 2023 02:50:45) CuisUniversity-5981.image priorSource: 10277370!
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:52:52' prior: 50652382!
+createCartBasedOn: aRequest
+
+	^self 
+		execute: [ | cart |
+			cart := storeSystem createCartForUserIdentifiedBy: (aRequest at: #clientId).
+			self successfulResponseWith: '0|' , cart id] 
+		afterAuthenticatingUserIn: aRequest 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse]
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:53:38'!
+afterAuthenticatingUserIn: aRequest withClientIdDo: aBlock  onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)].
+	
+	^aBlock value: clientId
+	! !
+!StoreAPI methodsFor: 'methods' stamp: 'IB 11/6/2023 02:54:13' prior: 50652866!
+createCartBasedOn: aRequest
+
+	^self 
+		afterAuthenticatingUserIn: aRequest 
+		withClientIdDo: [:clientId | | cart |
+			cart := storeSystem createCartForUserIdentifiedBy: clientId.
+			self successfulResponseWith: '0|' , cart id] 
+		onErrorWithResponseDo: [:errorResponse | ^errorResponse]
+	! !
+
+!methodRemoval: StoreAPI #execute:afterAuthenticatingUserIn:onErrorWithResponseDo: stamp: 'IB 11/6/2023 02:54:22'!
+execute: aBlock afterAuthenticatingUserIn: aRequest onErrorWithResponseDo: aBlockToExecuteInCaseOfError
+
+	| clientId password |
+	
+	[clientId := aRequest at: #clientId.
+	password := aRequest at: #password	] 
+		on: Error 
+		do: [aBlockToExecuteInCaseOfError value: self badRequestResponse].
+	
+	[ storeSystem authenticateUserIdentifiedBy: clientId withPassword: password ] 
+		on: Error 
+		do: [:anError | aBlockToExecuteInCaseOfError value: (self internalErrorResponseBasedOn: anError)].
+	
+	^aBlock value
+	!
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 02:56:49' prior: 50650708!
+for: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog ! !
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:57:30' prior: 50650665!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog:= aPricedCatalog.
+	alreadyCheckOutItems:= Bag new.! !
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:57:32' prior: 50652941!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	alreadyCheckOutItems:= Bag new.! !
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:57:35' prior: 50652950!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	alreadyCheckOutItems := Bag new.! !
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 02:57:37' prior: 50652959!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	alreadyCheckOutItems := Bag new! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 02:58:06' prior: 50650679!
+costOf: anItemList
+
+	^anItemList  sum: [:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cart methodsFor: 'error messages' stamp: 'IB 11/6/2023 03:00:36'!
+totalizedCostOfItems
+
+	^items sum: [:item | catalog at: item]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 03:00:58' prior: 50652977!
+costOf: anItemList
+
+	^cart totalizedCostOfItems! !
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 03:01:08'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 03:01:08'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 03:01:08'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 03:01:08'!
+ERROR!
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 03:01:08'!
+ERROR!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 03:01:10'!
+ERROR!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 03:01:19'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 03:01:21'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 03:01:21'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 03:01:21'!
+ERROR!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 03:01:21'!
+ERROR!
+
+catalog!
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 03:03:17' prior: 50650571!
+defaultPriceCatalog
+	
+	^Dictionary new 
+		at: self itemSellByTheStore put: 100;
+		yourself.! !
+!Cashier methodsFor: 'checkout' stamp: 's 11/5/2023 20:07:20' prior: 50652988!
+costOf: anItemList 
+	^anItemList  sum:[:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 11:14:57' prior: 50653056!
+costOf: anItemList
+
+	^anItemList  sum:[:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 11:15:38'!
+cartTotalCost
+
+	^cart listCart  sum:[:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 11:15:52' prior: 50650674!
+checkout
+	
+	self debit: self cartTotalCost from: creditCard.! !
+
+!methodRemoval: Cashier #costOf: stamp: 'IB 11/6/2023 11:16:04'!
+costOf: anItemList
+
+	^anItemList  sum:[:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]!
+
+!methodRemoval: Cart #totalizedCostOfItems stamp: 'IB 11/6/2023 11:16:10'!
+totalizedCostOfItems
+
+	^items sum: [:item | catalog at: item]!
+
+!testRun: #StoreAPITest #test01TryingToCreateACartForAnUnregisteredUser stamp: 'IB 11/6/2023 11:16:15'!
+PASSED!
+
+!testRun: #StoreAPITest #test02TryingToCreateACartProvidingWrongPassword stamp: 'IB 11/6/2023 11:16:15'!
+PASSED!
+
+!testRun: #StoreAPITest #test03InvalidRequestForCartCreation stamp: 'IB 11/6/2023 11:16:15'!
+PASSED!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 11:16:15'!
+ERROR!
+
+!testRun: #StoreAPITest #test05CreateMoreThanOneCart stamp: 'IB 11/6/2023 11:16:15'!
+ERROR!
+
+!testRun: #StoreAPITest #test04CreateOneCart stamp: 'IB 11/6/2023 11:16:16'!
+ERROR!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 11:16:22'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 11:16:23'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 11:16:23'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:16:23'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:16:48' prior: 50650524!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for:cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:16:59' prior: 50653143!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for: cart payingWith: creditCard withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!Cashier methodsFor: 'debit' stamp: 'IB 11/6/2023 11:17:23' prior: 50650685!
+debit: aCart from: aCreditCard
+
+	alreadyCheckOutItems addAll: cart listCart! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 11:45:05'!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog ! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 11:45:05' prior: 50653158!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for: cart payingWith: creditCard via: self halt withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 11:45:05' prior: 50650492!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self halt withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 11:45:05' prior: 50650507!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self halt withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+
+!methodRemoval: Cashier class #for:payingWith:withPricedCatalog: stamp: 'IB 11/6/2023 11:45:05'!
+for: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog !
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 11:45:37'!
+initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	alreadyCheckOutItems := Bag new! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 11:45:37' prior: 50653177!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired ifTrue:[self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog ! !
+
+!methodRemoval: Cashier #initializeFor:payingWith:withPricedCatalog: stamp: 'IB 11/6/2023 11:45:37'!
+initializeFor: aCart payingWith: aCreditCard withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	alreadyCheckOutItems := Bag new!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'IB 11/6/2023 11:45:55'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard pricedCatalog alreadyCheckOutItems merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 11:45:53' prior: 50653250!
+initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog 
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	pricedCatalog := aPricedCatalog.
+	merchantProcessor := aMerchantProcessor.
+	alreadyCheckOutItems := Bag new! !
+
+!methodRemoval: Cashier #debit:from: stamp: 'IB 11/6/2023 11:46:18'!
+debit: aCart from: aCreditCard
+
+	alreadyCheckOutItems addAll: cart listCart!
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 11:46:18' prior: 50653074!
+checkout
+	
+	alreadyCheckOutItems addAll: cart listCart.! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 11:47:04' prior: 50653307!
+checkout
+	
+	merchantProcessor debit: self cartTotalCost from: creditCard.
+	alreadyCheckOutItems addAll: cart listCart! !
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 11:47:29'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:47:42' prior: 50653205!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart creditCard |
+	
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 11:47:43'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:47:52' prior: 50653221!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard:= self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 11:47:53'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:47:59' prior: 50653190!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:48:00'!
+ERROR!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 11:48:04'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 11:48:04'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:48:04'!
+ERROR!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:48:04'!
+ERROR!
+!StoreTest methodsFor: '*TDDGuru' stamp: 'IB 11/6/2023 11:48:08'!
+debit: aRenameMe1 from: aCreditCard 
+	self shouldBeImplemented.! !
+!StoreTest methodsFor: '*TDDGuru' stamp: 'IB 11/6/2023 11:48:19' prior: 50653415!
+debit: anAmount from: aCreditCard
+
+	! !
+
+anAmount!
+!StoreTest methodsFor: '*TDDGuru' stamp: 'IB 11/6/2023 11:48:30' prior: 50653420!
+debit: anAmount from: aCreditCard
+
+	"do nothing -iboaretto"! !
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:48:32'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 11:48:35'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 11:48:35'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:48:35'!
+PASSED!
+!Cashier methodsFor: 'transactions' stamp: 'IB 11/6/2023 11:50:02' prior: 50650690!
+alreadyCheckOutItems
+
+	^alreadyCheckOutItems ! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:50:50'!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!methodRemoval: StoreTest #test11CanCheckoutCashier stamp: 'IB 11/6/2023 11:50:50'!
+test11CanCheckoutCashier
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier:= Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:50:57' prior: 50653446!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'IB 11/6/2023 11:56:31'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'merchantProcessorProcedure'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:56:29'!
+test11CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	merchantProcessorProcedure := [].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:56:42'!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	merchantProcessorProcedure := [].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!methodRemoval: StoreTest #test11CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 11:56:42'!
+test11CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	merchantProcessorProcedure := [].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:57:46' prior: 50653514!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	merchantProcessorProcedure := [self error: 'Not enough funds'].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 11:58:27' prior: 50653548!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	merchantProcessorProcedure := [self error: 'Not enough funds'].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 12:00:50' prior: 50653425!
+debit: anAmount from: aCreditCard
+
+	merchantProcessorProcedure value! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:00:54'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:00:54'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:00:54'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:00:54'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:00:58'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:01:28' prior: 50653364!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:01:53'!
+setUpMerchantProcessorToExecute: aBlock
+
+	merchantProcessorProcedure := aBlock! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:02:06' prior: 50653566!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:02:46' prior: 50653476!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:02:50' prior: 50653643!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:02:57' prior: 50653666!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:02:58' prior: 50653718!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createNonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:03:07' prior: 50653345!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:03:09'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:03:10'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:03:10'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:03:10'!
+PASSED!
+
+----SNAPSHOT----(6 November 2023 12:03:12) CuisUniversity-5981.image priorSource: 10278801!
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 12:04:03' prior: 50653068!
+cartTotalCost
+
+	^cart listCart sum:[:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 12:04:07' prior: 50653785!
+cartTotalCost
+
+	^cart listCart sum: [:item | (cart occurrencesOf: item) * (pricedCatalog at: item)]! !
+!Cart methodsFor: 'queries' stamp: 'IB 11/6/2023 12:05:08'!
+totalPriceConsidering: aPricedCatalog
+
+	^items sum: [:item | (self occurrencesOf: item) * (aPricedCatalog at: item)]! !
+!Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 12:05:45' prior: 50653791!
+cartTotalCost
+
+	^cart totalPriceConsidering: pricedCatalog! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:05:50'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:05:50'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:05:50'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:05:50'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:05:51'!
+PASSED!
+
+----SNAPSHOT----(6 November 2023 12:07:19) CuisUniversity-5981.image priorSource: 10308179!
+!Cart methodsFor: 'adding' stamp: 'IB 11/6/2023 12:14:27' prior: 50650624!
+add: anItem
+
+	^self add: anItem withOcurrences: 1 ! !
+!StoreTest methodsFor: 'tests -- cart' stamp: 'IB 11/6/2023 12:14:49' prior: 50650420!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'tests -- cart' stamp: 'IB 11/6/2023 12:15:02' prior: 50651200!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOcurrences: 2  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'tests -- cart' stamp: 'IB 11/6/2023 01:44:46' prior: 50653868!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOcurrences: 2  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'tests -- cart' stamp: 'HernanWilkinson 6/17/2013 17:45' prior: 50653855!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:15:28'!
+PASSED!
+!Cart methodsFor: 'initialization' stamp: 'IB 11/6/2023 12:15:50' prior: 50650608!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new! !
+!Cart methodsFor: 'assertions' stamp: 'IB 11/6/2023 12:16:26'!
+assertCatalogIncludes: anItem
+
+	(catalog includes: anItem) 
+		ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:16:26' prior: 50650628!
+add: anItem withOcurrences: aQuantity
+
+	self assertIsValidQuantity: aQuantity.
+	self assertCatalogIncludes: anItem.
+
+	items add: anItem withOccurrences: aQuantity .
+	! !
+
+!methodRemoval: Cart #assertIsValidItem: stamp: 'IB 11/6/2023 12:16:26'!
+assertIsValidItem: anItem
+
+	(catalog includes: anItem) 
+		ifFalse: [ self error: self invalidItemErrorMessage ]!
+!Cart methodsFor: 'assertions' stamp: 'IB 11/6/2023 12:16:57'!
+assertValidItemQuantity: aQuantity
+
+	aQuantity strictlyPositive 
+		ifFalse: [ self error: self invalidQuantityErrorMessage ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:16:57' prior: 50653963!
+add: anItem withOcurrences: aQuantity
+
+	self assertValidItemQuantity: aQuantity.
+	self assertCatalogIncludes: anItem.
+
+	items add: anItem withOccurrences: aQuantity .
+	! !
+
+!methodRemoval: Cart #assertIsValidQuantity: stamp: 'IB 11/6/2023 12:16:57'!
+assertIsValidQuantity: aQuantity
+
+	aQuantity strictlyPositive 
+		ifFalse: [ self error: self invalidQuantityErrorMessage ]!
+!Cart methodsFor: 'adding' stamp: 'IB 11/6/2023 12:17:31' prior: 50653984!
+add: anItem withOcurrences: aQuantity
+
+	self assertValidItemQuantity: aQuantity.
+	self assertCatalogIncludes: anItem.
+
+	items add: anItem withOccurrences: aQuantity
+	! !
+!Cashier class methodsFor: 'error messages' stamp: 'IB 11/6/2023 12:18:36' prior: 50650720!
+creditCardExpiredMessageDescription
+
+	^'Can not create cashier with an expired creditCard'! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:18:42' prior: 50650702!
+assertCartIsNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue: [self error: self emptyCartErrorMessage]! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:18:51' prior: 50653260!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired 
+		ifTrue: [self error: self creditCardExpiredMessageDescription ].
+	^self new initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:19:06' prior: 50654021!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpired 
+		ifTrue: [self error: self creditCardExpiredMessageDescription].
+	^self new initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:19:26'!
+assertIsNotExpired: aCreditCard
+
+	^ aCreditCard isExpired 
+		ifTrue: [self error: self creditCardExpiredMessageDescription]! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:19:26' prior: 50654035!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard.
+	^self new initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:19:41' prior: 50654055!
+for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
+
+	self assertCartIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard.
+	
+	^self new 
+		initializeFor: aCart 
+		payingWith: aCreditCard 
+		via: aMerchantProcessor 
+		withPricedCatalog: aPricedCatalog ! !
+!Cashier class methodsFor: 'error messages' stamp: 'IB 11/6/2023 12:19:59' prior: 50650726!
+emptyCartErrorMessage
+
+	^'Can not create cashier for an empty cart'! !
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:21:23'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:21:23'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:21:23'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:21:23'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:21:24'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:21:31'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:21:33'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:21:33'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:21:33'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:21:33'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:22:25'!
+test09CanNotCreateCashierForEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+
+!methodRemoval: StoreTest #test09CanNotCreateCashierOfEmptyCart stamp: 'IB 11/6/2023 12:22:25'!
+test09CanNotCreateCashierOfEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	creditCard:= self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:22:42' prior: 50654162!
+test09CanNotCreateCashierForEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	creditCard := self createNonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 12:23:04'!
+nonExpiredCard
+
+	^CreditCard expiringOn: FixedGregorianDate theEndOfTime monthOfYear! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:04' prior: 50653683!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:04' prior: 50653735!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:04' prior: 50654196!
+test09CanNotCreateCashierForEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self createCart.
+	creditCard := self nonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+
+!methodRemoval: StoreTest #createNonExpiredCard stamp: 'IB 11/6/2023 12:23:04'!
+createNonExpiredCard
+
+	^CreditCard expiringOn: FixedGregorianDate theEndOfTime monthOfYear!
+!StoreTest methodsFor: 'support -- cart' stamp: 'IB 11/6/2023 12:23:19'!
+emptyCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50654219!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self emptyCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650468!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	cart add: self itemSellByTheStore.
+	self assert: (cart includes: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50654252!
+test09CanNotCreateCashierForEmptyCart
+
+	| cart creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self emptyCart.
+	creditCard := self nonExpiredCard.
+	self 
+		should: [ Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650433!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	cart add: self itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650483!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	cart add: self itemSellByTheStore withOcurrences: 2.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50653882!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOcurrences: 2  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650476!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	self deny: (cart includes: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50653699!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self emptyCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650415!
+test01NewCartsAreCreatedEmpty
+
+	self assert: self emptyCart isEmpty! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50650441!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	self 
+		should: [cart add: self itemSellByTheStore withOcurrences: 0  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50653896!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := self emptyCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:23:19' prior: 50654235!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cart := self emptyCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+
+!methodRemoval: StoreTest #createCart stamp: 'IB 11/6/2023 12:23:19'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:23:32' prior: 50654304!
+test09CanNotCreateCashierForEmptyCart
+
+	| creditCard |
+	
+	self setUpMerchantProcessorToExecute: [].
+	creditCard := self nonExpiredCard.
+	self 
+		should: [ Cashier for:self emptyCart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:23:38' prior: 50654433!
+test09CanNotCreateCashierForEmptyCart
+
+	self setUpMerchantProcessorToExecute: [].
+	self 
+		should: [ Cashier for:self emptyCart payingWith: self nonExpiredCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:23:41' prior: 50654449!
+test09CanNotCreateCashierForEmptyCart
+
+	self setUpMerchantProcessorToExecute: [].
+	
+	self 
+		should: [ Cashier for:self emptyCart payingWith: self nonExpiredCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:23:45' prior: 50654464!
+test09CanNotCreateCashierForEmptyCart
+
+	self setUpMerchantProcessorToExecute: [].
+	
+	self 
+		should: [ Cashier for: self emptyCart payingWith: self nonExpiredCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:24:16' prior: 50654360!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self emptyCart add: self itemSellByTheStore; yourself.
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierForEmptyCart stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:24:17'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:25:28'!
+cartWithCatalogedItem
+
+	^ self emptyCart add: self itemSellByTheStore; yourself! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:25:28' prior: 50654494!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| cart creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self cartWithCatalogedItem.
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:25:36' prior: 50654561!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	creditCard := self createExpiredCard.
+	
+	self 
+		should: [Cashier for:self cartWithCatalogedItem payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 12:25:52'!
+expiredCreditCard
+	
+	^CreditCard expiringOn: FixedGregorianDate theBeginningOfTime monthOfYear! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:25:52' prior: 50654579!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	| creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	creditCard := self expiredCreditCard.
+	
+	self 
+		should: [Cashier for:self cartWithCatalogedItem payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+
+!methodRemoval: StoreTest #createExpiredCard stamp: 'IB 11/6/2023 12:25:52'!
+createExpiredCard
+	
+	^CreditCard expiringOn: FixedGregorianDate theBeginningOfTime monthOfYear!
+!StoreTest methodsFor: 'support -- cashier' stamp: 'IB 11/6/2023 12:26:04'!
+nonExpiredCreditCard
+
+	^CreditCard expiringOn: FixedGregorianDate theEndOfTime monthOfYear! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:26:04' prior: 50654479!
+test09CanNotCreateCashierForEmptyCart
+
+	self setUpMerchantProcessorToExecute: [].
+	
+	self 
+		should: [ Cashier for: self emptyCart payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:26:04' prior: 50654279!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self emptyCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCreditCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'IB 11/6/2023 12:26:04' prior: 50654412!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cart := self emptyCart.
+	cart add: self itemSellByTheStore.
+	creditCard := self nonExpiredCreditCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+
+!methodRemoval: StoreTest #nonExpiredCard stamp: 'IB 11/6/2023 12:26:04'!
+nonExpiredCard
+
+	^CreditCard expiringOn: FixedGregorianDate theEndOfTime monthOfYear!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:11' prior: 50654602!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	self setUpMerchantProcessorToExecute: [].
+	self 
+		should: [Cashier for:self cartWithCatalogedItem payingWith: self expiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:16' prior: 50654685!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	self setUpMerchantProcessorToExecute: [].
+	self 
+		should: [Cashier for: self cartWithCatalogedItem payingWith: self expiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog   ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:21' prior: 50654701!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	self setUpMerchantProcessorToExecute: [].
+	self 
+		should: [Cashier for: self cartWithCatalogedItem payingWith: self expiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:29' prior: 50654717!
+test10CanNotCreateCashierPayingWithAnExpiredCreditCard
+
+	self setUpMerchantProcessorToExecute: [].
+	
+	self 
+		should: [Cashier for: self cartWithCatalogedItem payingWith: self expiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:50' prior: 50654646!
+test11CanCheckoutItems
+
+	| cart cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cart := self cartWithCatalogedItem.
+	creditCard := self nonExpiredCreditCard.
+	cashier := Cashier for: cart payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test01NewCartsAreCreatedEmpty stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test06CartRemembersAddedItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test07CartDoesNotHoldNotAddedItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test08CartRemembersTheNumberOfAddedItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test09CanNotCreateCashierForEmptyCart stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test10CanNotCreateCashierPayingWithAnExpiredCreditCard stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+
+!testRun: #StoreTest #test12CantCheckoutWhenCreditCardHasNoLimit stamp: 'IB 11/6/2023 12:26:52'!
+PASSED!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:27:03' prior: 50654749!
+test11CanCheckoutItems
+
+	| cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	creditCard := self nonExpiredCreditCard.
+	cashier := Cashier for: self cartWithCatalogedItem payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:27:11' prior: 50654806!
+test11CanCheckoutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cashier := Cashier for: self cartWithCatalogedItem payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:27:14' prior: 50654821!
+test11CanCheckoutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	
+	cashier := Cashier for: self cartWithCatalogedItem payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog  .
+	cashier checkout.
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:27:25' prior: 50654835!
+test11CanCheckoutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cashier := Cashier for: self cartWithCatalogedItem payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:27:50' prior: 50654849!
+test11CanCheckoutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cashier := 
+		Cashier 
+			for: self cartWithCatalogedItem 
+			payingWith: self nonExpiredCreditCard 
+			via: self 
+			withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:28:43'!
+test11CashierKnowsAlreadyCheckedOutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cashier := 
+		Cashier 
+			for: self cartWithCatalogedItem 
+			payingWith: self nonExpiredCreditCard 
+			via: self 
+			withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
+
+!methodRemoval: StoreTest #test11CanCheckoutItems stamp: 'IB 11/6/2023 12:28:43'!
+test11CanCheckoutItems
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [].
+	cashier := 
+		Cashier 
+			for: self cartWithCatalogedItem 
+			payingWith: self nonExpiredCreditCard 
+			via: self 
+			withPricedCatalog: self defaultPriceCatalog.
+	
+	cashier checkout.
+	
+	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:03' prior: 50654663!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cashier creditCard | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	creditCard := self nonExpiredCreditCard.
+	cashier := Cashier for: self cartWithCatalogedItem  payingWith: creditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:11' prior: 50654906!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	cashier := Cashier for: self cartWithCatalogedItem  payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:33' prior: 50654922!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	
+	cashier := Cashier 
+				for: self cartWithCatalogedItem 
+				payingWith: self nonExpiredCreditCard 
+				via: self withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:35' prior: 50654937!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	
+	cashier := Cashier 
+				for: self cartWithCatalogedItem 
+				payingWith: self nonExpiredCreditCard 
+				via: self withPricedCatalog: 
+				self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:40' prior: 50654952!
+test12CantCheckoutWhenCreditCardHasNoLimit
+
+	| cashier | 
+	
+	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	
+	cashier := Cashier 
+				for: self cartWithCatalogedItem 
+				payingWith: self nonExpiredCreditCard 
+				via: self 
+				withPricedCatalog: self defaultPriceCatalog.
+	
+	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+!StoreTest methodsFor: 'support -- cart' stamp: 'IB 11/6/2023 12:30:18' prior: 50654555!
+cartWithCatalogedItem
+
+	^self emptyCart add: self itemSellByTheStore; yourself! !
+!StoreTest methodsFor: 'support -- cart' stamp: 'IB 11/6/2023 12:30:26' prior: 50654982!
+cartWithCatalogedItem
+
+	^self emptyCart 
+		add: self itemSellByTheStore;
+		yourself! !
