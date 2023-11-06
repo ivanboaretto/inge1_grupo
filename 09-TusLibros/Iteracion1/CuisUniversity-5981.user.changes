@@ -1,0 +1,1624 @@
+
+
+----STARTUP---- (6 November 2023 15:20:11) as /home/totorroto/Desktop/Portfolio/linux64/CuisUniversity-5981.image!
+
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'toto 11/6/2023 15:20:21'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Sale stamp: 'toto 11/6/2023 15:20:21'!
+Object subclass: #Sale
+	instanceVariableNames: 'total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MonthOfYear stamp: 'toto 11/6/2023 15:20:21'!
+Object subclass: #MonthOfYear
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'toto 11/6/2023 15:20:21'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'toto 11/6/2023 15:20:21'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'toto 11/6/2023 15:20:22'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'toto 11/6/2023 15:20:22'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'toto 11/6/2023 15:20:22'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TransferWithdraw stamp: 'toto 11/6/2023 15:20:27'!
+TransferLeg subclass: #TransferWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferDeposit stamp: 'toto 11/6/2023 15:20:27'!
+TransferLeg subclass: #TransferDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferLeg stamp: 'toto 11/6/2023 15:20:27'!
+Object subclass: #TransferLeg
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transfer stamp: 'toto 11/6/2023 15:20:27'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value originTransfer destinationTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TreeStructureReport stamp: 'toto 11/6/2023 15:20:28'!
+PortfolioReport subclass: #TreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #BonusReport stamp: 'toto 11/6/2023 15:20:28'!
+PortfolioReport subclass: #BonusReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioReport stamp: 'toto 11/6/2023 15:20:28'!
+Report subclass: #PortfolioReport
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferNetReport stamp: 'toto 11/6/2023 15:20:28'!
+AccountReport subclass: #TransferNetReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountSummaryReport stamp: 'toto 11/6/2023 15:20:28'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountReport stamp: 'toto 11/6/2023 15:20:29'!
+Report subclass: #AccountReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Report stamp: 'toto 11/6/2023 15:20:29'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'toto 11/6/2023 15:20:29'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'toto 11/6/2023 15:20:29'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'toto 11/6/2023 15:20:29'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'toto 11/6/2023 15:20:30'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'toto 11/6/2023 15:20:30'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'toto 11/6/2023 15:20:30'!
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTest stamp: 'toto 11/6/2023 15:20:30'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'toto 11/6/2023 15:20:31'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'toto 11/6/2023 15:20:31'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountReportTest stamp: 'toto 11/6/2023 15:20:31'!
+TestCase subclass: #AccountReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+!classDefinition: #CartTest category: 'Libros' stamp: 'toto 11/6/2023 15:20:49'!
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+!classDefinition: #CartTest category: 'Libros' stamp: 'toto 11/6/2023 15:20:55'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+!CartTest methodsFor: 'no messages' stamp: 'toto 11/6/2023 15:21:09'!
+test01CanCreateEmptyCart
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:21:58'!
+test01NewCartIsEmpty
+	! !
+
+!methodRemoval: CartTest #test01CanCreateEmptyCart stamp: 'toto 11/6/2023 15:21:58'!
+test01CanCreateEmptyCart
+	!
+
+!classDefinition: #CartTest category: 'Libros' stamp: 'toto 11/6/2023 15:22:12'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+!classDefinition: #Cart category: 'Libros' stamp: 'toto 11/6/2023 15:22:33'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:22:31' prior: 50692263!
+test01NewCartIsEmpty
+	cart:= Cart new.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:22:35' prior: 50692283!
+test01NewCartIsEmpty
+	cart:= Cart new.! !
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+
+!classDefinition: #CartTest category: 'Libros' stamp: 'toto 11/6/2023 15:22:38'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:22:51' prior: 50692288!
+test01NewCartIsEmpty 
+	|cart|
+	
+	cart:= Cart new.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:23:00' prior: 50692303!
+test01NewCartIsEmpty 
+	|cart|
+	
+	cart:= Cart new.
+	self assert: Cart isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:23:03'!
+ERROR!
+!Cart class methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:23:10'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:23:15' prior: 50692316!
+isEmpty
+	^true.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:23:16'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:23:16'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:23:49'!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= Cart new.
+	self assert: Cart isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:24:57' prior: 50692328!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= Cart new.
+	cart add: self notPublishedBook.
+	self assert: Cart isEmpty.! !
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:24:59'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:26:10' prior: 50692334!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= Cart new.
+	self 
+		should: [ cart add: self notPublishedBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Book is not in the editorial'.
+			self assert: cart isEmpty ]! !
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:26:14'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'toto 11/6/2023 15:26:23'!
+notPublishedBook
+	self shouldBeImplemented.! !
+!CartTest methodsFor: 'support' stamp: 'toto 11/6/2023 15:26:31' prior: 50692359!
+notPublishedBook
+	^1! !
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:26:32'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:26:38'!
+add: aRenameMe1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'Libros' stamp: 'toto 11/6/2023 15:27:33'!
+Object subclass: #Cart
+	instanceVariableNames: 'editorial'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:27:40' prior: 50692370!
+add: anISBNBookToAdd 
+	(editorial includes: anISBNBookToAdd) ifFalse:[self error: 'Not'].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:27:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:27:41'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:27:41'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:28:09' overrides: 16920235!
+initialize
+	editorial:= OrderedCollection new.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:28:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:28:10'!
+FAILURE!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:28:10'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:28:29' prior: 50692381!
+add: anISBNBookToAdd 
+	(editorial includes: anISBNBookToAdd) ifFalse:[self error: 'Book is not in the editorial'].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:28:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:28:30'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:28:30'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:28:55'!
+isEmpty
+	^true.! !
+
+!methodRemoval: Cart class #isEmpty stamp: 'toto 11/6/2023 15:28:57'!
+isEmpty
+	^true.!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:28:59'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:28:59'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:28:59'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:29:15' prior: 50692308!
+test01NewCartIsEmpty 
+	|cart|
+	
+	cart:= Cart new.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:29:16'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:29:16'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:29:16'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:30:15'!
+test03CartRegisterAddedBooks
+	|cart|
+	
+	cart:= Cart new.
+	self 
+		should: [ cart add: self notPublishedBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Book is not in the editorial'.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:31:09' prior: 50692452!
+test03CartRegisterAddedBooks
+	|cart|
+	
+	cart:= Cart new.
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self assert: (cart isAdded: self publishedBook).! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:31:11'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'toto 11/6/2023 15:31:15'!
+publishedBook
+	self shouldBeImplemented.! !
+!CartTest methodsFor: 'support' stamp: 'toto 11/6/2023 15:31:20' prior: 50692475!
+publishedBook
+	^2! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:31:20'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:31:44' prior: 50692396 overrides: 16920235!
+initialize
+	editorial:= OrderedCollection new.
+	editorial add: 2.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:31:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:31:45'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:31:45'!
+FAILURE!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:31:45'!
+FAILURE!
+
+!classDefinition: #Cart category: 'Libros' stamp: 'toto 11/6/2023 15:32:06'!
+Object subclass: #Cart
+	instanceVariableNames: 'editorial addedBooks'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Libros'!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:32:04' prior: 50692409!
+add: anISBNBookToAdd 
+	(editorial includes: anISBNBookToAdd) ifFalse:[self error: 'Book is not in the editorial'].
+	addedBooks add: anISBNBookToAdd.! !
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:32:17' prior: 50692486 overrides: 16920235!
+initialize
+	editorial:= OrderedCollection new.
+	editorial add: 2.
+	addedBooks:= Set new.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:32:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:32:18'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:32:18'!
+FAILURE!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:32:18'!
+FAILURE!
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:32:31' prior: 50692424!
+isEmpty
+	^addedBooks isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:32:31'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:32:31'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:32:31'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:32:31'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'toto 11/6/2023 15:32:38'!
+isAdded: aRenameMe1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'toto 11/6/2023 15:32:57' prior: 50692551!
+isAdded: anISBNBook 
+	addedBooks includes: anISBNBook .! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:32:58'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'toto 11/6/2023 15:33:14' prior: 50692556!
+isAdded: anISBNBook 
+	^addedBooks includes: anISBNBook .! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:33:16'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:34:17' prior: 50692464!
+test03CartRegisterAddedBooks
+	|cart|
+	
+	cart:= Cart withEditorial: ( OrderedCollection with: self publishedBook).
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self assert: (cart isAdded: self publishedBook).! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:34:21'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'toto 11/6/2023 15:34:24'!
+withEditorial: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithEditorial: aRenameMe1 ! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:34:33'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'toto 11/6/2023 15:34:38' prior: 50692585!
+withEditorial: aRenameMe1 
+	
+	^self new initializeWithEditorial: aRenameMe1 ! !
+!Cart class methodsFor: 'instance creation' stamp: 'toto 11/6/2023 15:34:43' prior: 50692597!
+withEditorial: anEditorial 
+	
+	^self new initializeWithEditorial: anEditorial ! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:34:43'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:34:49'!
+initializeWithEditorial: anEditorial 
+	self shouldBeImplemented.
+	editorial := anEditorial.! !
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:35:03' prior: 50692611!
+initializeWithEditorial: anEditorial 
+	
+	editorial := anEditorial.
+	addedBooks := OrderedCollection ! !
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:35:04' prior: 50692617!
+initializeWithEditorial: anEditorial 
+	
+	editorial := anEditorial.
+	addedBooks := OrderedCollection new! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:35:05'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:35:05'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:35:05'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:35:05'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:35:15' prior: 50692344!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= Cart withEditorial: ( OrderedCollection with: self publishedBook).
+	self 
+		should: [ cart add: self notPublishedBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Book is not in the editorial'.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:35:18' prior: 50692439!
+test01NewCartIsEmpty 
+	|cart|
+	
+	cart:= Cart withEditorial: ( OrderedCollection with: self publishedBook).
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:35:19'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:35:19'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:35:19'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:35:19'!
+PASSED!
+
+!methodRemoval: Cart #initialize stamp: 'toto 11/6/2023 15:35:25'!
+initialize
+	editorial:= OrderedCollection new.
+	editorial add: 2.
+	addedBooks:= Set new.!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:35:52'!
+assertBookIsPublished: anISBNBookToAdd
+
+	^ (editorial includes: anISBNBookToAdd) ifFalse:[self error: 'Book is not in the editorial']! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:35:52' prior: 50692509!
+add: anISBNBookToAdd 
+	self assertBookIsPublished: anISBNBookToAdd.
+	addedBooks add: anISBNBookToAdd.! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:36:40'!
+createCart
+
+	^ Cart withEditorial: ( OrderedCollection with: self publishedBook)! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:36:40' prior: 50692641!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= self createCart.
+	self 
+		should: [ cart add: self notPublishedBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Book is not in the editorial'.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:36:40' prior: 50692655!
+test01NewCartIsEmpty 
+	|cart|
+	
+	cart:= self createCart.
+	self assert: cart isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:36:40' prior: 50692572!
+test03CartRegisterAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self assert: (cart isAdded: self publishedBook).! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:37:18'!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self assert: (cart isAdded: self publishedBook).! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:37:52' prior: 50692723!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook times:-1.
+	self deny: cart isEmpty.
+	self assert: (cart isAdded: self publishedBook).! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:37:58' prior: 50692732!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook times:-1.
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:38:27' prior: 50692741!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times:-1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Quantity Can Not be negative'.
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:38:29'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:38:33'!
+add: aRenameMe1 times: aRenameMe2 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:39:29' prior: 50692763!
+add: aBookISBNToAdd times: Quantity 
+	addedBooks add: aBookISBNToAdd withOccurrences: Quantity.! !
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:39:31'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:39:45' prior: 50692768!
+add: aBookISBNToAdd times: Quantity 
+	! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:40:28' prior: 50692777!
+add: aBookISBNToAdd times: Quantity 
+	Quantity negative ifTrue:[self error: 'number ']! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:40:46' prior: 50692748!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times:-1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Can not add negative books'.
+			self assert: cart isEmpty ]
+	! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:40:55' prior: 50692781!
+add: aBookISBNToAdd times: Quantity 
+	Quantity negative ifTrue:[self error: 'Can not add negative books']! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:40:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:40:56'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:40:56'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:40:56'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:41:21'!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: 'Can not add negative books']! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:41:21' prior: 50692799!
+add: aBookISBNToAdd times: Quantity 
+	self assertIsPositive: Quantity! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:41:29'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:41:29'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:41:29'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:41:29'!
+PASSED!
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:42:06'!
+notPublishedBookErrorMessage
+
+	^ 'Book is not in the editorial'! !
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:42:06' prior: 50692678!
+assertBookIsPublished: anISBNBookToAdd
+
+	^ (editorial includes: anISBNBookToAdd) ifFalse:[self error: self notPublishedBookErrorMessage]! !
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:42:24'!
+NegativeQuantityErrorMessage
+
+	^ 'Can not add negative books'! !
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:42:24' prior: 50692816!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self NegativeQuantityErrorMessage]! !
+!Cart methodsFor: 'error' stamp: 'toto 11/6/2023 15:42:51'!
+negativeQuantityErrorMessage
+
+	^ 'Can not add negative books'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:42:51' prior: 50692855!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self negativeQuantityErrorMessage]! !
+
+!methodRemoval: Cart #NegativeQuantityErrorMessage stamp: 'toto 11/6/2023 15:42:51'!
+NegativeQuantityErrorMessage
+
+	^ 'Can not add negative books'!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:43:32' prior: 50692697!
+test02CanNotAddNotPublishedBooks
+	|cart|
+	
+	cart:= self createCart.
+	self 
+		should: [ cart add: self notPublishedBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart notPublishedBookErrorMessage  .
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:43:41' prior: 50692787!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times:-1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart negativeQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:42'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:43:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:43:42'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:43:42'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:42'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:43:49'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:43:49'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:43:49'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:49'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:43:51' prior: 50692889!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart negativeQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:53'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:43:53'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:43:53'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:43:53'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:43:53'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:44:25'!
+test05CartCanOnlyAddStrictlyPositiveIntegers
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart negativeQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:44:31' prior: 50692958!
+test05CartCanOnlyAddStrictlyPositiveIntegers
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart negativeQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:44:40'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:44:53' prior: 50692685!
+add: anISBNBookToAdd 
+	
+	addedBooks add: anISBNBookToAdd.! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:45:00' prior: 50692822!
+add: aBookISBNToAdd times: Quantity 
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsPositive: Quantity! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:45:10' prior: 50693002!
+add: aBookISBNToAdd 
+	
+	addedBooks add: aBookISBNToAdd times:1.! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:45:36' prior: 50693007!
+add: aBookISBNToAdd times: Quantity 
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsPositive: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+!Cart methodsFor: 'initialization' stamp: 'toto 11/6/2023 15:45:43' prior: 50692623!
+initializeWithEditorial: anEditorial 
+	
+	editorial := anEditorial.
+	addedBooks := Bag new! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:45:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:45:45'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:45:45'!
+ERROR!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:45:45'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:45:45'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:45:57' prior: 50693019!
+add: aBookISBNToAdd times: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsPositive: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:45:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:45:59'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:45:59'!
+ERROR!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:45:59'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:45:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:46:02'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:46:11' prior: 50693014!
+add: aBookISBNToAdd 
+	
+	self add: aBookISBNToAdd times:1.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:46:12'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:46:12'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:46:12'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:46:12'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:46:12'!
+PASSED!
+
+!methodRemoval: CartTest #test04CartCanNotAddNegativeBooks stamp: 'toto 11/6/2023 15:46:29'!
+test04CartCanNotAddNegativeBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart negativeQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:46:53' prior: 50692971!
+test05CartCanOnlyAddStrictlyPositiveIntegers
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantity .
+			self assert: cart isEmpty ]
+	! !
+!Cart methodsFor: 'error' stamp: 'toto 11/6/2023 15:47:07'!
+nonStrictlyPositiveIntegerQuantity
+
+	^ 'Can not add negative books'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:47:07' prior: 50692866!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self nonStrictlyPositiveIntegerQuantity]! !
+
+!methodRemoval: Cart #negativeQuantityErrorMessage stamp: 'toto 11/6/2023 15:47:07'!
+negativeQuantityErrorMessage
+
+	^ 'Can not add negative books'!
+!Cart methodsFor: 'error' stamp: 'toto 11/6/2023 15:47:21' prior: 50693122!
+nonStrictlyPositiveIntegerQuantity
+
+	^ 'On'! !
+!Cart methodsFor: 'error' stamp: 'toto 11/6/2023 15:47:29'!
+nonStrictlyPositiveIntegerQuantityErrorMessage
+
+	^ 'On'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:47:29' prior: 50693128!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:47:29' prior: 50693109!
+test05CartCanOnlyAddStrictlyPositiveIntegers
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!methodRemoval: Cart #nonStrictlyPositiveIntegerQuantity stamp: 'toto 11/6/2023 15:47:29'!
+nonStrictlyPositiveIntegerQuantity
+
+	^ 'On'!
+!Cart methodsFor: 'error' stamp: 'toto 11/6/2023 15:47:58' prior: 50693143!
+nonStrictlyPositiveIntegerQuantityErrorMessage
+
+	^ 'Can only add strictly positive integer quantity of a book'! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:47:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:47:59'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:47:59'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:47:59'!
+PASSED!
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:48:17'!
+assertIsStrictlyPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:48:17' prior: 50693049!
+add: aBookISBNToAdd times: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsStrictlyPositive: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+
+!methodRemoval: Cart #assertIsPositive: stamp: 'toto 11/6/2023 15:48:17'!
+assertIsPositive: Quantity
+
+	^ Quantity negative ifTrue:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage]!
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:48:31' prior: 50693191!
+assertIsStrictlyPositive: Quantity
+
+	^ Quantity strictlyPositive ifTrue:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage]! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:48:33'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:48:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:48:33'!
+ERROR!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:48:33'!
+FAILURE!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:48:36'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:48:56'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:48:56'!
+ERROR!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:49:00'!
+FAILURE!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:49:00'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:49:05'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:49:06'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:49:07'!
+ERROR!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:49:07'!
+ERROR!
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:49:20' prior: 50693213!
+assertIsStrictlyPositive: Quantity
+
+	^ Quantity strictlyPositive ifFalse:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage]! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:49:20'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:49:22'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:49:34'!
+test05CartCanOnlyAddStrictlyPositive
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!methodRemoval: CartTest #test05CartCanOnlyAddStrictlyPositiveIntegers stamp: 'toto 11/6/2023 15:49:34'!
+test05CartCanOnlyAddStrictlyPositiveIntegers
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:49:36' prior: 50693272!
+test05CartCanOnlyAddStrictlyPositive
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositive stamp: 'toto 11/6/2023 15:49:38'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:49:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:49:38'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:49:38'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositive stamp: 'toto 11/6/2023 15:49:38'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:49:49'!
+test06CartCanOnlyAddIntegerQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:49:53'!
+test05CartCanOnlyAddStrictlyPositiveQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!methodRemoval: CartTest #test05CartCanOnlyAddStrictlyPositive stamp: 'toto 11/6/2023 15:49:53'!
+test05CartCanOnlyAddStrictlyPositive
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:49:57' prior: 50693340!
+test05CartCanOnlyAddStrictlyPositiveQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: 1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:49:58'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:50:20' prior: 50693198!
+add: aBookISBNToAdd times: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsStrictlyPositive: Quantity.
+	self assertIsInteger: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:50:22'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:50:22'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:50:22'!
+ERROR!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:50:22'!
+ERROR!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:50:22'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:50:23'!
+ERROR!
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:50:31'!
+assertIsInteger: Quantity 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'asserting' stamp: 'toto 11/6/2023 15:50:59' prior: 50693411!
+assertIsInteger: Quantity 
+	Quantity isInteger ifFalse:[self error: self nonStrictlyPositiveIntegerQuantityErrorMessage ]! !
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:51:00'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:51:01'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:52:36'!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook times: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:53:36' prior: 50693429!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook times: 2.
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 2.
+	! !
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:53:36'!
+ERROR!
+!Cart methodsFor: 'accesing' stamp: 'toto 11/6/2023 15:53:44'!
+occurrencesOf: aRenameMe1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accesing' stamp: 'toto 11/6/2023 15:53:57' prior: 50693455!
+occurrencesOf: aBookISBN 
+	! !
+!Cart methodsFor: 'accesing' stamp: 'toto 11/6/2023 15:54:09' prior: 50693460!
+occurrencesOf: aBookISBN 
+	addedBooks occurrencesOf: aBookISBN ! !
+!Cart methodsFor: 'accesing' stamp: 'toto 11/6/2023 15:54:11' prior: 50693464!
+occurrencesOf: aBookISBN 
+	^addedBooks occurrencesOf: aBookISBN ! !
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:11'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 15:54:27'!
+add: aBookISBNToAdd withOccurrences: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsStrictlyPositive: Quantity.
+	self assertIsInteger: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:54:27' prior: 50693443!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook withOccurrences: 2.
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 2.
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:54:27' prior: 50693367!
+test05CartCanOnlyAddStrictlyPositiveQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook withOccurrences: 1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:54:27' prior: 50693076!
+add: aBookISBNToAdd 
+	
+	self add: aBookISBNToAdd withOccurrences:1.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'toto 11/6/2023 15:54:27' prior: 50693327!
+test06CartCanOnlyAddIntegerQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook withOccurrences: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!methodRemoval: Cart #add:times: stamp: 'toto 11/6/2023 15:54:27'!
+add: aBookISBNToAdd times: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertIsStrictlyPositive: Quantity.
+	self assertIsInteger: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:54:52' prior: 50693506!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook withOccurrences: 2.
+	cart add: self publishedBook withOccurrences: 2.
+	
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 4.
+	! !
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:52'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:54:54' prior: 50693559!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook withOccurrences: 2.
+	
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 2.
+	! !
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:54:56'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:56:47' prior: 50693536!
+test06CartCanOnlyAddIntegerQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook withOccurrences: 1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:56:53' prior: 50693516!
+test05CartCanOnlyAddStrictlyPositiveQuantity
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook withOccurrences: -1. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+
+!testRun: #CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:56:55'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:57:49'!
+test08CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook withOccurrences: 2.
+	
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 2.
+	! !
+
+!methodRemoval: CartTest #test07CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:57:49'!
+test07CartRegisterHowManyOfABookWereAdded
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook withOccurrences: 2.
+	
+	self deny: cart isEmpty.
+	self assert: (cart occurrencesOf: self publishedBook ) equals: 2.
+	!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:58:03'!
+test07CartNotRegisterNotAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self 
+		should: [ cart add: self publishedBook withOccurrences: 1.5. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart nonStrictlyPositiveIntegerQuantityErrorMessage .
+			self assert: cart isEmpty ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:58:16' prior: 50693693!
+test07CartNotRegisterNotAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self deny: (cart isAdded: self publishedBook).! !
+
+!testRun: #CartTest #test07CartNotRegisterNotAddedBooks stamp: 'toto 11/6/2023 15:58:17'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:58:39' prior: 50693707!
+test07CartNotRegisterNotAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	cart add: self publishedBook.
+	self deny: cart isEmpty.
+	self deny: (cart isAdded: self publishedBook).
+	! !
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:59:14' prior: 50693719!
+test07CartNotRegisterNotAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	
+	self deny: (cart isAdded: self publishedBook).
+	! !
+
+!testRun: #CartTest #test07CartNotRegisterNotAddedBooks stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddNotPublishedBooks stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test03CartRegisterAddedBooks stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test05CartCanOnlyAddStrictlyPositiveQuantity stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test06CartCanOnlyAddIntegerQuantity stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test07CartNotRegisterNotAddedBooks stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+
+!testRun: #CartTest #test08CartRegisterHowManyOfABookWereAdded stamp: 'toto 11/6/2023 15:59:15'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'toto 11/6/2023 15:59:18' prior: 50693728!
+test07CartNotRegisterNotAddedBooks
+	|cart|
+	
+	cart:= self createCart.
+	self deny: (cart isAdded: self publishedBook).
+	! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 16:00:29'!
+assertValidQuantity: Quantity
+
+	self assertIsStrictlyPositive: Quantity.
+	self assertIsInteger: Quantity! !
+!Cart methodsFor: 'adding' stamp: 'toto 11/6/2023 16:00:29' prior: 50693495!
+add: aBookISBNToAdd withOccurrences: Quantity 
+
+	self assertBookIsPublished: aBookISBNToAdd.
+	self assertValidQuantity: Quantity.
+	
+	addedBooks add: aBookISBNToAdd withOccurrences:Quantity. ! !
+
+----QUIT----(6 November 2023 16:01:22) CuisUniversity-5981.image priorSource: 11518432!

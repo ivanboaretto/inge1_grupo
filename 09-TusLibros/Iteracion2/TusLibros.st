@@ -92,27 +92,35 @@ test08CartRemembersTheNumberOfAddedItems
 	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
 
 
-!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:04'!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 's 11/6/2023 13:16:09'!
 test09CanNotCreateCashierForEmptyCart
 
 	self setUpMerchantProcessorToExecute: [].
 	
 	self 
-		should: [ Cashier for: self emptyCart payingWith: self nonExpiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog  ]
+		should: [ Cashier 
+				for: self emptyCart 
+				payingWith: self nonExpiredCreditCard 
+				via: self 
+				withPricedCatalog: self defaultPriceCatalog  ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
 			self assert: anError messageText = Cashier new class emptyCartErrorMessage. ].! !
 
-!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:26:29'!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 's 11/6/2023 13:16:37'!
 test10CanNotCreateCashierPayingWithAnExpiredCreditCard
 
 	self setUpMerchantProcessorToExecute: [].
 	
 	self 
-		should: [Cashier for: self cartWithCatalogedItem payingWith: self expiredCreditCard via: self withPricedCatalog: self defaultPriceCatalog]
+		should: [Cashier 
+				for: self cartWithCatalogedItem 
+				payingWith: self expiredCreditCard 
+				via: self 
+				withPricedCatalog: self defaultPriceCatalog]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = Cashier new class creditCardExpiredMessageDescription.].! !
+			self assert: anError messageText = Cashier new class creditCardExpiredErrorMessage.].! !
 
 !StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:28:43'!
 test11CashierKnowsAlreadyCheckedOutItems
@@ -131,12 +139,12 @@ test11CashierKnowsAlreadyCheckedOutItems
 	
 	self assert: cashier alreadyCheckOutItems equals: (Bag with: self itemSellByTheStore)! !
 
-!StoreTest methodsFor: 'tests -- cashier' stamp: 'IB 11/6/2023 12:29:40'!
+!StoreTest methodsFor: 'tests -- cashier' stamp: 's 11/6/2023 13:16:46'!
 test12CantCheckoutWhenCreditCardHasNoLimit
 
 	| cashier | 
 	
-	self setUpMerchantProcessorToExecute: [self error: 'Not enough funds'].
+	self setUpMerchantProcessorToExecute: [self error: Cashier creditCardHasNotEnoughFundsErrorMessage].
 	
 	cashier := Cashier 
 				for: self cartWithCatalogedItem 
@@ -144,7 +152,7 @@ test12CantCheckoutWhenCreditCardHasNoLimit
 				via: self 
 				withPricedCatalog: self defaultPriceCatalog.
 	
-	self should: [cashier checkout] raise: Error withMessageText: 'Not enough funds'! !
+	self should: [cashier checkout] raise: Error withMessageText:  Cashier creditCardHasNotEnoughFundsErrorMessage! !
 
 
 !StoreTest methodsFor: 'support -- cart' stamp: 'IB 11/6/2023 12:30:26'!
@@ -302,14 +310,14 @@ Object subclass: #Cashier
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cashier methodsFor: 'initialize' stamp: 'IB 11/6/2023 11:45:53'!
+!Cashier methodsFor: 'initialization' stamp: 's 11/6/2023 15:17:46'!
 initializeFor: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog 
 	
 	cart := aCart.
 	creditCard := aCreditCard.
 	pricedCatalog := aPricedCatalog.
 	merchantProcessor := aMerchantProcessor.
-	alreadyCheckOutItems := Bag new! !
+	alreadyCheckOutItems := Bag new.! !
 
 
 !Cashier methodsFor: 'checkout' stamp: 'IB 11/6/2023 12:05:45'!
@@ -324,7 +332,7 @@ checkout
 	alreadyCheckOutItems addAll: cart listCart! !
 
 
-!Cashier methodsFor: 'transactions' stamp: 'IB 11/6/2023 11:50:02'!
+!Cashier methodsFor: 'purchases' stamp: 'IB 11/6/2023 11:50:02'!
 alreadyCheckOutItems
 
 	^alreadyCheckOutItems ! !
@@ -335,23 +343,23 @@ alreadyCheckOutItems
 Cashier class
 	instanceVariableNames: ''!
 
+!Cashier class methodsFor: 'asserting' stamp: 's 11/6/2023 13:17:15'!
+assertCardIsNotExpired: aCreditCard
+
+	^ aCreditCard isExpired 
+		ifTrue: [self error: self creditCardExpiredErrorMessage]! !
+
 !Cashier class methodsFor: 'asserting' stamp: 'IB 11/6/2023 12:18:42'!
 assertCartIsNotEmpty: aCart
 
 	^ aCart isEmpty ifTrue: [self error: self emptyCartErrorMessage]! !
 
-!Cashier class methodsFor: 'asserting' stamp: 'IB 11/6/2023 12:19:26'!
-assertIsNotExpired: aCreditCard
 
-	^ aCreditCard isExpired 
-		ifTrue: [self error: self creditCardExpiredMessageDescription]! !
-
-
-!Cashier class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 12:19:41'!
+!Cashier class methodsFor: 'instance creation' stamp: 's 11/6/2023 13:17:15'!
 for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aPricedCatalog
 
 	self assertCartIsNotEmpty: aCart.
-	self assertIsNotExpired: aCreditCard.
+	self assertCardIsNotExpired: aCreditCard.
 	
 	^self new 
 		initializeFor: aCart 
@@ -360,10 +368,14 @@ for: aCart payingWith: aCreditCard via: aMerchantProcessor withPricedCatalog: aP
 		withPricedCatalog: aPricedCatalog ! !
 
 
-!Cashier class methodsFor: 'error messages' stamp: 'IB 11/6/2023 12:18:36'!
-creditCardExpiredMessageDescription
+!Cashier class methodsFor: 'error messages' stamp: 's 11/6/2023 13:16:37'!
+creditCardExpiredErrorMessage
 
 	^'Can not create cashier with an expired creditCard'! !
+
+!Cashier class methodsFor: 'error messages' stamp: 's 11/6/2023 13:16:46'!
+creditCardHasNotEnoughFundsErrorMessage
+	^'Not enough funds'! !
 
 !Cashier class methodsFor: 'error messages' stamp: 'IB 11/6/2023 12:19:59'!
 emptyCartErrorMessage
@@ -378,15 +390,20 @@ Object subclass: #CreditCard
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:40:05'!
-initializeExpiringOn: aMonth
-
-	monthOfYearOfExpiration := aMonth! !
-
-!CreditCard methodsFor: 'initialize' stamp: 'IB 11/6/2023 01:31:28'!
+!CreditCard methodsFor: 'testing' stamp: 's 11/6/2023 13:11:28'!
 isExpired
 	
-	^FixedGregorianDate today monthOfYear > monthOfYearOfExpiration.! !
+	^self isExpiredOn: FixedGregorianDate today.! !
+
+!CreditCard methodsFor: 'testing' stamp: 's 11/6/2023 13:11:28'!
+isExpiredOn:aDate
+	
+	^aDate monthOfYear > monthOfYearOfExpiration.! !
+
+
+!CreditCard methodsFor: 'initialization' stamp: 's 11/6/2023 13:04:03'!
+initializeExpiringOn: aMonth
+	monthOfYearOfExpiration := aMonth! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -394,7 +411,7 @@ isExpired
 CreditCard class
 	instanceVariableNames: ''!
 
-!CreditCard class methodsFor: 'instance creation' stamp: 'IB 11/6/2023 01:40:05'!
+!CreditCard class methodsFor: 'instance creation' stamp: 's 11/6/2023 13:03:40'!
 expiringOn: aMonthOfYearOfExpiration
-
+	
 	^self new initializeExpiringOn: aMonthOfYearOfExpiration! !
