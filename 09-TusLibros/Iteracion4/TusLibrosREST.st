@@ -12,12 +12,11 @@ informBook: bookIsbn addedToCart: cartId
 	
 ! !
 
-!TusLibrosClientTestWindow methodsFor: 'events' stamp: 's 11/12/2023 21:09:52'!
-informError: anErrorDescription 
-
-	self inform: 'Error ocurred because of ', anErrorDescription.
+!TusLibrosClientTestWindow methodsFor: 'events' stamp: 'toto 11/13/2023 15:16:03'!
+informError:anErrorDescription
 	
-! !
+	self inform: anErrorDescription
+	! !
 
 !TusLibrosClientTestWindow methodsFor: 'events' stamp: 'NR 6/13/2022 07:06:29'!
 refreshCartButtonsLabels: anIndex
@@ -176,7 +175,7 @@ heightOfButtons
 	^ 66! !
 
 
-!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 's 11/12/2023 21:09:25'!
+!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'toto 11/13/2023 14:38:46'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
@@ -189,8 +188,7 @@ initializeWith: aTitle
 	self model when: #selectedCartChanged send: #refreshCartButtonsLabels: to: self.	
 	self model when: #bookAddedToCart send: #informBook:addedToCart: to: self.
 	self model when: #newCurrentSelectedCartContentArrived send: #refreshCurrentSelectedCartContent: to: self.
-	self model when: #serverError send: #informError: to: self.
-	! !
+	self model when: #serverError send: #informError: to: self! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -204,62 +202,6 @@ open
 	^self new initializeWith: 'TusLibros Client Test Window'.! !
 
 
-!classDefinition: #RealTimeClock category: 'TusLibrosREST'!
-Clock subclass: #RealTimeClock
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibrosREST'!
-
-!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:39'!
-now
-
-	^DateAndTime now! !
-
-!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:48'!
-today
-
-	^Date today! !
-
-
-!classDefinition: #DefaultMerchantProcessor category: 'TusLibrosREST'!
-MerchantProcessor subclass: #DefaultMerchantProcessor
-	instanceVariableNames: 'transactionId'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibrosREST'!
-
-!DefaultMerchantProcessor methodsFor: 'debit' stamp: 'HAW 5/5/2020 17:13:16'!
-debit: anAmount from: aCreditCard 
-
-	transactionId := transactionId + 1.
-	^transactionId! !
-
-
-!DefaultMerchantProcessor methodsFor: 'initialization' stamp: 'HAW 5/5/2020 17:13:31'!
-initialize
-
-	super initialize.
-	transactionId := 0! !
-
-
-!classDefinition: #Parallelizer category: 'TusLibrosREST'!
-Object subclass: #Parallelizer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibrosREST'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Parallelizer class' category: 'TusLibrosREST'!
-Parallelizer class
-	instanceVariableNames: ''!
-
-!Parallelizer class methodsFor: 'as yet unclassified' stamp: 's 11/12/2023 20:11:10'!
-asynchronicallyDo: aBlock! !
-
-
 !classDefinition: #TusLibrosClientRestInterface category: 'TusLibrosREST'!
 Object subclass: #TusLibrosClientRestInterface
 	instanceVariableNames: 'port'
@@ -267,7 +209,45 @@ Object subclass: #TusLibrosClientRestInterface
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/13/2022 07:05:17'!
+!TusLibrosClientRestInterface methodsFor: 'async' stamp: 'toto 11/13/2023 15:59:54'!
+asynchronicallyAdd: quantity of: bookIsbn toCartIdentifiedAs: cartId withSuccessResponseDo:aSuccessHandlerBlock withFailureResponseDo: aFailureHandlerBlock 
+
+	self
+		asynchronicallyDo:[self add: quantity of: bookIsbn toCartIdentifiedAs: cartId] 
+		withSuccessResponseDo:aSuccessHandlerBlock 
+		withFailureResponseDo: aFailureHandlerBlock.! !
+
+!TusLibrosClientRestInterface methodsFor: 'async' stamp: 'toto 11/13/2023 15:59:35'!
+asynchronicallyCreateCartFor: aUser password: aPassword withSuccessResponseDo:aSuccessHandlerBlock withFailureResponseDo: aFailureHandlerBlock 
+
+	self 
+		asynchronicallyDo:[self createCartFor: aUser password: aPassword] 
+		withSuccessResponseDo:aSuccessHandlerBlock 
+		withFailureResponseDo: aFailureHandlerBlock .! !
+
+!TusLibrosClientRestInterface methodsFor: 'async' stamp: 'toto 11/13/2023 15:58:46'!
+asynchronicallyDo: aBlockToExecute withSuccessResponseDo:aSuccessHandlerBlock withFailureResponseDo: aFailureHandlerBlock 
+
+	| response |
+
+	[[response:= aBlockToExecute value.
+	  aSuccessHandlerBlock valueWithPossibleArgument: response]
+	  	on: Error 
+		do: [:signal | aFailureHandlerBlock valueWithPossibleArgument: signal messageText ]
+	]fork.
+
+	! !
+
+!TusLibrosClientRestInterface methodsFor: 'async' stamp: 'toto 11/13/2023 15:59:18'!
+asynchronicallyListCart: cartId withSuccessResponseDo:aSuccesHandlerBlock withFailureResponseDo: aFailureHandlerBlock 
+	self 
+		asynchronicallyDo:[self listCart:cartId] 
+		withSuccessResponseDo:aSuccesHandlerBlock 
+		withFailureResponseDo: aFailureHandlerBlock .
+	! !
+
+
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'toto 11/13/2023 15:05:27'!
 add: quantity of: bookIsbn toCartIdentifiedAs: cartId
 
 	| fieldDict resp |
@@ -275,12 +255,12 @@ add: quantity of: bookIsbn toCartIdentifiedAs: cartId
 	fieldDict := Dictionary newFromPairs: {'cartId'. cartId. 'bookIsbn'. bookIsbn. 'bookQuantity'. quantity}.		
 		
 	resp := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict.
-		
+	
 	resp isSuccess 
 		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))]
-		ifFalse:[^self error: resp content]! !
+		ifFalse:[self error: resp content]! !
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/9/2022 08:11:20'!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'toto 11/13/2023 14:09:40'!
 createCartFor: aUser password: aPassword
 
 	| fieldDict resp |
@@ -291,9 +271,9 @@ createCartFor: aUser password: aPassword
 		
 	resp isSuccess 
 		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream))] 
-		ifFalse:[^self error: resp content]! !
+		ifFalse:[self error: resp content]! !
 
-!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'NR 6/9/2022 08:11:24'!
+!TusLibrosClientRestInterface methodsFor: 'requests' stamp: 'toto 11/13/2023 14:09:43'!
 listCart: cartId
 
 	| fieldDict resp |
@@ -304,29 +284,7 @@ listCart: cartId
 		
 	resp isSuccess 
 		ifTrue:[^(WebUtils jsonDecode: ((resp content) readStream)) asOrderedCollection] 
-		ifFalse:[^self error: resp content]! !
-
-
-!TusLibrosClientRestInterface methodsFor: 'async' stamp: 's 11/12/2023 21:25:34'!
-asynchronicallyAdd: quantity of: bookIsbn toCartIdentifiedAs: cartId withSuccessResponseDo: aBlock 
-	
-	self asynchronicallyDo: [self add: quantity of: bookIsbn toCartIdentifiedAs: cartId ] withSuccessResponseDo:aBlock! !
-
-!TusLibrosClientRestInterface methodsFor: 'async' stamp: 's 11/12/2023 21:28:26'!
-asynchronicallyCreateCartFor: aUser password: aPassword withSuccessResponseDo: aBlock 
-
-	self asynchronicallyDo: [self createCartFor: aUser password: aPassword ] withSuccessResponseDo: aBlock .
-	! !
-
-!TusLibrosClientRestInterface methodsFor: 'async' stamp: 's 11/12/2023 21:50:22'!
-asynchronicallyDo: aBlock withSuccessResponseDo:anotherBlock 
-	
-	[|response| response:= aBlock value.anotherBlock valueWithPossibleArgument: response]fork! !
-
-!TusLibrosClientRestInterface methodsFor: 'async' stamp: 's 11/12/2023 21:28:34'!
-asynchronicallyListCart: cartId withSuccessResponseDo: aBlock 
-	self asynchronicallyDo: [self listCart:cartId] withSuccessResponseDo:aBlock .
-	! !
+		ifFalse:[self error: resp content]! !
 
 
 !TusLibrosClientRestInterface methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:11:33'!
@@ -408,7 +366,7 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 's 11/12/2023 21:37:35'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'toto 11/13/2023 15:56:55'!
 addToCart
 
 	| cartId bookIsbn |
@@ -416,45 +374,44 @@ addToCart
 	(self areCartIdAndBookSelected) ifTrue:[
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		self handleServerErrorDuring: [restInterface 
-			asynchronicallyAdd: 1 of: bookIsbn toCartIdentifiedAs:cartId  
-			withSuccessResponseDo:[self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]]].
+		restInterface 
+			asynchronicallyAdd: 1 of: bookIsbn toCartIdentifiedAs: cartId 
+			withSuccessResponseDo:[self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]  			withFailureResponseDo: [:errorDescription| self triggerEvent: #serverError with:errorDescription]].
 		! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 's 11/12/2023 21:38:08'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'toto 11/13/2023 15:57:07'!
 createCart
 
-	self handleServerErrorDuring: [restInterface 
+
+	
+	 restInterface 
 		asynchronicallyCreateCartFor: 'hernan' password: 'smalltalk' 
-		withSuccessResponseDo:[:newCartId| cartIds add: newCartId.
-								self triggerEvent: #newCartIdArrived]]! !
+		withSuccessResponseDo:[:newCartId|				cartIds add: newCartId.
+								self triggerEvent: #newCartIdArrived] 
+		withFailureResponseDo: [:errorDescription | self triggerEvent: #serverError with: errorDescription].
+	! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 's 11/12/2023 21:37:14'!
-handleServerErrorDuring: aBlock
-
-	^ aBlock on: Error do: [:errorDescription| self triggerEvent: #serverError with: errorDescription]! !
-
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 's 11/12/2023 21:38:26'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'toto 11/13/2023 15:57:15'!
 listCart
 
 	| cartId |
 	
 	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		self handleServerErrorDuring:[restInterface 
+		 restInterface 
 			asynchronicallyListCart: cartId 
-			withSuccessResponseDo:[:response|						currentSelectedCartContent :=response.
-								    	self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ]]]! !
+			withSuccessResponseDo:[:response| 						currentSelectedCartContent := response.
+									self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId]  			withFailureResponseDo: [:errorDescription | self triggerEvent: #serverError with: errorDescription]].! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 's 11/12/2023 20:25:57'!
+!TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'toto 11/13/2023 03:38:29'!
 defaultCatalog 
 
 	^Dictionary new
 		at: 'GreenBook' put: 10*dollar;
 		at: 'BlueBook' put: 15*dollar;
 		at: 'MartinFierro' put: 350*peso;
-		at: 'Cabeza' put: 10*dollar;
+		at: 'Not Pulished Book' put: 100*peso;
 		yourself! !
 
 !TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:13:15'!
@@ -709,3 +666,42 @@ installForDefaultSystem
 		addService: '/listPurchases' 
 		action: [:request | interface listPurchases: request ].
 	server useDebugErrorHandler ! !
+
+
+!classDefinition: #DefaultMerchantProcessor category: 'TusLibrosREST'!
+ProtoObject subclass: #DefaultMerchantProcessor
+	instanceVariableNames: 'transactionId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+
+!DefaultMerchantProcessor methodsFor: 'debit' stamp: 'HAW 5/5/2020 17:13:16'!
+debit: anAmount from: aCreditCard 
+
+	transactionId := transactionId + 1.
+	^transactionId! !
+
+
+!DefaultMerchantProcessor methodsFor: 'initialization' stamp: 'HAW 5/5/2020 17:13:31'!
+initialize
+
+	super initialize.
+	transactionId := 0! !
+
+
+!classDefinition: #RealTimeClock category: 'TusLibrosREST'!
+ProtoObject subclass: #RealTimeClock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+
+!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:39'!
+now
+
+	^DateAndTime now! !
+
+!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:48'!
+today
+
+	^Date today! !
