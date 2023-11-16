@@ -1,3 +1,32 @@
+!classDefinition: #AddressTest category: 'CustomerImporter'!
+TestCase subclass: #AddressTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!AddressTest methodsFor: 'accessing' stamp: 'IB 11/16/2023 16:36:24'!
+address
+
+	^ Address new 
+		streetName: 'Calle Falsa';
+		streetNumber: 123;
+		town: 'Springfield';
+		zipCode: 123;
+		province: 'Buenos Aires'! !
+
+
+!AddressTest methodsFor: 'tests' stamp: 'IB 11/16/2023 16:36:50'!
+testEquality
+
+	|address sameAddress|
+	
+	address := self address.
+	sameAddress := self address.
+	
+	self assert: address equals: sameAddress! !
+
+
 !classDefinition: #CustomerImportTest category: 'CustomerImporter'!
 TestCase subclass: #CustomerImportTest
 	instanceVariableNames: 'session pepe juan pepeAddresses juanAddresses calleSanMartin calleMaipu calleAlem'
@@ -191,6 +220,36 @@ inputData
 		(self importerEntryForAddress: self alemAddress)! !
 
 
+!classDefinition: #CustomerTest category: 'CustomerImporter'!
+TestCase subclass: #CustomerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!CustomerTest methodsFor: 'accessing' stamp: 'IB 11/16/2023 16:39:10'!
+customer
+	
+	^Customer new 
+		firstName: 'Pepe';
+		lastName: 'Argento';
+		identificationType: 'D';
+		identificationNumber: 3482305923;
+		yourself
+	! !
+
+
+!CustomerTest methodsFor: 'tests' stamp: 'IB 11/16/2023 16:37:58'!
+testEquality
+
+	|customer sameCustomer|
+	
+	customer := self customer.
+	sameCustomer := self customer.
+	
+	self assert: customer equals: sameCustomer! !
+
+
 !classDefinition: #Address category: 'CustomerImporter'!
 Object subclass: #Address
 	instanceVariableNames: 'id streetName streetNumber town zipCode province'
@@ -251,6 +310,14 @@ town: aTown
 	province = aStreetToCompareTo province).
 	
 	! !
+
+!Address methodsFor: 'testing' stamp: 'IB 11/16/2023 16:42:10'!
+hash
+
+	^ (((zipCode hash bitXor: province hash) 
+		bitXor: streetName hash) 
+		bitXor: streetNumber hash)
+		bitXor: town hash! !
 
 
 !Address methodsFor: 'zip code' stamp: 'HAW 5/22/2022 00:19:29'!
@@ -343,6 +410,13 @@ initialize
 	lastName = aCustomerToCompareTo lastName and: 
 	identificationNumber = aCustomerToCompareTo identificationNumber and: 
 	identificationType = aCustomerToCompareTo identificationType).! !
+
+!Customer methodsFor: 'testing' stamp: 'IB 11/16/2023 16:42:00'!
+hash
+
+	^ (((firstName hash bitXor: lastName hash) 
+		bitXor: identificationType hash) 
+		bitXor: identificationNumber hash)! !
 
 
 !classDefinition: #CustomerImporter category: 'CustomerImporter'!
