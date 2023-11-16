@@ -1,159 +1,194 @@
-!classDefinition: #AddressTests category: 'CustomerImporter'!
-TestCase subclass: #AddressTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'CustomerImporter'!
-
-!AddressTests methodsFor: 'tests' stamp: 'TAO 11/16/2023 03:15:14'!
-test01Equals
-	self assert: self defaultStreet = self defaultStreet.! !
-
-
-!AddressTests methodsFor: 'as yet unclassified' stamp: 'TAO 11/16/2023 03:17:00'!
-defaultStreet
-	| defaultStreet |
-	defaultStreet:= Address new.
-	defaultStreet streetName:'Alem'.
-	defaultStreet streetNumber:'1122'.
-	defaultStreet town:'CABA'.
-	defaultStreet zipCode: '1001'.
-defaultStreet province: 'CABA'.
-	^defaultStreet! !
-
-
-!classDefinition: #CustomerTests category: 'CustomerImporter'!
-TestCase subclass: #CustomerTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'CustomerImporter'!
-
-!CustomerTests methodsFor: 'tests' stamp: 'TAO 11/16/2023 03:15:28'!
-test01Equals
-	self assert: self defaultCustomer = self defaultCustomer.! !
-
-
-!CustomerTests methodsFor: 'as yet unclassified' stamp: 'TAO 11/16/2023 03:15:28'!
-defaultCustomer
-	| pepe |
-	pepe := Customer new.
-	pepe firstName: 'Pepe'.
-	pepe lastName: 'Sanchez'.
-	pepe identificationType: 'D'.
-	pepe identificationNumber: '22333444'.
-	^pepe! !
-
-
-!classDefinition: #ImportTest category: 'CustomerImporter'!
-TestCase subclass: #ImportTest
+!classDefinition: #CustomerImportTest category: 'CustomerImporter'!
+TestCase subclass: #CustomerImportTest
 	instanceVariableNames: 'session pepe juan pepeAddresses juanAddresses calleSanMartin calleMaipu calleAlem'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'assertions' stamp: 'TAO 11/16/2023 02:58:03'!
-assertQuantityOfCustomersIsCorrect
+!CustomerImportTest methodsFor: 'assertions' stamp: 'IB 11/16/2023 11:20:50'!
+assertThat: aCustomer isIn: storedCustomers
 
-	^ self assert: (session selectAllOfType: Customer) size equals:2! !
+	^ self 
+		assertThersIsACustomerIn: storedCustomers 
+		withIdentificationType: aCustomer identificationType 
+		andNumber: aCustomer identificationNumber
+		thenDo: [:storedCustomer | 
+			self 
+				assert: storedCustomer equals: aCustomer;
+				assert: storedCustomer addresses equals: aCustomer addresses]! !
+
+!CustomerImportTest methodsFor: 'assertions' stamp: 'IB 11/16/2023 10:42:54'!
+assertThersIsACustomerIn: aCustomersCollection withIdentificationType: aCustomerIdentificationType andNumber: aCustomerIdentificationNumber thenDo: aBlock
+
+	^ aCustomersCollection 
+		detect: [:customer | 
+			customer identificationType = aCustomerIdentificationType and: [
+				customer identificationNumber = aCustomerIdentificationNumber]]
+		ifFound: aBlock 
+		ifNone: [self fail]! !
 
 
-!ImportTest methodsFor: 'tests' stamp: 'TAO 11/16/2023 03:35:27'!
-test01Import
+!CustomerImportTest methodsFor: 'support' stamp: 'IB 11/16/2023 11:16:26'!
+importCustomersFrom: inputData
 
-	| firstCustomer secondCustomer  |
-	(CustomerImporter from: session in: self defaultInputData)import.
-	
-	self assertQuantityOfCustomersIsCorrect.
-	
-	firstCustomer := (session select:[:aCostumer| aCostumer  = pepe] ofType:Customer) anyOne.
-	secondCustomer := (session select:[:aCostumer| aCostumer  = juan] ofType:Customer) anyOne.
-	
-	self assert: pepeAddresses equals: firstCustomer addresses.
-	self assert: juanAddresses equals: secondCustomer addresses.
+	^ (CustomerImporter importingFrom: session registeringTo: inputData) import! !
+
+!CustomerImportTest methodsFor: 'support' stamp: 'IB 11/16/2023 11:11:53'!
+withRegisteredCustomersDo: aOneArgBlock
+
+	aOneArgBlock value: (session selectAllOfType: Customer)
 	
 	
 	
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/16/2023 03:04:24'!
+!CustomerImportTest methodsFor: 'tests' stamp: 'IB 11/16/2023 11:54:21'!
+testCustomerImport
+	
+	self importCustomersFrom: self inputData.
+	
+	self withRegisteredCustomersDo: [:storedCustomers |
+		self assert: storedCustomers size equals: 2.
+		self 
+			assertThat: self customer isIn: storedCustomers;
+			assertThat: self anotherCustomer isIn: storedCustomers]
+	
+	
+	
+	! !
+
+
+!CustomerImportTest methodsFor: 'running' stamp: 'IB 11/16/2023 10:53:46'!
 setUp
-	session := DataBaseSession for: (Array with: Address with: Customer).
-	session beginTransaction.
-	self pepe.
-	self juan.
-	self calleSanMartin.
-	self calleMaipu.
-	self calleAlem.
-	pepeAddresses := OrderedCollection with: calleSanMartin with: calleMaipu.
-	juanAddresses := OrderedCollection with:calleAlem.
-	! !
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/16/2023 02:27:32'!
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction! !
+
+!CustomerImportTest methodsFor: 'running' stamp: 'IB 11/16/2023 10:53:51'!
 tearDown
+
 	session commit.
 	session close! !
 
 
-!ImportTest methodsFor: 'addresses' stamp: 'TAO 11/16/2023 03:24:22'!
-calleAlem
-	calleAlem:= Address new.
-	self crearCalle: calleAlem  withStreetName: 'Alem' withStreetNumber: 1122 inTown: 'CABA' withZipCode: 1001  inProvince: 'CABA'! !
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 10:49:33'!
+addressAtStreet: aStreetName numbered: aStreetNumber inTown: aTown withZIPCode: aZIPCode onProvince: aProvince
 
-!ImportTest methodsFor: 'addresses' stamp: 'TAO 11/16/2023 03:24:26'!
-calleMaipu
-	calleMaipu:= Address new.
-	self crearCalle: calleMaipu  withStreetName: 'Maipu' withStreetNumber: 888 inTown: 'Florida' withZipCode: 1122  inProvince: 'Buenos Aires'
-	! !
+	^ Address new 
+		streetName: aStreetName;
+		streetNumber: aStreetNumber;
+		town: aTown;
+		zipCode: aZIPCode;
+		province: aProvince! !
 
-!ImportTest methodsFor: 'addresses' stamp: 'TAO 11/16/2023 03:24:30'!
-calleSanMartin
-	calleSanMartin := Address new.
-	self crearCalle: calleSanMartin  withStreetName: 'San Martin' withStreetNumber: 3322 inTown: 'Olivos' withZipCode: 1636  inProvince: 'BsAs'
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 10:52:00'!
+alemAddress
 	
-	! !
+	^ self 
+		addressAtStreet: 'Alem' 
+		numbered: 1122 
+		inTown: 'CABA' 
+		withZIPCode: 1001 
+		onProvince: 'CABA'! !
 
-!ImportTest methodsFor: 'addresses' stamp: 'TAO 11/16/2023 03:10:43'!
-crearCalle: anStreet withStreetName: anStreetName withStreetNumber:anStreetNumber inTown:aTown withZipCode: aZipCode inProvince: aProvince
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 11:01:13'!
+anotherCustomerAddresses
 
-	
-	anStreet streetName:anStreetName.
-	anStreet streetNumber:anStreetNumber.
-	anStreet town:aTown.
-	anStreet zipCode: aZipCode.
-	anStreet province: aProvince! !
+	^ OrderedCollection with: self alemAddress! !
+
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 10:53:14'!
+customerAddresses
+
+	^ OrderedCollection with: self sanMartinAddress with: self maipuAddress! !
+
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 10:51:51'!
+maipuAddress
+
+	^ self 
+		addressAtStreet: 'Maipu' 
+		numbered: 888 
+		inTown: 'Florida' 
+		withZIPCode: 1122 
+		onProvince: 'Buenos Aires'! !
+
+!CustomerImportTest methodsFor: 'addresses' stamp: 'IB 11/16/2023 10:52:11'!
+sanMartinAddress
+
+	^ self 
+		addressAtStreet: 'San Martin' 
+		numbered: 3322 
+		inTown: 'Olivos' 
+		withZIPCode: 1636 
+		onProvince: 'BsAs'! !
 
 
-!ImportTest methodsFor: 'customers' stamp: 'TAO 11/15/2023 23:54:50'!
-juan
+!CustomerImportTest methodsFor: 'customers' stamp: 'IB 11/16/2023 11:19:40'!
+anotherCustomer
 	 
-	juan := Customer new.
-	juan firstName: 'Juan'.
-	juan lastName: 'Perez'.
-	juan identificationType: 'C'.
-	juan identificationNumber: '23-25666777-9'.
+	^self 
+		customerWithFirstName: 'Juan' 
+		andLastName: 'Perez' 
+		withIdentificationOfType: 'C' 
+		andNumber: '23-25666777-9' 
+		withRegisteredAddresses: self anotherCustomerAddresses! !
+
+!CustomerImportTest methodsFor: 'customers' stamp: 'IB 11/16/2023 11:19:32'!
+customer
+
+	 ^self 
+		customerWithFirstName: 'Pepe' 
+		andLastName: 'Sanchez' 
+		withIdentificationOfType: 'D' 
+		andNumber: '22333444' 
+		withRegisteredAddresses: self customerAddresses! !
+
+!CustomerImportTest methodsFor: 'customers' stamp: 'IB 11/16/2023 11:14:06'!
+customerWithFirstName: aCustomerFirstName andLastName: aCustomerLastName withIdentificationOfType: anIdentificationType andNumber: anIdentificationNumber withRegisteredAddresses: anAddressCollection 
+	 
+	^ Customer new 
+		firstName: aCustomerFirstName;
+		lastName: aCustomerLastName;
+		identificationType: anIdentificationType;
+		identificationNumber: anIdentificationNumber;
+		addAddressesIn: anAddressCollection
 	! !
 
-!ImportTest methodsFor: 'customers' stamp: 'TAO 11/15/2023 23:54:39'!
-pepe
-	pepe := Customer new.
-	pepe firstName: 'Pepe'.
-	pepe lastName: 'Sanchez'.
-	pepe identificationType: 'D'.
-	pepe identificationNumber: '22333444'.
-	! !
 
+!CustomerImportTest methodsFor: 'data' stamp: 'IB 11/16/2023 11:52:53'!
+importerEntryForAddress: anAddress
 
-!ImportTest methodsFor: 'data' stamp: 'TAO 11/16/2023 03:35:09'!
-defaultInputData
+	^((OrderedCollection
+		with: anAddress streetName 
+		with: anAddress streetNumber
+		with: anAddress town
+		with: anAddress zipCode
+		with: anAddress province ) 
+			inject: 'A' 
+			into: [:previousString :customerData | previousString asString, ',' , customerData asString]) ,String lfString
+! !
+
+!CustomerImportTest methodsFor: 'data' stamp: 'IB 11/16/2023 11:52:40'!
+importerEntryForCustomer: customer
+
+	^((OrderedCollection
+		with: customer firstName 
+		with: customer lastName 
+		with: customer identificationType 
+		with: customer identificationNumber) 
+			inject: 'C' 
+			into: [:previousString :customerData | previousString, ',' , customerData]), String lfString
+! !
+
+!CustomerImportTest methodsFor: 'data' stamp: 'IB 11/16/2023 11:53:19'!
+inputData
 
 	^ ReadStream on: 
-				'C,Pepe,Sanchez,D,22333444
-A,San Martin,3322,Olivos,1636,BsAs
-A,Maipu,888,Florida,1122,Buenos Aires
-C,Juan,Perez,C,23-25666777-9
-A,Alem,1122,CABA,1001,CABA'! !
+		(self importerEntryForCustomer: self customer),
+		(self importerEntryForAddress: self sanMartinAddress),
+		(self importerEntryForAddress: self maipuAddress),
+		(self importerEntryForCustomer: self anotherCustomer),
+		(self importerEntryForAddress: self alemAddress)! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -241,6 +276,11 @@ addAddress: anAddress
 
 	addresses add: anAddress ! !
 
+!Customer methodsFor: 'addresses' stamp: 'IB 11/16/2023 11:14:29'!
+addAddressesIn: anAddressCollection
+
+	addresses addAll: anAddressCollection! !
+
 !Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
 addresses
 
@@ -312,11 +352,11 @@ Object subclass: #CustomerImporter
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!CustomerImporter methodsFor: 'initialization' stamp: 'TAO 11/16/2023 03:33:05'!
-initializeIn: anStream From: aSession 
+!CustomerImporter methodsFor: 'initialization' stamp: 'IB 11/16/2023 11:16:06'!
+initializeImportingFrom: anStream registeringTo: aSession 
 
 	stream := anStream.
-	session := aSession.
+	session := aSession
 	! !
 
 
@@ -357,9 +397,10 @@ import
 CustomerImporter class
 	instanceVariableNames: ''!
 
-!CustomerImporter class methodsFor: 'instance creation' stamp: 'TAO 11/16/2023 03:33:05'!
-from: anInputStream in: aSession 
-	^self new initializeIn: aSession From: anInputStream ! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/16/2023 11:16:30'!
+importingFrom: anInputStream registeringTo: aSession 
+
+	^self new initializeImportingFrom: aSession registeringTo: anInputStream ! !
 
 
 !classDefinition: #DataBaseSession category: 'CustomerImporter'!
