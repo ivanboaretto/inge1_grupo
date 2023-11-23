@@ -1,0 +1,2808 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (22 November 2023 20:10:56) as C:\Users\ivanb\Desktop\Cuis\CustomerImporterIter3\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\ivanb\Desktop\Cuis\CustomerImporterIter3\windows64\CustomerImporter.st----!
+!CustomerImporter methodsFor: 'evaluating--private' stamp: 'IB 11/22/2023 20:13:49' prior: 50650798!
+canKeepImporting
+
+	line := readStream nextLine.
+	^ line notNil! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:14:22' prior: 50650829!
+from: aReadStream into: aSession
+
+	^self new initializeFrom: aReadStream into: aSession! !
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 20:15:10' prior: 50650841!
+invalidLineErrorDescription
+
+	^'invalid begin of line'! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:15:22' prior: 50650731!
+initializeFrom: aReadStream into: aSession
+
+	session := aSession.
+	readStream := aReadStream.
+	! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:15:25' prior: 50650959!
+initializeFrom: aReadStream into: aSession
+
+	session := aSession.
+	readStream := aReadStream
+	! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 20:15:43' prior: 50650737!
+assertDataIsNotEmpty
+
+	^ data isEmpty ifTrue: [self error: self class invalidLineErrorDescription ]! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 20:15:46' prior: 50650972!
+assertDataIsNotEmpty
+
+	^ data isEmpty ifTrue: [self error: self class invalidLineErrorDescription]! !
+!CustomerImporter methodsFor: 'address' stamp: 'IB 11/22/2023 20:16:13' prior: 50650766!
+importAddress
+
+	self assertValidAddressData.
+	newCustomer addAddress: (self createNewAddressBasedOn: data)! !
+!CustomerImporter methodsFor: 'address' stamp: 'IB 11/22/2023 20:16:32'!
+addressBasedOn: addressData
+	
+	^ Address 
+		withStreetName: addressData second  
+		withStreetNumber: addressData third asNumber 
+		placedAtTown:  addressData fourth 
+		withZipCode: addressData fifth asNumber 
+		inProvince: addressData sixth.
+	
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:16:32' prior: 50650985!
+importAddress
+
+	self assertValidAddressData.
+	newCustomer addAddress: (self addressBasedOn: data)! !
+
+!methodRemoval: CustomerImporter #createNewAddressBasedOn: stamp: 'IB 11/22/2023 20:16:32'!
+createNewAddressBasedOn: addressData
+	
+	^ Address 
+		withStreetName: addressData second  
+		withStreetNumber: addressData third asNumber 
+		placedAtTown:  addressData fourth 
+		withZipCode: addressData fifth asNumber 
+		inProvince: addressData sixth.
+	
+	!
+!CustomerImporter methodsFor: 'address' stamp: 'IB 11/22/2023 20:16:44' prior: 50650772!
+lineIsForDecodingAddresses
+
+	^ data first = 'A'! !
+!CustomerImporter methodsFor: 'customer' stamp: 'IB 11/22/2023 20:16:53' prior: 50650786!
+importCustomer
+
+	self assertValidCustomerData.
+	newCustomer := self createNewCustomerBasedOn: data.
+	session persist: newCustomer! !
+!CustomerImporter methodsFor: 'customer' stamp: 'IB 11/22/2023 20:17:06' prior: 50650793!
+lineIsForDecodingCustomer
+
+	^ data first = 'C'! !
+!DataBaseSession methodsFor: 'transaction management' stamp: 'IB 11/22/2023 20:32:46' prior: 50650864!
+commit
+
+	(tables at: Customer ifAbsent:[^self]) do: [ :aCustomer | self persistAddressesOf: aCustomer ]
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:38:11'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'repository readStream newCustomer decodingProcedures line data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:38:11' prior: 50650966!
+initializeFrom: aReadStream into: aSession
+
+	repository := aSession.
+	readStream := aReadStream
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:38:11' prior: 50651024!
+importCustomer
+
+	self assertValidCustomerData.
+	newCustomer := self createNewCustomerBasedOn: data.
+	repository persist: newCustomer! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:39:25'!
+readingFrom: aReadStream storingInto: aSession
+
+	^self new initializeFrom: aReadStream into: aSession! !
+!CustomerImporter class methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:39:25' prior: 50650835!
+valueFrom: aReadStream into: aSession
+
+	^(self readingFrom: aReadStream storingInto: aSession) value! !
+
+!methodRemoval: CustomerImporter class #from:into: stamp: 'IB 11/22/2023 20:39:25'!
+from: aReadStream into: aSession
+
+	^self new initializeFrom: aReadStream into: aSession!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:39:31' prior: 50651067!
+readingFrom: aReadStream storingInto: aRepository
+
+	^self new initializeFrom: aReadStream into: aRepository! !
+!CustomerImporter class methodsFor: 'importing' stamp: 'IB 11/22/2023 20:39:50'!
+valueReadingFrom: aReadStream storingInto: aSession
+
+	^(self readingFrom: aReadStream storingInto: aSession) value! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:39:50' prior: 50650335!
+test01ImportValidData
+	
+	CustomerImporter valueReadingFrom: self validImportData storingInto: session.
+	
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:39:50' prior: 50650566!
+import: aData into: aSession shouldFailWithMessageText: aMessageErrorDescription 
+	self 
+		should:[CustomerImporter valueReadingFrom: aData storingInto: aSession.]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+
+!methodRemoval: CustomerImporter class #valueFrom:into: stamp: 'IB 11/22/2023 20:39:50'!
+valueFrom: aReadStream into: aSession
+
+	^(self readingFrom: aReadStream storingInto: aSession) value!
+!CustomerImporter class methodsFor: 'importing' stamp: 'IB 11/22/2023 20:39:56' prior: 50651092!
+valueReadingFrom: aReadStream storingInto: aRepository
+
+	^(self readingFrom: aReadStream storingInto: aRepository) value! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:40:18'!
+initializeReadingFrom: aReadStream storingInto: aSession
+
+	repository := aSession.
+	readStream := aReadStream
+	! !
+!CustomerImporter class methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:40:18' prior: 50651086!
+readingFrom: aReadStream storingInto: aRepository
+
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+
+!methodRemoval: CustomerImporter #initializeFrom:into: stamp: 'IB 11/22/2023 20:40:18'!
+initializeFrom: aReadStream into: aSession
+
+	repository := aSession.
+	readStream := aReadStream
+	!
+!CustomerImporter methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:40:25' prior: 50651134!
+initializeReadingFrom: aReadStream storingInto: aRepository
+
+	repository := aRepository.
+	readStream := aReadStream
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:40:56' prior: 50651099!
+test01ImportValidData
+	
+	CustomerImporter valueReadingFrom: self validImportData storingInto: self repository.
+	
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:40:57'!
+ERROR!
+!ImportTest methodsFor: 'accessing' stamp: 'IB 11/22/2023 20:41:03'!
+repository
+	self shouldBeImplemented.! !
+
+!classDefinition: #PersistentRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:42:57'!
+Object subclass: #PersistentRepository
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'accessing' stamp: 'IB 11/22/2023 20:42:45' prior: 50651174!
+repository
+	
+	^PersistentRepository workingWith: session! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:43:00'!
+ERROR!
+!PersistentRepository class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:43:04'!
+workingWith: aSession 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWorkingWith: aSession ! !
+!PersistentRepository class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:43:09' prior: 50651194!
+workingWith: aSession 
+	^self new initializeWorkingWith: aSession ! !
+!PersistentRepository class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 20:43:11' prior: 50651203!
+workingWith: aSession 
+
+	^self new initializeWorkingWith: aSession ! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:43:17'!
+ERROR!
+!PersistentRepository methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:43:27'!
+initializeWorkingWith: aSession 
+	self shouldBeImplemented.
+	session := aSession.! !
+!PersistentRepository methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:43:32' prior: 50651217!
+initializeWorkingWith: aSession 
+	
+	session := aSession.! !
+!PersistentRepository methodsFor: 'initialization' stamp: 'IB 11/22/2023 20:43:33' prior: 50651223!
+initializeWorkingWith: aSession 
+	
+	session := aSession! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:43:34'!
+ERROR!
+!CustomerImporter methodsFor: 'customer' stamp: 'IB 11/22/2023 20:43:45' prior: 50651059!
+importCustomer
+
+	self assertValidCustomerData.
+	newCustomer := self createNewCustomerBasedOn: data.
+	repository store: newCustomer! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:43:47'!
+ERROR!
+!PersistentRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:43:57'!
+store: aNewCustomer 
+	self shouldBeImplemented.! !
+!PersistentRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:44:13' prior: 50651246!
+store: anObject
+
+	session persist: anObject! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:44:15'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:44:16'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:44:16'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:44:16'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:44:16'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:44:16'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:44:17'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:44:19'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:44:34' prior: 50650345!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (session selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:45:09' prior: 50650363!
+test03ImportWorksUntilCustomerMissingField
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (session selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:45:11' prior: 50650381!
+test04ImportWorksUntilAddressMissingField
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (session selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:45:14' prior: 50650399!
+test05ImportFailWhenDataIsEmpty
+	
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 0 equals: (session selectAllOfType: Customer) size.
+	
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 20:45:16' prior: 50650409!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 0 equals: (session selectAllOfType: Customer) size.
+	
+	
+	
+		
+	
+	! !
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:45:17'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:45:17'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:45:18'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:45:18'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:45:19'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:45:19'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:45:19'!
+PASSED!
+
+ImportTest subclass: #TransientImportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:46:15'!
+ImportTest subclass: #TransientImportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:46:17'!
+PASSED!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:46:18'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:46:18'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:46:18'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:46:19'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:46:19'!
+PASSED!
+
+!classDefinition: #TransientRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:49:20'!
+Object subclass: #TransientRepository
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientImportTest methodsFor: 'no messages' stamp: 'IB 11/22/2023 20:49:14' overrides: 50651186!
+repository
+	
+	^TransientRepository new! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:49:27'!
+ERROR!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:49:27'!
+ERROR!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:49:27'!
+ERROR!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:49:27'!
+ERROR!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:49:27'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:49:27'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:49:28'!
+ERROR!
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:49:41'!
+store: aNewCustomer 
+	self shouldBeImplemented.! !
+
+!classDefinition: #TransientRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:50:17'!
+Object subclass: #TransientRepository
+	instanceVariableNames: 'colection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:50:15' prior: 50651454!
+store: anObject 
+	
+	colection := Set new! !
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:50:38' overrides: 16920235!
+initialize
+	
+	colection := Set new! !
+
+!classDefinition: #TransientRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:50:43'!
+Object subclass: #TransientRepository
+	instanceVariableNames: 'collection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientRepository methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:50:43' prior: 50651472 overrides: 16920235!
+initialize
+	
+	collection := Set new! !
+!TransientRepository methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:50:43' prior: 50651467!
+store: anObject 
+	
+	collection := Set new! !
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:50:57' prior: 50651490!
+store: anObject 
+	
+	collection add: anObject! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:51:01'!
+ERROR!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:51:06'!
+FAILURE!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:51:07'!
+FAILURE!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:51:07'!
+FAILURE!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:51:07'!
+FAILURE!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:51:07'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:51:07'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:51:08'!
+FAILURE!
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 20:51:38' prior: 50650459!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (self repository selectAllOfType: Customer) size! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:51:40'!
+ERROR!
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 20:51:59'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 20:52:35' prior: 50651536!
+selectAllOfType: aClass
+
+	collection collect: [:storedObject | storedObject class = aClass]! !
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 20:52:38' prior: 50651541!
+selectAllOfType: aClass
+
+	^collection collect: [:storedObject | storedObject class = aClass]! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:53:55'!
+FAILURE!
+
+self repository selectAllOfType: Customer!
+
+self repository !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:54:17'!
+FAILURE!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:54:22'!
+FAILURE!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 20:54:23'!
+FAILURE!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 20:54:23'!
+FAILURE!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 20:54:23'!
+FAILURE!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:54:23'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:54:23'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:54:24'!
+FAILURE!
+
+self repository!
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:55:08' prior: 50651495!
+store: anObject 
+	
+	self halt.
+	collection add: anObject! !
+
+anObject!
+
+collection!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 20:56:39' prior: 50650494 overrides: 16961394!
+setUp
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+	self setUpRepository
+! !
+
+!classDefinition: #TransientImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:57:12'!
+ImportTest subclass: #TransientImportTest
+	instanceVariableNames: 'repository'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:57:11'!
+setUpRepository
+	
+	repository := TransientRepository new! !
+!TransientImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:57:18' prior: 50651608!
+setUpRepository
+	
+	repository := self repository! !
+
+!classDefinition: #TransientImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:57:23'!
+ImportTest subclass: #TransientImportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 20:57:24'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session repository'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:57:24'!
+setUpRepository
+	
+	repository := self repository! !
+
+!methodRemoval: TransientImportTest #setUpRepository stamp: 'IB 11/22/2023 20:57:24'!
+setUpRepository
+	
+	repository := self repository!
+!TransientImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:58:13' overrides: 50651634!
+setUpRepository
+	
+	repository := TransientRepository new! !
+!TransientImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 20:58:18' prior: 50651426 overrides: 50651186!
+repository
+	
+	^repository! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 20:58:41' prior: 50651634!
+setUpRepository
+	
+	repository := PersistentRepository workingWith: session! !
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 20:59:03'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 20:59:03'!
+PASSED!
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:59:09' prior: 50651586!
+store: anObject 
+	
+	
+	collection add: anObject! !
+!TransientRepository methodsFor: 'storing' stamp: 'IB 11/22/2023 20:59:10' prior: 50651667!
+store: anObject 
+	
+	collection add: anObject! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:59:11'!
+FAILURE!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 20:59:17'!
+FAILURE!
+
+self repository!
+
+self repository selectAllOfType: Customer!
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 20:59:57' prior: 50651547!
+selectAllOfType: aClass
+
+	^collection select: [:storedObject | storedObject class = aClass]! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:00:20'!
+ERROR!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:00:24'!
+ERROR!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:00:24'!
+FAILURE!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:00:24'!
+FAILURE!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:00:25'!
+FAILURE!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:00:25'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:00:25'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:00:26'!
+ERROR!
+!ImportTest methodsFor: 'customer' stamp: 'IB 11/22/2023 21:00:57' prior: 50650505!
+customerWithIdentificationType: anIdType number: anIdNumber 
+
+	^ (self repository 
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:00:57'!
+ERROR!
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:01:04'!
+select: aRenameMe1 ofType: Customer 
+	self shouldBeImplemented.! !
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:01:50' prior: 50651731!
+select: aOneArgBlock ofType: aClass
+
+	^(collection selectAllOfType: aClass) select: aOneArgBlock! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:01:51'!
+ERROR!
+!TransientRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:01:58' prior: 50651736!
+select: aOneArgBlock ofType: aClass
+
+	^(self selectAllOfType: aClass) select: aOneArgBlock! !
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:01:59'!
+PASSED!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:02:00'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:02:10' prior: 50651281!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:02:11'!
+FAILURE!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:02:19'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:02:20'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:02:27' prior: 50651300!
+test03ImportWorksUntilCustomerMissingField
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:02:30'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:02:31'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:02:39' prior: 50651319!
+test04ImportWorksUntilAddressMissingField
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:02:41'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:02:44'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:02:46'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:02:46'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:02:46'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:02:46'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:02:46'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:02:47'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:02:48'!
+ERROR!
+!PersistentRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:03:01'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!PersistentRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:03:14' prior: 50651880!
+selectAllOfType: aClass
+
+	^session selectAllOfType: aClass! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:03:15'!
+ERROR!
+!PersistentRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:03:20'!
+select: aRenameMe1 ofType: Customer 
+	self shouldBeImplemented.! !
+!PersistentRepository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:03:50' prior: 50651893!
+select: aOneArgBlock ofType: Customer
+
+	^session select: aOneArgBlock ofType: Customer! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:03:51'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:03:53'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:03:54'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:03:55'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:03:59'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:03:59'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:04:00'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:04:00'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:04:00'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:04:00'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+!testRun: #TransientImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:04:02'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 21:04:05) CuisUniversity-5981.image priorSource: 10197292!
+
+Object subclass: #Repository
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Repository category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:04:17'!
+Object subclass: #Repository
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Repository subclass: #PersistentRepository
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:04:45'!
+Repository subclass: #PersistentRepository
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Repository subclass: #TransientRepository
+	instanceVariableNames: 'collection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:04:49'!
+Repository subclass: #TransientRepository
+	instanceVariableNames: 'collection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!Repository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:05:15'!
+select: aOneArgBlock ofType: aClass
+
+	self subclassResponsibility! !
+!Repository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:05:19' prior: 50651998!
+select: aOneArgBlock ofType: aClass
+
+	self subclassResponsibility! !
+!Repository methodsFor: 'querying' stamp: 'IB 11/22/2023 21:05:34'!
+selectAllOfType: aClass
+
+	self subclassResponsibility! !
+!Repository methodsFor: 'storing' stamp: 'IB 11/22/2023 21:05:46'!
+store: anObject
+
+	self subclassResponsibility! !
+
+!classDefinition: #TransientRepository category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:06:33'!
+Repository subclass: #TransientRepository
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientRepository methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:06:33' prior: 50651672 overrides: 50652012!
+store: anObject 
+	
+	elements add: anObject! !
+!TransientRepository methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:06:33' prior: 50651485 overrides: 16920235!
+initialize
+	
+	elements := Set new! !
+!TransientRepository methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:06:33' prior: 50651685 overrides: 50652008!
+selectAllOfType: aClass
+
+	^elements select: [:storedObject | storedObject class = aClass]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:06:54' prior: 50651758!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	| importedCustomer |
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:06:58' prior: 50652044!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	| importedCustomer |
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:07:22' prior: 50651814!
+test04ImportWorksUntilAddressMissingField
+	
+	| importedCustomer |
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:07:53' prior: 50651788!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 [| importedCustomer | self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0].
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:17'!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:17' prior: 50652101!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 [self assertCustomerRegisteredWithoutAddresses].
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:21' prior: 50652132!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assertCustomerRegisteredWithoutAddresses.
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:23' prior: 50652144!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assertCustomerRegisteredWithoutAddresses
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:28' prior: 50652082!
+test04ImportWorksUntilAddressMissingField
+	
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	self assertCustomerRegisteredWithoutAddresses
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:32' prior: 50652168!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	self assertCustomerRegisteredWithoutAddresses
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:08:44' prior: 50652063!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	self assertCustomerRegisteredWithoutAddresses
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:06'!
+assertNoCustomerRegistered
+
+	^ self assert: 0 equals: (session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:06' prior: 50651338!
+test05ImportFailWhenDataIsEmpty
+	
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered.
+	
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:06' prior: 50651349!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered.
+	
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:26' prior: 50652218!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered.
+	
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:37' prior: 50652230!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:42' prior: 50652208!
+test05ImportFailWhenDataIsEmpty
+	
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:44' prior: 50652253!
+test05ImportFailWhenDataIsEmpty
+	
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:09:46' prior: 50652262!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription.
+		
+	 self assertNoCustomerRegistered! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:10:56'!
+import: aData into: aSession shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	self 
+		should:[CustomerImporter valueReadingFrom: aData storingInto: aSession.]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:10:56' prior: 50652271!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription asserting: self halt.
+		
+	 self assertNoCustomerRegistered! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:10:56' prior: 50652156!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription asserting: self halt.
+		
+	 self assertCustomerRegisteredWithoutAddresses
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:10:56' prior: 50652180!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription asserting: self halt.
+		
+	self assertCustomerRegisteredWithoutAddresses
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:10:56' prior: 50652191!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription asserting: self halt.
+		
+	self assertCustomerRegisteredWithoutAddresses
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:10:56' prior: 50652242!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription asserting: self halt.
+		
+	 self assertNoCustomerRegistered! !
+
+!methodRemoval: ImportTest #import:into:shouldFailWithMessageText: stamp: 'IB 11/22/2023 21:10:56'!
+import: aData into: aSession shouldFailWithMessageText: aMessageErrorDescription 
+	self 
+		should:[CustomerImporter valueReadingFrom: aData storingInto: aSession.]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:11:13' prior: 50652328!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:11:23' prior: 50652302!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:11:42' prior: 50652315!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:11:57' prior: 50652292!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		import: self emptyData into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:12:14' prior: 50652341!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:12:20' prior: 50652410!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:12:35' prior: 50652400!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		import: self emptyData 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:12:41' prior: 50652421!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:13:07' prior: 50652388!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField 
+		into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:13:12' prior: 50652376!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField 
+		into: self repository
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:13:18' prior: 50652466!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:13:31' prior: 50652364!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:15:10'!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+
+!methodRemoval: ImportTest #test02ImportWorksUntilLineStartsWithOutCOrA stamp: 'IB 11/22/2023 21:15:10'!
+test02ImportWorksUntilLineStartsWithOutCOrA
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType 
+		into: self repository
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	!
+
+!methodRemoval: ImportTest #repository stamp: 'IB 11/22/2023 21:16:38'!
+repository
+	
+	^PersistentRepository workingWith: session!
+!ImportTest methodsFor: 'accessing' stamp: 'IB 11/22/2023 21:16:44'!
+repository
+	
+	^repository! !
+
+!methodRemoval: TransientImportTest #repository stamp: 'IB 11/22/2023 21:16:44'!
+repository
+	
+	^repository!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #TransientImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:16:46'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:16:49'!
+PASSED!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:17:36' prior: 50652280!
+import: aData into: aSession shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	self 
+		should:[CustomerImporter valueReadingFrom: aData storingInto: aSession]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:18:15'!
+importReadingFrom: aData storingInto: aSession
+
+	^ CustomerImporter valueReadingFrom: aData storingInto: aSession! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:18:15' prior: 50652577!
+import: aData into: aSession shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	self 
+		should:[self importReadingFrom: aData storingInto: aSession]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:18:27' prior: 50652595!
+import: aData into: aRepository shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	self 
+		should:[self importReadingFrom: aData storingInto: aRepository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:18:32' prior: 50652606!
+import: aData into: aRepository shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:18:59' prior: 50652617!
+import: aData into: aRepository shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:19:09'!
+import: aData shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:09' prior: 50652478!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		import: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:09' prior: 50652442!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressWithNoCustomer 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:09' prior: 50652454!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		import: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:09' prior: 50652432!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		import: self emptyData 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:09' prior: 50652501!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		import: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+
+!methodRemoval: ImportTest #import:into:shouldFailWithMessageText:asserting: stamp: 'IB 11/22/2023 21:19:09'!
+import: aData into: aRepository shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:19:25'!
+importReadingFrom: aData shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:25' prior: 50652651!
+test03ImportWorksUntilCustomerMissingField
+	
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:25' prior: 50652695!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:25' prior: 50652686!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		importReadingFrom: self emptyData 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:25' prior: 50652674!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText:CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:19:25' prior: 50652663!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressWithNoCustomer 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertNoCustomerRegistered]! !
+
+!methodRemoval: ImportTest #import:shouldFailWithMessageText:asserting: stamp: 'IB 11/22/2023 21:19:25'!
+import: aData shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aData storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:19:32' prior: 50652718!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aStream storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.! !
+
+----SNAPSHOT----(22 November 2023 21:19:35) CuisUniversity-5981.image priorSource: 10249832!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:19:57' prior: 50652798!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aStream storingInto: self repository]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:20:18' prior: 50652588!
+importReadingFrom: aData storingInto: aSession
+
+	^ CustomerImporter valueReadingFrom: aData storingInto: self repository! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:20:24'!
+importReadingFrom: aData 
+
+	^ CustomerImporter valueReadingFrom: aData storingInto: self repository! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:20:24' prior: 50652812!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should:[self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription! !
+
+!methodRemoval: ImportTest #importReadingFrom:storingInto: stamp: 'IB 11/22/2023 21:20:24'!
+importReadingFrom: aData storingInto: aSession
+
+	^ CustomerImporter valueReadingFrom: aData storingInto: self repository!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:20:32' prior: 50652829!
+importReadingFrom: aStream
+
+	^ CustomerImporter valueReadingFrom: aStream storingInto: self repository! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:20:34'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+
+!testRun: #TransientImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:20:37'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:21:09' prior: 50652730!
+test03ImportWorksUntilCustomerMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:21:14' prior: 50652764!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:22:17' prior: 50652742!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription
+		asserting: [self assertCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:23:21' prior: 50652119!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:23:36' prior: 50652936!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assert: 1 equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:24:06' prior: 50652949!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer anAmountOfCustomers | 
+	
+	anAmountOfCustomers := 1.
+	self assert: anAmountOfCustomers equals: (self repository selectAllOfType: Customer) size.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:24:45'!
+assertAmountOfCustomersRegisteredIs: anAmountOfCustomers
+
+	^ self assert: anAmountOfCustomers equals: (self repository selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:24:45' prior: 50652962!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer anAmountOfCustomers | 
+	
+	anAmountOfCustomers := 1.
+	self assertAmountOfCustomersRegisteredIs: anAmountOfCustomers.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:24:51' prior: 50652985!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assertAmountOfCustomersRegisteredIs: 1.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:25:01' prior: 50651527!
+assertImportedRightNumberOfCustomers
+
+	^ self assertAmountOfCustomersRegisteredIs: 2! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:25:13' prior: 50652202!
+assertNoCustomerRegistered
+
+	^ self assertAmountOfCustomersRegisteredIs: 0! !
+
+!methodRemoval: ImportTest #assertImportedRightNumberOfCustomers stamp: 'IB 11/22/2023 21:25:54'!
+assertImportedRightNumberOfCustomers
+
+	^ self assertAmountOfCustomersRegisteredIs: 2!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:25:54' prior: 50651161!
+test01ImportValidData
+	
+	CustomerImporter valueReadingFrom: self validImportData storingInto: self repository.
+	
+	 self assertAmountOfCustomersRegisteredIs: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:26:34'!
+assertOnlyOneCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assertAmountOfCustomersRegisteredIs: 1.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:26:34' prior: 50652912!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:26:34' prior: 50652924!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription
+		asserting: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:26:34' prior: 50652900!
+test03ImportWorksUntilCustomerMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		asserting: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+
+!methodRemoval: ImportTest #assertCustomerRegisteredWithoutAddresses stamp: 'IB 11/22/2023 21:26:34'!
+assertCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assertAmountOfCustomersRegisteredIs: 1.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert:importedCustomer addresses size equals:0!
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:27:10' prior: 50653040!
+assertOnlyOneCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assertAmountOfCustomersRegisteredIs: 1.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert: importedCustomer addresses size equals:0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:27:13' prior: 50653102!
+assertOnlyOneCustomerRegisteredWithoutAddresses
+
+	| importedCustomer | 
+	
+	self assertAmountOfCustomersRegisteredIs: 1.
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assert: importedCustomer addresses size equals: 0! !
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:27:30' prior: 50653019!
+assertNoCustomerRegistered
+
+	self assertAmountOfCustomersRegisteredIs: 0! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:27:31'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:27:32'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:27:32'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:27:32'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:27:32'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:27:32'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'IB 11/22/2023 21:27:41' prior: 50652977!
+assertAmountOfCustomersRegisteredIs: anAmountOfCustomers
+
+	self assert: anAmountOfCustomers equals: (self repository selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:28:21'!
+setUpSession
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:28:21' prior: 50651593 overrides: 16961394!
+setUp
+
+	self setUpSession.
+	self setUpRepository
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:28:31' prior: 50653168 overrides: 16961394!
+setUp
+
+	self setUpRepository
+! !
+!TransientImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:29:01' overrides: 50653174!
+setUp
+	
+	self setUpSession.
+	super setUp! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:29:13' prior: 50651654!
+setUpRepository
+
+	repository := TransientRepository new! !
+!TransientImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:29:21' prior: 50651644 overrides: 50653184!
+setUpRepository
+	
+	repository := PersistentRepository workingWith: session! !
+!TransientImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:29:54' overrides: 50650501!
+tearDown
+
+	session commit.
+	session close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:29:54' prior: 50650501 overrides: 16961402!
+tearDown
+
+	self subclassResponsibility! !
+
+!methodRemoval: ImportTest #tearDown stamp: 'IB 11/22/2023 21:30:03'!
+tearDown
+
+	self subclassResponsibility!
+!TransientImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:30:08' overrides: 50653161!
+setUpSession
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'IB 11/22/2023 21:30:08' prior: 50653161!
+setUpSession
+
+	self subclassResponsibility! !
+
+!methodRemoval: ImportTest #setUpSession stamp: 'IB 11/22/2023 21:30:12'!
+setUpSession
+
+	self subclassResponsibility!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:30:24'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'repository'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientImportTest category: 'CustomerImporter' stamp: 'IB 11/22/2023 21:30:24'!
+ImportTest subclass: #TransientImportTest
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:30:27'!
+PASSED!
+
+!testRun: #TransientImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:30:29'!
+PASSED!
+
+!testRun: #TransientImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:30:30'!
+PASSED!
+
+!testRun: #TransientImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:30:30'!
+PASSED!
+
+!testRun: #TransientImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:30:30'!
+PASSED!
+
+!testRun: #TransientImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:30:30'!
+PASSED!
+
+!testRun: #TransientImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:30:30'!
+PASSED!
+
+----SNAPSHOT----(22 November 2023 21:30:33) CuisUniversity-5981.image priorSource: 10277069!
+
+!classRenamed: #TransientImportTest as: #PersistentImportTest stamp: 'IB 11/22/2023 21:30:51'!
+Smalltalk renameClassNamed: #TransientImportTest as: #PersistentImportTest!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:31:00' prior: 50653030!
+test01ImportValidData
+	
+	CustomerImporter valueReadingFrom: self validImportData storingInto: self repository.
+	
+	self assertAmountOfCustomersRegisteredIs: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:31:18' prior: 50653289!
+test01ImportValidData
+	
+	self importReadingFrom: self validImportData.
+	
+	self assertAmountOfCustomersRegisteredIs: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:31:20'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'IB 11/22/2023 21:31:52' prior: 50650515!
+emptyData
+
+	^ReadStream on:' '! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:32:20' prior: 50652836!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:32:38' prior: 50653336!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.
+	
+	anAssertion value! !
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:33:08'!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription thenExecute: anAssertion  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.
+	
+	anAssertion value! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:33:08' prior: 50653065!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:33:08' prior: 50653077!
+test03ImportWorksUntilCustomerMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:33:08' prior: 50652776!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressWithNoCustomer 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		thenExecute: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:33:08' prior: 50652754!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		importReadingFrom: self emptyData 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		thenExecute: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:33:08' prior: 50653053!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText: CustomerImporter invalidLineErrorDescription 
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+
+!methodRemoval: ImportTest #importReadingFrom:shouldFailWithMessageText:asserting: stamp: 'IB 11/22/2023 21:33:08'!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription asserting: anAssertion  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.
+	
+	anAssertion value!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:33:13' prior: 50653358!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription thenExecute: aBlock  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error-MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.
+	
+	aBlock value! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:33:25'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:33:25'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:33:26'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:33:26'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:33:26'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:33:26'!
+PASSED!
+
+!testRun: #PersistentImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:33:27'!
+PASSED!
+
+!testRun: #PersistentImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:33:28'!
+PASSED!
+
+!testRun: #PersistentImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:33:28'!
+PASSED!
+
+!testRun: #PersistentImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:33:29'!
+PASSED!
+
+!testRun: #PersistentImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:33:29'!
+PASSED!
+
+!testRun: #PersistentImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:33:29'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:34:55' prior: 50653370!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidBeginOfLine
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:35:12' prior: 50653382!
+test03ImportWorksUntilCustomerMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfCustomerMissingField 
+		shouldFailWithMessageText: CustomerImporter missingFieldErrorDescription 
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+		
+	 
+	
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:35:27' prior: 50653417!
+test04ImportWorksUntilAddressMissingField
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressMissingField 
+		shouldFailWithMessageText: CustomerImporter missingFieldErrorDescription 
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:35:42' prior: 50653407!
+test05ImportFailWhenDataIsEmpty
+	
+	self 
+		importReadingFrom: self emptyData 
+		shouldFailWithMessageText: CustomerImporter noImportDataErrorDescription 
+		thenExecute: [self assertNoCustomerRegistered]! !
+!ImportTest methodsFor: 'tests' stamp: 'IB 11/22/2023 21:35:56' prior: 50653395!
+test06ImportFailWithDataWithAddressBeforeCustomer
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfAddressWithNoCustomer 
+		shouldFailWithMessageText: CustomerImporter noCustomerErrorDescription 
+		thenExecute: [self assertNoCustomerRegistered]! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:35:59'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:36:01'!
+ERROR!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:36:01'!
+ERROR!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:36:07'!
+invalidBeginOfLine
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:36:20' prior: 50653559!
+invalidBeginOfLine
+		
+	^'invalid begin of line'! !
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:36:21'!
+PASSED!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:36:45'!
+invalidBeginOfLineErrorDescription
+		
+	^'invalid begin of line'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:36:45' prior: 50653493!
+test02CantImportLineStartingWithInvalidLineType
+	
+	self 
+		importReadingFrom: self invalidImportDataBecauseOfInvalidLineType 
+		shouldFailWithMessageText: CustomerImporter invalidBeginOfLineErrorDescription
+		thenExecute: [self assertOnlyOneCustomerRegisteredWithoutAddresses]
+	
+		
+	
+	! !
+
+!methodRemoval: CustomerImporter class #invalidBeginOfLine stamp: 'IB 11/22/2023 21:36:45'!
+invalidBeginOfLine
+		
+	^'invalid begin of line'!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:36:50'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:36:54'!
+ERROR!
+
+!methodRemoval: CustomerImporter class #invalidLineErrorDescription stamp: 'IB 11/22/2023 21:37:24'!
+invalidLineErrorDescription
+
+	^'invalid begin of line'!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:37:38' prior: 50650979!
+assertDataIsNotEmpty
+
+	^ data isEmpty ifTrue: [self error: self class halt]! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:37:42'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:37:42'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:37:42'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:37:42'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:37:42'!
+ERROR!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:37:42'!
+ERROR!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:37:43'!
+ERROR!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:37:52'!
+invalidLineErrorDescription
+	self shouldBeImplemented.! !
+!CustomerImporter methodsFor: 'evaluating--private' stamp: 'IB 11/22/2023 21:38:27' prior: 50650803!
+importData
+	
+	(self lineIsForDecodingCustomer) ifTrue: [^self importCustomer].
+	(self lineIsForDecodingAddresses) ifTrue: [^self importAddress].
+	self error: self class invalidBeginOfLineErrorDescription! !
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:38:28'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:38:30'!
+ERROR!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:38:42'!
+missingFieldErrorDescription
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:38:50' prior: 50653656!
+missingFieldErrorDescription
+	
+	^'missing field'! !
+
+'missing field'!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:38:52'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:39:07'!
+FAILURE!
+
+!methodRemoval: CustomerImporter class #invalidLineErrorDescription stamp: 'IB 11/22/2023 21:39:42'!
+invalidLineErrorDescription
+	self shouldBeImplemented.!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:39:46'!
+ERROR!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:40:06' prior: 50650743!
+assertValidAddressData
+
+	^data size < 6 ifTrue: [self error: self class missingFieldErrorDescription]! !
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:40:07'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:40:08'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:40:09'!
+ERROR!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:40:21'!
+noImportDataErrorDescription
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:40:28' prior: 50653698!
+noImportDataErrorDescription
+	
+	'no data!!!!!!'! !
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:40:30'!
+FAILURE!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:40:51' prior: 50653703!
+noImportDataErrorDescription
+	
+	^'no data!!!!!!'! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:40:54'!
+FAILURE!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:40:54'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:40:55'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:41:27' prior: 50650813 overrides: 16902254!
+value
+
+	[ self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self assertDataIsNotEmpty.
+		self importData.
+		].
+			
+	! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:41:49' prior: 50653607!
+assertDataIsNotEmpty
+
+	^ data isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:41:54' prior: 50653747!
+assertDataIsNotEmpty
+
+	data isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:42:07' prior: 50653739 overrides: 16902254!
+value
+
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self assertDataIsNotEmpty.
+		self importData.
+		].
+			
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:42:28' prior: 50653761 overrides: 16902254!
+value
+
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self assertDataIsNotEmpty.
+		self importData]
+			
+	! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:42:30'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:42:30'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:42:30'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:42:30'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:42:30'!
+FAILURE!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:42:30'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:42:32'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'IB 11/22/2023 21:42:59' prior: 50653332!
+emptyData
+
+	^ReadStream on: ''! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:43:02'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:43:02'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:43:02'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:43:02'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:43:02'!
+FAILURE!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:43:02'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:43:03'!
+FAILURE!
+!ImportTest methodsFor: 'support' stamp: 'IB 11/22/2023 21:43:21' prior: 50653441!
+importReadingFrom: aStream shouldFailWithMessageText: aMessageErrorDescription thenExecute: aBlock  
+	
+	self 
+		should: [self importReadingFrom: aStream ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: aMessageErrorDescription.
+	
+	aBlock value! !
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:43:25'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:43:48' prior: 50653769 overrides: 16902254!
+value
+
+	self assertDataIsNotEmpty.
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self importData]
+			
+	! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:43:50'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:43:54'!
+ERROR!
+
+readStream isEmpty!
+
+readStream contents isEmpty!
+
+readStream contents!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:44:25' prior: 50653754!
+assertDataIsNotEmpty
+
+	readStream contents isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:44:27' prior: 50653873!
+assertDataIsNotEmpty
+
+	readStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:44:28'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:44:29'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:44:30'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:44:31'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:44:31'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:44:32'!
+ERROR!
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:44:37'!
+noCustomerErrorDescription
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error' stamp: 'IB 11/22/2023 21:44:47' prior: 50653906!
+noCustomerErrorDescription
+	
+	^'no customer imported'! !
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:44:50'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'IB 11/22/2023 21:45:45' prior: 50650528!
+invalidImportDataBecauseOfAddressWithNoCustomer
+	
+	^ ReadStream on: 
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:45:49'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:47:36' prior: 50653841 overrides: 16902254!
+value
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer.
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self importData]
+			
+	! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:47:41'!
+ERROR!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:47:41'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:47:41'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:47:41'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:47:41'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:47:41'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:47:43'!
+ERROR!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:47:47'!
+assertFirstLineIsForCustomer
+	self shouldBeImplemented.! !
+
+readStream contents first!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:48:18' prior: 50653964!
+assertFirstLineIsForCustomer
+	
+	readStream contents first = $C ifFalse: [self error: self class ]! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:48:28' prior: 50653970!
+assertFirstLineIsForCustomer
+	
+	readStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:48:29'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:48:30'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:48:30'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:48:31'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:48:31'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:48:34'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:48:42' prior: 50653934 overrides: 16902254!
+value
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer.
+	
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self importData]
+			
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:48:51' prior: 50654020 overrides: 16902254!
+value
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer.
+	
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self importData]
+			
+	! !
+
+!testRun: #ImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #ImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:48:53'!
+PASSED!
+
+!testRun: #PersistentImportTest #test01ImportValidData stamp: 'IB 11/22/2023 21:48:56'!
+PASSED!
+
+!testRun: #PersistentImportTest #test02CantImportLineStartingWithInvalidLineType stamp: 'IB 11/22/2023 21:48:56'!
+PASSED!
+
+!testRun: #PersistentImportTest #test03ImportWorksUntilCustomerMissingField stamp: 'IB 11/22/2023 21:48:57'!
+PASSED!
+
+!testRun: #PersistentImportTest #test04ImportWorksUntilAddressMissingField stamp: 'IB 11/22/2023 21:48:57'!
+PASSED!
+
+!testRun: #PersistentImportTest #test05ImportFailWhenDataIsEmpty stamp: 'IB 11/22/2023 21:48:57'!
+PASSED!
+
+!testRun: #PersistentImportTest #test06ImportFailWithDataWithAddressBeforeCustomer stamp: 'IB 11/22/2023 21:48:57'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'IB 11/22/2023 21:50:06' prior: 50654029 overrides: 16902254!
+value
+	
+	[self canKeepImporting] whileTrue: [
+		data := line findTokens: $,.
+		self importData]
+			
+	! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 21:50:18' prior: 50651141!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer.
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 21:50:20' prior: 50654086!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer.
+	
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:50:54'!
+assertFirstLineIsForCustomer: aStream
+	
+	readStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]! !
+!CustomerImporter class methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:50:54' prior: 50654096!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer: self halt.
+	
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+
+!methodRemoval: CustomerImporter #assertFirstLineIsForCustomer stamp: 'IB 11/22/2023 21:50:54'!
+assertFirstLineIsForCustomer
+	
+	readStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:50:57' prior: 50654105!
+assertFirstLineIsForCustomer: aStream
+	
+	aStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]! !
+!CustomerImporter class methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:51:03'!
+assertFirstLineIsForCustomer: aStream
+	
+	aStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]! !
+
+!methodRemoval: CustomerImporter #assertFirstLineIsForCustomer: stamp: 'IB 11/22/2023 21:51:04'!
+assertFirstLineIsForCustomer: aStream
+	
+	aStream contents first = $C ifFalse: [self error: self class noCustomerErrorDescription]!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 21:51:34' prior: 50654113!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty.
+	self assertFirstLineIsForCustomer: aReadStream.
+	
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:52:01'!
+assertDataIsNotEmpty: aStream
+
+	readStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+!CustomerImporter class methodsFor: 'as yet unclassified' stamp: 'IB 11/22/2023 21:52:01' prior: 50654152!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty: self halt.
+	self assertFirstLineIsForCustomer: aReadStream.
+	
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+
+!methodRemoval: CustomerImporter #assertDataIsNotEmpty stamp: 'IB 11/22/2023 21:52:01'!
+assertDataIsNotEmpty
+
+	readStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]!
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:52:09' prior: 50654161!
+assertDataIsNotEmpty: aStream
+
+	aStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+!CustomerImporter class methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:52:14'!
+assertDataIsNotEmpty: aStream
+
+	aStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]! !
+
+!methodRemoval: CustomerImporter #assertDataIsNotEmpty: stamp: 'IB 11/22/2023 21:52:14'!
+assertDataIsNotEmpty: aStream
+
+	aStream isEmpty ifTrue: [self error: self class noImportDataErrorDescription]!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'IB 11/22/2023 21:52:25' prior: 50654168!
+readingFrom: aReadStream storingInto: aRepository
+
+	self assertDataIsNotEmpty: aReadStream.
+	self assertFirstLineIsForCustomer: aReadStream.
+	
+	^self new initializeReadingFrom: aReadStream storingInto: aRepository! !
+!CustomerImporter methodsFor: 'asserting' stamp: 'IB 11/22/2023 21:53:09' prior: 50650749!
+assertValidCustomerData
+
+	^data size < 5 ifTrue: [self error: self class missingFieldErrorDescription]! !
+
+----SNAPSHOT----(22 November 2023 21:53:33) CuisUniversity-5981.image priorSource: 10292141!
+
+----QUIT----(22 November 2023 21:54:31) CuisUniversity-5981.image priorSource: 10322249!
