@@ -1,0 +1,2676 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (23 November 2023 18:14:17) as /home/clinux01/Descargas/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Descargas/CustomerImporter-3.st----!
+
+TestCase subclass: #SupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporterTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:32:08'!
+TestCase subclass: #SupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRenamed: #ImportTest as: #CustomerImportTest stamp: 'TAO 11/23/2023 18:32:13'!
+Smalltalk renameClassNamed: #ImportTest as: #CustomerImportTest!
+
+!classRenamed: #SupplierImporterTest as: #ZSupplierImporterTest stamp: 'TAO 11/23/2023 18:32:20'!
+Smalltalk renameClassNamed: #SupplierImporterTest as: #ZSupplierImporterTest!
+
+!classRenamed: #CustomerImportTest as: #ZCustomerImportTest stamp: 'TAO 11/23/2023 18:32:28'!
+Smalltalk renameClassNamed: #CustomerImportTest as: #ZCustomerImportTest!
+!ZSupplierImporterTest methodsFor: 'no messages' stamp: 'TAO 11/23/2023 18:34:47'!
+test01
+	! !
+!ZSupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:35:09' prior: 50651385!
+test01
+	! !
+!ZCustomerImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 18:35:20' prior: 50650377!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: system.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+Customer subclass: #Supplier
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Customer subclass: #Supplier
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Supplier category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:43:09'!
+Customer subclass: #Supplier
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #XXimporter category: 'CusomerImporter' stamp: 'TAO 11/23/2023 18:43:47'!
+Object subclass: #XXimporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CusomerImporter'!
+
+XXimporter subclass: #CustomerImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:43:47'!
+XXimporter subclass: #CustomerImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #XXimporter
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #XXimporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:44:10'!
+Object subclass: #XXimporter
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+XXimporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:44:22'!
+XXimporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:44:38'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierImporter stamp: 'TAO 11/23/2023 18:44:43'!
+XXimporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #XXimporter stamp: 'TAO 11/23/2023 18:44:43'!
+Object subclass: #XXimporter
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:44:56'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:45:27'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:45:29'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:45:37'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #IntegrationEnvironment stamp: 'TAO 11/23/2023 18:45:59'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopmentEnvironment stamp: 'TAO 11/23/2023 18:46:00'!
+Environment subclass: #DevelopmentEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'TAO 11/23/2023 18:46:00'!
+Object subclass: #Environment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'TAO 11/23/2023 18:46:00'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id inTransaction closed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'TAO 11/23/2023 18:46:00'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'TAO 11/23/2023 18:46:00'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'TAO 11/23/2023 18:46:01'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierImporter stamp: 'TAO 11/23/2023 18:46:01'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'TAO 11/23/2023 18:46:01'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Supplier stamp: 'TAO 11/23/2023 18:46:01'!
+Customer subclass: #Supplier
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'TAO 11/23/2023 18:46:01'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'TAO 11/23/2023 18:46:02'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ZSupplierImporterTest stamp: 'TAO 11/23/2023 18:46:02'!
+TestCase subclass: #ZSupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ZCustomerImportTest stamp: 'TAO 11/23/2023 18:46:02'!
+TestCase subclass: #ZCustomerImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentSet stamp: 'TAO 11/23/2023 18:46:02'!
+Set subclass: #PersistentSet
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of /home/clinux01/Descargas/CustomerImporter-3.st----!
+
+TestCase subclass: #SupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporterTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:51:28'!
+TestCase subclass: #SupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TestCase subclass: #CustomerImporterTests
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporterTests category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:51:38'!
+TestCase subclass: #CustomerImporterTests
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImporterTest methodsFor: 'no messages' stamp: 'TAO 11/23/2023 18:51:54'!
+test01
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 18:52:13' prior: 50651700!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: system.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 18:52:44'!
+Object subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:52:41' prior: 50652705!
+test01
+	SupplierImporter valueFrom: self onlyOneSupplierData into: system.
+	! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:52:49' prior: 50652727!
+test01
+	SupplierImporter valueFrom: self onlyOneSupplierData into: system.
+	
+	! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:53:07' prior: 50652733!
+test01
+	SupplierImporter valueFrom: self onlyOneSupplierData into: system.
+	
+	! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:53:35' prior: 50652739!
+test01
+	SupplierImporter valueFrom: self onlyOneSupplierData into: system.
+	
+	self assert: system numberOfSuppliers equals:1! !
+
+!testRun: #SupplierImporterTest #test01 stamp: 'TAO 11/23/2023 18:53:53'!
+ERROR!
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:54:00'!
+onlyOneSupplierData
+	self shouldBeImplemented.! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:54:03' prior: 50652755!
+onlyOneSupplierData
+	! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:57:02' prior: 50652760!
+onlyOneSupplierData
+
+	^ReadStream on: ''! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:57:15' prior: 50652765!
+onlyOneSupplierData
+
+	^ReadStream on: 'S,Supplier1,D,123'! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:57:29' overrides: 16961394!
+setUp
+	! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:58:02' prior: 50652776 overrides: 16961394!
+setUp
+	system := Environment current createSupplierSystem.
+	system start.
+	system beginTransaction.! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:58:11' prior: 50652781 overrides: 16961394!
+setUp
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.! !
+!SupplierImporterTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 18:59:58' prior: 50652789 overrides: 16961394!
+setUp
+	system := Environment current createSupplierSystem.
+	system start.
+	system beginTransaction.! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:01:23'!
+createSupplierSystem
+
+	^TransientCustomerSystem new! !
+
+!classDefinition: #PersistentSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:01:36'!
+Object subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!IntegrationEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:01:35'!
+createSupplierSystem
+
+	^PersistentSupplierSystem new! !
+!IntegrationEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:01:38' prior: 50652816!
+createSupplierSystem
+
+	^PersistentSupplierSystem new! !
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:01:49'!
+Object subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:01:47' prior: 50652803!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+
+!classDefinition: #SupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:04'!
+Object subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:02:02' prior: 50652834!
+createSupplierSystem
+
+	^SupplierSystem new! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:02:05' prior: 50652847!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+
+SupplierImporterTest subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:22'!
+SupplierImporterTest subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+SupplierImporterTest subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:27'!
+SupplierImporterTest subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+SupplierImporter subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:43'!
+SupplierImporter subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+SupplierImporter subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:48'!
+SupplierImporter subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CustomerSystem subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:02:59'!
+CustomerSystem subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierSystem stamp: 'TAO 11/23/2023 19:17:48'!
+Object subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #IntegrationEnvironment stamp: 'TAO 11/23/2023 19:17:48'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopmentEnvironment stamp: 'TAO 11/23/2023 19:17:48'!
+Environment subclass: #DevelopmentEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'TAO 11/23/2023 19:17:48'!
+Object subclass: #Environment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'TAO 11/23/2023 19:17:48'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id inTransaction closed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'TAO 11/23/2023 19:17:49'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientSupplierSystem stamp: 'TAO 11/23/2023 19:17:49'!
+SupplierImporter subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentSupplierSystem stamp: 'TAO 11/23/2023 19:17:49'!
+SupplierImporter subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierImporter stamp: 'TAO 11/23/2023 19:17:49'!
+CustomerSystem subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'TAO 11/23/2023 19:17:50'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'TAO 11/23/2023 19:17:50'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'TAO 11/23/2023 19:17:50'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'TAO 11/23/2023 19:17:50'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'TAO 11/23/2023 19:17:50'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierImporterTest stamp: 'TAO 11/23/2023 19:17:51'!
+TestCase subclass: #SupplierImporterTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ImportTest stamp: 'TAO 11/23/2023 19:17:51'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporterTests stamp: 'TAO 11/23/2023 19:17:51'!
+TestCase subclass: #CustomerImporterTests
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentSet stamp: 'TAO 11/23/2023 19:17:51'!
+Set subclass: #PersistentSet
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of /home/clinux01/Descargas/CustomerImporter-3.st----!
+
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:18:05'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImportTest methodsFor: 'no messages' stamp: 'TAO 11/23/2023 19:18:14'!
+test01
+	! !
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 19:18:21' prior: 50654096!
+test01
+	CustomerImporter valueFrom: self validImportData into: system..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:22:21'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 19:22:12' prior: 50654100!
+test01
+	SupplierImporter valueFrom: self validImportData into: system..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 19:22:28' prior: 50654118!
+test01
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 19:22:45' prior: 50654128!
+test01
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assert: system numberOfSuppliers equals:1! !
+
+!testRun: #SupplierImportTest #test01 stamp: 'TAO 11/23/2023 19:22:49'!
+ERROR!
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 19:22:54'!
+validImportData
+	self shouldBeImplemented.! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 19:23:57' prior: 50654147!
+validImportData
+	^ReadStream on: 
+'S,Supplier1,D,123					
+NC,Pepe,Sanchez,D,22333444			
+EC,D,5456774						
+A,San Martin,3322,Olivos,1636,BsAs	
+A,Maipu,888,Florida,1122,Buenos Aires'! !
+
+!methodRemoval: SupplierImportTest #test01 stamp: 'TAO 11/23/2023 19:27:08'!
+test01
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assert: system numberOfSuppliers equals:1!
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 19:27:25'!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: system..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 19:27:41' prior: 50654167!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 19:27:54' prior: 50654178!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assert:system numberOfSuppliers equals:1! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 19:28:12' overrides: 16961394!
+setUp
+
+	system := Environment current createCustomerSystem.
+	system start.
+	system beginTransaction.
+! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 19:28:22' overrides: 16961402!
+tearDown
+
+	system commit.
+	system stop
+	! !
+!SupplierImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/23/2023 19:30:35' prior: 50654197 overrides: 16961394!
+setUp
+
+	system := Environment current createSupplierSystem.
+	system start.
+	system beginTransaction.
+! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:30:46'!
+createSupplierSystem
+
+	^TransientCustomerSystem new! !
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:30:51'!
+Object subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:30:49' prior: 50654217!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:30:54' prior: 50654230!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+
+!classDefinition: #PersistentSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:31:06'!
+Object subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!IntegrationEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 19:31:04'!
+createSupplierSystem
+
+	^PersistentSupplierSystem new! !
+
+Object subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:31:15'!
+Object subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+SupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:31:24'!
+SupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+SupplierSystem subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:31:30'!
+SupplierSystem subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment class methodsFor: 'current' stamp: 'TAO 11/23/2023 19:50:56' prior: 50654037 overrides: 50653985!
+isCurrent
+
+	
+	self makeCurrent
+	
+	^self environmentVariable = self identifier! !
+!DevelopmentEnvironment class methodsFor: 'current' stamp: 'TAO 11/23/2023 19:51:23' prior: 50654292 overrides: 50653985!
+isCurrent
+	
+	
+	self makeCurrent
+	
+	^self environmentVariable = self identifier! !
+!DevelopmentEnvironment class methodsFor: 'current' stamp: 'TAO 11/23/2023 19:53:58' prior: 50654299 overrides: 50653985!
+isCurrent
+	
+	
+	self makeCurrent.
+	
+	^self environmentVariable = self identifier! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'TAO 11/23/2023 19:54:02'!
+PASSED!
+
+CustomerImporter subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:58:18'!
+CustomerImporter subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CustomerSystem subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 19:58:33'!
+CustomerSystem subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter2'!
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter2' stamp: 'TAO 11/23/2023 20:00:14'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter2'!
+
+!classRemoval: #IntegrationEnvironment stamp: 'TAO 11/23/2023 20:00:16'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopmentEnvironment stamp: 'TAO 11/23/2023 20:00:16'!
+Environment subclass: #DevelopmentEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'TAO 11/23/2023 20:00:17'!
+Object subclass: #Environment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'TAO 11/23/2023 20:00:17'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id inTransaction closed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'TAO 11/23/2023 20:00:17'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientSupplierSystem stamp: 'TAO 11/23/2023 20:00:17'!
+SupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentSupplierSystem stamp: 'TAO 11/23/2023 20:00:17'!
+SupplierSystem subclass: #PersistentSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierSystem stamp: 'TAO 11/23/2023 20:00:18'!
+CustomerSystem subclass: #SupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'TAO 11/23/2023 20:00:18'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'TAO 11/23/2023 20:00:18'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #SupplierImporter stamp: 'TAO 11/23/2023 20:00:18'!
+CustomerImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'TAO 11/23/2023 20:00:18'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'TAO 11/23/2023 20:00:18'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'TAO 11/23/2023 20:00:19'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ImportTest stamp: 'TAO 11/23/2023 20:00:19'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentSet stamp: 'TAO 11/23/2023 20:00:19'!
+Set subclass: #PersistentSet
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of /home/clinux01/Descargas/CustomerImporter-3.st----!
+
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:00:34'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:00:59'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:04'!
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:08'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'readStream newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: ' newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:20'!
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:28'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newCustomer line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:28'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses readStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:34'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newCustomer record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:34'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses readStream line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:37'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newCustomer system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:37'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses readStream line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:54'!
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:54'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:01:54'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses readStream line record newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:03'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:03'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses readStream line record newCustomer system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CSVImporter
+	instanceVariableNames: 'readStream line record newCustomer system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:33'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'readStream line record newCustomer system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #CSVImporter
+	instanceVariableNames: 'readStream line record  system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CSVImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:36'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'readStream line record system'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:39'!
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:02:44'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CSVImporter methodsFor: 'evaluating - private' stamp: 'TAO 11/23/2023 20:06:21'!
+assertRecordNotEmpty
+
+	record isEmpty ifTrue: [ self error: self class invalidRecordTypeErrorDescription ]! !
+
+!methodRemoval: CustomerImporter #assertRecordNotEmpty stamp: 'TAO 11/23/2023 20:06:21'!
+assertRecordNotEmpty
+
+	record isEmpty ifTrue: [ self error: self class invalidRecordTypeErrorDescription ]!
+!CSVImporter methodsFor: 'address' stamp: 'TAO 11/23/2023 20:06:28'!
+assertValidAddressRecord
+
+	^ record size ~= 6 ifTrue: [ self error: self class invalidAddressRecordErrorDescription ]! !
+
+!methodRemoval: CustomerImporter #assertValidAddressRecord stamp: 'TAO 11/23/2023 20:06:28'!
+assertValidAddressRecord
+
+	^ record size ~= 6 ifTrue: [ self error: self class invalidAddressRecordErrorDescription ]!
+!CSVImporter methodsFor: 'customer' stamp: 'TAO 11/23/2023 20:06:36'!
+assertValidCustomerRecord
+
+	^ record size ~= 5 ifTrue: [ self error: self class invalidCustomerRecordErrorDescription ]! !
+
+!methodRemoval: CustomerImporter #assertValidCustomerRecord stamp: 'TAO 11/23/2023 20:06:36'!
+assertValidCustomerRecord
+
+	^ record size ~= 5 ifTrue: [ self error: self class invalidCustomerRecordErrorDescription ]!
+!CSVImporter methodsFor: 'evaluating - private' stamp: 'TAO 11/23/2023 20:06:43'!
+createRecord
+
+	^ record := line findTokens: $,! !
+
+!methodRemoval: CustomerImporter #createRecord stamp: 'TAO 11/23/2023 20:06:43'!
+createRecord
+
+	^ record := line findTokens: $,!
+!CSVImporter methodsFor: 'evaluating - private' stamp: 'TAO 11/23/2023 20:06:46'!
+hasLineToImport
+
+	line := readStream nextLine.
+	^line notNil! !
+
+!methodRemoval: CustomerImporter #hasLineToImport stamp: 'TAO 11/23/2023 20:06:46'!
+hasLineToImport
+
+	line := readStream nextLine.
+	^line notNil!
+!CSVImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:07:05'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem ! !
+
+!methodRemoval: CustomerImporter #initializeFrom:into: stamp: 'TAO 11/23/2023 20:07:05'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem !
+!CSVImporter methodsFor: 'address' stamp: 'TAO 11/23/2023 20:07:12'!
+isAddressRecord
+
+	^ record first = 'A'! !
+
+!methodRemoval: CustomerImporter #isAddressRecord stamp: 'TAO 11/23/2023 20:07:12'!
+isAddressRecord
+
+	^ record first = 'A'!
+!SupplierImporter methodsFor: 'no messages' stamp: 'TAO 11/23/2023 20:07:46'!
+assertCustomerWasImported
+
+	^ newSupplier ifNil: [ self error: self class canNotImportAddressWithoutCustomerErrorDescription ]! !
+!CSVImporter methodsFor: 'evaluating' stamp: 'TAO 11/23/2023 20:08:02' overrides: 16902254!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	! !
+
+!methodRemoval: CustomerImporter #value stamp: 'TAO 11/23/2023 20:08:02'!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:08:20'!
+importAddress
+
+	| newAddress |
+
+	self assertCustomerWasImported.
+	self assertValidAddressRecord.
+
+	newAddress := Address new.
+	newSupplier addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:08:30'!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:08:42' prior: 50655861!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:08:55' prior: 50655871!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	self isSupplierRecord ifTrue: [ ^self importSupplier ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:09:12'!
+importSupplier
+
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:09:19' prior: 50655893!
+importSupplier
+
+	| newSupplier1 |
+	self assertValidCustomerRecord.
+
+	newSupplier1 := Customer new.
+	newSupplier1 firstName: record second.
+	newSupplier1 lastName: record third.
+	newSupplier1 identificationType: record fourth.
+	newSupplier1 identificationNumber: record fifth.
+	system add: newSupplier1! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:09:27' prior: 50655906!
+importSupplier
+
+
+	self assertValidCustomerRecord.
+
+	newSupplier := Customer new.
+	newSupplier firstName: record second.
+	newSupplier lastName: record third.
+	newSupplier identificationType: record fourth.
+	newSupplier identificationNumber: record fifth.
+	system add: newSupplier! !
+
+!classDefinition: #Supplier category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:09:41'!
+Object subclass: #Supplier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:09:37' prior: 50655919!
+importSupplier
+
+
+	self assertValidCustomerRecord.
+
+	newSupplier := Supplier new.
+	newSupplier firstName: record second.
+	newSupplier lastName: record third.
+	newSupplier identificationType: record fourth.
+	newSupplier identificationNumber: record fifth.
+	system add: newSupplier! !
+
+Object subclass: #Party
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Party category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:09:46'!
+Object subclass: #Party
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Customer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:09:57'!
+Party subclass: #Customer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Supplier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Supplier category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:10:03'!
+Party subclass: #Supplier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Supplier
+	instanceVariableNames: 'customer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Supplier category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:10:06'!
+Party subclass: #Supplier
+	instanceVariableNames: 'customer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Supplier
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Supplier category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:10:07'!
+Party subclass: #Supplier
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'customer' stamp: 'TAO 11/23/2023 20:12:21'!
+importNonExistingCustomer
+
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:12:21' prior: 50655030!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importNonExistingCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+
+!methodRemoval: CustomerImporter #importCustomer stamp: 'TAO 11/23/2023 20:12:21'!
+importCustomer
+
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer!
+!CustomerImporter methodsFor: 'customer' stamp: 'TAO 11/23/2023 20:12:35'!
+importCustomer
+
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:12:35' prior: 50656029!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+
+!methodRemoval: CustomerImporter #importNonExistingCustomer stamp: 'TAO 11/23/2023 20:12:35'!
+importNonExistingCustomer
+
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:12:57'!
+importCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	system add: newCustomer! !
+
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #SupplierImporter category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:13:09'!
+CSVImporter subclass: #SupplierImporter
+	instanceVariableNames: 'newSupplier customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:13:19' prior: 50656084!
+importCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	customerSystem add: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:13:34' prior: 50655846!
+importAddress
+
+	| newAddress |
+
+	self assertCustomerWasImported.
+	self assertValidAddressRecord.
+
+	newAddress := Address new.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth.
+	newSupplier addAddress: newAddress.! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:13:57' prior: 50656111!
+importCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	customerSystem add: newCustomer.
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:14:21'!
+importNonExistingCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	customerSystem add: newCustomer.
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:14:21' prior: 50655881!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importNonExistingCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	self isSupplierRecord ifTrue: [ ^self importSupplier ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+
+!methodRemoval: SupplierImporter #importCustomer stamp: 'TAO 11/23/2023 20:14:21'!
+importCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	customerSystem add: newCustomer.
+	newSupplier addCustomer: newCustomer!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:14:24'!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	customerSystem add: newCustomer.
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:17:08' prior: 50656193!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidCustomerRecord.
+	newCustomer := (customerSystem 
+		select: [:customer| (customer identificationType =  record fourth)and: (customer identificationNumber = record fifth) ] 
+		ofType: Customer) anyOne.
+	
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:18:01'!
+isCustomerRecord
+
+	^ record first = 'NC' or: record first = 'EC'! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:18:11' prior: 50656168!
+importRecord
+
+	self assertRecordNotEmpty.
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	self isSupplierRecord ifTrue: [ ^self importSupplier ].
+
+	self error: self class invalidRecordTypeErrorDescription! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:18:57'!
+importCustomer
+	record first = 'EC' ifTrue:[ self importExistingCustomer].! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:19:12' prior: 50656239!
+importCustomer
+	record first = 'EC' ifTrue:[ self importExistingCustomer].
+	record first = 'NC' ifTrue:[ self importNonExistingCustomer].! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:19:19' prior: 50656245!
+importCustomer
+	record first = 'EC' ifTrue:[ self importExistingCustomer].
+	record first = 'NC' ifTrue:[ self importNonExistingCustomer].
+	self shouldNotHappen ! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:19:46'!
+isSupplierRecord
+	record first = 'S'! !
+!Party methodsFor: 'addresses' stamp: 'TAO 11/23/2023 20:22:39'!
+addAddress: anAddress
+
+	addresses add: anAddress ! !
+
+!methodRemoval: Customer #addAddress: stamp: 'TAO 11/23/2023 20:22:39'!
+addAddress: anAddress
+
+	addresses add: anAddress !
+!Party methodsFor: 'addresses' stamp: 'TAO 11/23/2023 20:22:42'!
+addressAt: aStreetName ifNone: aNoneBlock
+
+	^addresses detect: [ :address | address isAt: aStreetName ] ifNone: aNoneBlock ! !
+
+!methodRemoval: Customer #addressAt:ifNone: stamp: 'TAO 11/23/2023 20:22:42'!
+addressAt: aStreetName ifNone: aNoneBlock
+
+	^addresses detect: [ :address | address isAt: aStreetName ] ifNone: aNoneBlock !
+!Party methodsFor: 'addresses' stamp: 'TAO 11/23/2023 20:22:47'!
+addresses
+
+	^ addresses! !
+
+!methodRemoval: Customer #addresses stamp: 'TAO 11/23/2023 20:22:47'!
+addresses
+
+	^ addresses!
+!Party methodsFor: 'name' stamp: 'TAO 11/23/2023 20:22:50'!
+firstName
+
+	^firstName ! !
+
+!methodRemoval: Customer #firstName stamp: 'TAO 11/23/2023 20:22:50'!
+firstName
+
+	^firstName !
+!Party methodsFor: 'name' stamp: 'TAO 11/23/2023 20:22:57'!
+firstName: aName
+
+	firstName := aName! !
+
+!methodRemoval: Customer #firstName: stamp: 'TAO 11/23/2023 20:22:57'!
+firstName: aName
+
+	firstName := aName!
+!Party methodsFor: 'identification' stamp: 'TAO 11/23/2023 20:23:00'!
+identificationNumber
+
+	^identificationNumber ! !
+
+!methodRemoval: Customer #identificationNumber stamp: 'TAO 11/23/2023 20:23:00'!
+identificationNumber
+
+	^identificationNumber !
+!Party methodsFor: 'identification' stamp: 'TAO 11/23/2023 20:23:04'!
+identificationNumber: anIdentificationNumber
+
+	identificationNumber := anIdentificationNumber! !
+
+!methodRemoval: Customer #identificationNumber: stamp: 'TAO 11/23/2023 20:23:04'!
+identificationNumber: anIdentificationNumber
+
+	identificationNumber := anIdentificationNumber!
+!Party methodsFor: 'identification' stamp: 'TAO 11/23/2023 20:23:10'!
+identificationType
+
+	^identificationType ! !
+
+!methodRemoval: Customer #identificationType stamp: 'TAO 11/23/2023 20:23:10'!
+identificationType
+
+	^identificationType !
+!Party methodsFor: 'identification' stamp: 'TAO 11/23/2023 20:23:12'!
+identificationType: anIdentificationType
+
+	identificationType := anIdentificationType! !
+
+!methodRemoval: Customer #identificationType: stamp: 'TAO 11/23/2023 20:23:12'!
+identificationType: anIdentificationType
+
+	identificationType := anIdentificationType!
+!Party methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:23:15' overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.! !
+
+!methodRemoval: Customer #initialize stamp: 'TAO 11/23/2023 20:23:15'!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.!
+!Party methodsFor: 'addresses' stamp: 'TAO 11/23/2023 20:23:17'!
+isAddressesEmpty
+
+	^addresses isEmpty ! !
+
+!methodRemoval: Customer #isAddressesEmpty stamp: 'TAO 11/23/2023 20:23:17'!
+isAddressesEmpty
+
+	^addresses isEmpty !
+!Party methodsFor: 'name' stamp: 'TAO 11/23/2023 20:23:21'!
+lastName
+
+	^lastName ! !
+
+!methodRemoval: Customer #lastName stamp: 'TAO 11/23/2023 20:23:21'!
+lastName
+
+	^lastName !
+!Party methodsFor: 'name' stamp: 'TAO 11/23/2023 20:23:26'!
+lastName: aLastName
+
+	lastName := aLastName
+! !
+
+!methodRemoval: Customer #lastName: stamp: 'TAO 11/23/2023 20:23:26'!
+lastName: aLastName
+
+	lastName := aLastName
+!
+!Supplier methodsFor: 'no messages' stamp: 'TAO 11/23/2023 20:23:42'!
+addCustomers: aCustomer
+	! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:23:47' prior: 50656373!
+addCustomers: aCustomer
+	customers add: aCustomer! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:24:07'!
+customers 
+	^customers! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:24:40' overrides: 50656343!
+initialize 
+	customers:= OrderedCollection new.
+	
+	super initialize.! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:24:43' prior: 50656386 overrides: 50656343!
+initialize 
+	customers:= OrderedCollection new.
+	super initialize.! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:24:46' prior: 50656392 overrides: 50656343!
+initialize 
+super initialize.
+	customers:= OrderedCollection new.
+	! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:24:48' prior: 50656398 overrides: 50656343!
+initialize 
+
+	super initialize.
+	customers:= OrderedCollection new.
+	! !
+!Supplier methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:26:44'!
+addCustomer: aCustomer
+	customers add: aCustomer! !
+
+!methodRemoval: Supplier #addCustomers: stamp: 'TAO 11/23/2023 20:26:44'!
+addCustomers: aCustomer
+	customers add: aCustomer!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'TAO 11/23/2023 20:29:36'!
+PASSED!
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 20:29:46' prior: 50654189!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: system.
+
+	self assert: system numberOfSuppliers equals:1! !
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:30:01'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'supplierSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:30:01' prior: 50654210 overrides: 16961394!
+setUp
+
+	supplierSystem := Environment current createSupplierSystem.
+	supplierSystem start.
+	supplierSystem beginTransaction.
+! !
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:30:01' prior: 50654204 overrides: 16961402!
+tearDown
+
+	supplierSystem commit.
+	supplierSystem stop
+	! !
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:30:01' prior: 50656450!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: supplierSystem.
+
+	self assert: supplierSystem numberOfSuppliers equals:1! !
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:30:33'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'supplierSystem customerImporter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 20:30:32' prior: 50656481!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: supplierSystem using:customerImporter.
+
+	self assert: supplierSystem numberOfSuppliers equals:1! !
+
+!classDefinition: #SupplierImportTest category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:30:41'!
+TestCase subclass: #SupplierImportTest
+	instanceVariableNames: 'supplierSystem customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!SupplierImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:30:41' prior: 50656498!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: supplierSystem using:customerSystem.
+
+	self assert: supplierSystem numberOfSuppliers equals:1! !
+!SupplierImporter class methodsFor: 'no messages' stamp: 'TAO 11/23/2023 20:32:36'!
+valueFrom: aReadStream into: aSupplierSystem using: aCustomerSystem
+
+	^(self from: aReadStream into: aSupplierSystem using: aCustomerSystem) value! !
+!CSVImporter class methodsFor: 'error messages' stamp: 'TAO 11/23/2023 20:32:52'!
+canNotImportAddressWithoutCustomerErrorDescription
+
+	^'Cannot import address without customer'! !
+
+!methodRemoval: CustomerImporter class #canNotImportAddressWithoutCustomerErrorDescription stamp: 'TAO 11/23/2023 20:32:52'!
+canNotImportAddressWithoutCustomerErrorDescription
+
+	^'Cannot import address without customer'!
+!CSVImporter class methodsFor: 'error messages' stamp: 'TAO 11/23/2023 20:32:55'!
+invalidAddressRecordErrorDescription
+
+	^'Address record has to have six fields'! !
+
+!methodRemoval: CustomerImporter class #invalidAddressRecordErrorDescription stamp: 'TAO 11/23/2023 20:32:55'!
+invalidAddressRecordErrorDescription
+
+	^'Address record has to have six fields'!
+!CSVImporter class methodsFor: 'error messages' stamp: 'TAO 11/23/2023 20:32:58'!
+invalidCustomerRecordErrorDescription
+
+	^'Invalid Customer record'! !
+
+!methodRemoval: CustomerImporter class #invalidCustomerRecordErrorDescription stamp: 'TAO 11/23/2023 20:32:58'!
+invalidCustomerRecordErrorDescription
+
+	^'Invalid Customer record'!
+!CSVImporter class methodsFor: 'error messages' stamp: 'TAO 11/23/2023 20:33:00'!
+invalidRecordTypeErrorDescription
+
+	^'Invalid record type'! !
+
+!methodRemoval: CustomerImporter class #invalidRecordTypeErrorDescription stamp: 'TAO 11/23/2023 20:33:00'!
+invalidRecordTypeErrorDescription
+
+	^'Invalid record type'!
+!SupplierImporter class methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:33:30'!
+from: aReadStream into: aSupplierSystem using: aCustomerSystem
+
+	^self new initializeFrom: aReadStream into: aSupplierSystem using: aCustomerSystem! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:33:55' overrides: 50655808!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem ! !
+!SupplierImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:33:55' overrides: 50655808!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem ! !
+!CSVImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:33:55' prior: 50655808!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	self subclassResponsibility! !
+
+!methodRemoval: CSVImporter #initializeFrom:into: stamp: 'TAO 11/23/2023 20:34:00'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	self subclassResponsibility!
+!SupplierImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:34:40'!
+initializeFrom: aReadStream into: aSupplierSystem using:aCustomerSystem
+
+	readStream := aReadStream.
+	system := aSupplierSystem.
+	customerSystem:=aCustomerSystem ! !
+
+!methodRemoval: SupplierImporter #initializeFrom:into: stamp: 'TAO 11/23/2023 20:34:45'!
+initializeFrom: aReadStream into: aCustomerSystem
+
+	readStream := aReadStream.
+	system := aCustomerSystem !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'TAO 11/23/2023 20:35:17' overrides: 50655835!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	! !
+!SupplierImporter methodsFor: 'evaluating' stamp: 'TAO 11/23/2023 20:35:17' overrides: 50655835!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	! !
+!CSVImporter methodsFor: 'evaluating' stamp: 'TAO 11/23/2023 20:35:17' prior: 50655835 overrides: 16902254!
+value
+
+	self subclassResponsibility! !
+!CSVImporter methodsFor: 'evaluating' stamp: 'TAO 11/23/2023 20:36:00' prior: 50656642 overrides: 16902254!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	! !
+
+!methodRemoval: SupplierImporter #value stamp: 'TAO 11/23/2023 20:36:00'!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	!
+
+!methodRemoval: CustomerImporter #value stamp: 'TAO 11/23/2023 20:36:00'!
+value
+
+	[ self hasLineToImport ] whileTrue: [
+		self createRecord.
+		self importRecord ].
+
+	!
+!CSVImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:37:07'!
+importRecord
+
+	self subclassResponsibility! !
+
+!classRenamed: #CSVImporter as: #PartyImporter stamp: 'TAO 11/23/2023 20:37:42'!
+Smalltalk renameClassNamed: #CSVImporter as: #PartyImporter!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:38:01'!
+assertValid
+
+	^ newSupplier ifNil: [ self error: self class canNotImportAddressWithoutCustomerErrorDescription ]! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:38:25' prior: 50656673!
+assertValid
+
+	^ record size ~= 5 ifTrue: [ self error: self class invalidSupplierRecordErrorDescription ]! !
+!SupplierImporter class methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:38:42'!
+invalidSupplierRecordErrorDescription
+^'invalid supplier record'! !
+!SupplierImporter class methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:39:02' prior: 50656687!
+invalidSupplierRecordErrorDescription
+	
+	^'Supplier record has to have five fields'! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 20:44:02' prior: 50654152!
+validImportData
+	^ReadStream on: 
+'S,Supplier1,D,123					
+NC,Pepe,Sanchez,D,22333444			
+EC,D,5456774						
+A,San Martin,3322,Olivos,1636,BsAs	
+A,Maipu,888,Florida,1122,Buenos Aires'! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 20:44:19'!
+createSupplierSystem
+
+	^TransientCustomerSystem new! !
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:44:26'!
+Object subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 20:44:23' prior: 50656708!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 20:44:28' prior: 50656721!
+createSupplierSystem
+
+	^TransientSupplierSystem new! !
+
+CustomerSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:44:48'!
+CustomerSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TransientSupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TransientSupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+CustomerSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientSupplierSystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:46:57'!
+CustomerSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+TransientSupplierSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DevelopmentEnvironment methodsFor: 'customer system' stamp: 'TAO 11/23/2023 20:48:17' prior: 50656726!
+createSupplierSystem
+
+	^TransientCustomerSystem new! !
+
+!classRemoval: #TransientSupplierSystem stamp: 'TAO 11/23/2023 20:48:48'!
+CustomerSystem subclass: #TransientSupplierSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRenamed: #TransientCustomerSystem as: #TransientPartySystem stamp: 'TAO 11/23/2023 20:48:56'!
+Smalltalk renameClassNamed: #TransientCustomerSystem as: #TransientPartySystem!
+!DevelopmentEnvironment methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:48:57' prior: 50655463 overrides: 50655399!
+createCustomerSystem
+
+	^TransientPartySystem new! !
+!DevelopmentEnvironment methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:48:57' prior: 50656773!
+createSupplierSystem
+
+	^TransientPartySystem new! !
+
+!classDefinition: #TransientPartySystem category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:49:12'!
+CustomerSystem subclass: #TransientPartySystem
+	instanceVariableNames: 'parties'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientPartySystem methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:12' prior: 50655217 overrides: 50655097!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^parties detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]! !
+!TransientPartySystem methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:12' prior: 50655227 overrides: 50655103!
+numberOfCustomers
+
+	^parties size! !
+!TransientPartySystem methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:12' prior: 50655199 overrides: 50655119!
+stop
+
+	parties := nil! !
+!TransientPartySystem methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:12' prior: 50655194 overrides: 50655115!
+start
+
+	parties := OrderedCollection new! !
+!TransientPartySystem methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:12' prior: 50655212 overrides: 50655093!
+add: aCustomer
+
+	parties add: aCustomer ! !
+!TransientPartySystem methodsFor: 'customers' stamp: 'TAO 11/23/2023 20:49:17' prior: 50656838 overrides: 50655093!
+add: aParty
+
+	parties add: aParty ! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:49:42'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:49:42'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:49:53' prior: 50656261!
+isSupplierRecord
+	^record first = 'S'! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:49:57'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:49:57'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:50:27'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:50:27'!
+ERROR!
+
+Object subclass: #Party
+	instanceVariableNames: 'id firstName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Party category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:51:20'!
+Object subclass: #Party
+	instanceVariableNames: 'id firstName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Party subclass: #Customer
+	instanceVariableNames: 'lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #Customer category: 'CustomerImporter' stamp: 'TAO 11/23/2023 20:51:32'!
+Party subclass: #Customer
+	instanceVariableNames: 'lastName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!Customer methodsFor: 'name' stamp: 'TAO 11/23/2023 20:52:03' overrides: 50656359!
+lastName
+
+	^lastName ! !
+
+!methodRemoval: Party #lastName stamp: 'TAO 11/23/2023 20:52:03'!
+lastName
+
+	^lastName !
+!Customer methodsFor: 'name' stamp: 'TAO 11/23/2023 20:52:09' overrides: 50656365!
+lastName: aLastName
+
+	lastName := aLastName
+! !
+
+!methodRemoval: Party #lastName: stamp: 'TAO 11/23/2023 20:52:09'!
+lastName: aLastName
+
+	lastName := aLastName
+!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:52:14'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:52:14'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:52:35' prior: 50655938!
+importSupplier
+
+
+	self assertValidSupplierRecord.
+
+	newSupplier := Supplier new.
+	newSupplier firstName: record second.
+	newSupplier lastName: record third.
+	newSupplier identificationType: record fourth.
+	newSupplier identificationNumber: record fifth.
+	system add: newSupplier! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:54:37'!
+assertValidSupplierRecord
+
+	^ record size ~= 5 ifTrue: [ self error: self class invalidSupplierRecordErrorDescription ]! !
+
+!methodRemoval: SupplierImporter #assertValid stamp: 'TAO 11/23/2023 20:54:37'!
+assertValid
+
+	^ record size ~= 5 ifTrue: [ self error: self class invalidSupplierRecordErrorDescription ]!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:54:40' prior: 50656933!
+assertValidSupplierRecord
+
+	^ record size ~= 4 ifTrue: [ self error: self class invalidSupplierRecordErrorDescription ]! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:54:42'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:54:42'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:54:55' prior: 50656921!
+importSupplier
+
+
+	self assertValidSupplierRecord.
+
+	newSupplier := Supplier new.
+	newSupplier firstName: record second.
+	
+	newSupplier identificationType: record third.
+	newSupplier identificationNumber: record fourth.
+	system add: newSupplier! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:54:58' prior: 50656960!
+importSupplier
+
+
+	self assertValidSupplierRecord.
+
+	newSupplier := Supplier new.
+	newSupplier firstName: record second.
+	newSupplier identificationType: record third.
+	newSupplier identificationNumber: record fourth.
+	system add: newSupplier! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:54:59'!
+ERROR!
+!SupplierImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:55:20' prior: 50656613!
+initializeFrom: aReadStream into: aSupplierSystem using:aCustomerSystem
+
+	readStream := aReadStream.
+	system := aSupplierSystem.
+	customerSystem:=aCustomerSystem 
+	self halt.! !
+!SupplierImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:55:24' prior: 50656986!
+initializeFrom: aReadStream into: aSupplierSystem using:aCustomerSystem
+
+	readStream := aReadStream.
+	system := aSupplierSystem.
+	customerSystem:=aCustomerSystem .
+	self halt.! !
+
+aCustomerSystem!
+!SupplierImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/23/2023 20:56:52' prior: 50656467 overrides: 16961394!
+setUp
+
+	supplierSystem := Environment current createSupplierSystem.
+	supplierSystem start.
+	supplierSystem beginTransaction.
+	
+	customerSystem := Environment current createSupplierSystem.
+	customerSystem start.
+	customerSystem beginTransaction.
+	
+! !
+
+aCustomerSystem!
+!SupplierImporter methodsFor: 'initialization' stamp: 'TAO 11/23/2023 20:57:05' prior: 50656995!
+initializeFrom: aReadStream into: aSupplierSystem using:aCustomerSystem
+
+	readStream := aReadStream.
+	system := aSupplierSystem.
+	customerSystem:=aCustomerSystem .
+	! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:57:05'!
+ERROR!
+
+record!
+
+record first!
+
+record first = 'NC'!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:57:34' prior: 50656253!
+importCustomer
+	record first = 'EC' ifTrue:[ ^self importExistingCustomer].
+	record first = 'NC' ifTrue:[^self importNonExistingCustomer].
+	self shouldNotHappen ! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 20:57:37'!
+ERROR!
+
+record size!
+
+record!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:59:27' prior: 50656208!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	newCustomer := (customerSystem 
+		select: [:customer| (customer identificationType =  record fourth)and: (customer identificationNumber = record fifth) ] 
+		ofType: Customer) anyOne.
+	
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 20:59:50' prior: 50657044!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	
+	newCustomer := (customerSystem 
+		select: [:customer| (customer identificationType =  record fourth)and: (customer identificationNumber = record fifth) ] 
+		ofType: Customer) anyOne.
+	
+	newSupplier addCustomer: newCustomer! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:00:00'!
+assertValidExistingCustomerRecord.
+	^record size ~= 3 ifTrue: [ self error: self class invalidSupplierRecordErrorDescription ]! !
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:00:04' prior: 50657070!
+assertValidExistingCustomerRecord.
+	^record size ~= 3 ifTrue: [ self error: self class invalidCustomerRecordErrorDescription ]! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:00:06'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:00:06'!
+ERROR!
+
+supplierSystem!
+
+customerSystem!
+!CustomerSystem methodsFor: 'customers' stamp: 'TAO 11/23/2023 21:01:13'!
+partyWithIdentificationType: anIdType number: anIdNumber
+
+	self subclassResponsibility ! !
+!PersistentCustomerSystem methodsFor: 'customers' stamp: 'TAO 11/23/2023 21:01:13' overrides: 50657093!
+partyWithIdentificationType: anIdType number: anIdNumber
+
+	^(session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!TransientPartySystem methodsFor: 'customers' stamp: 'TAO 11/23/2023 21:01:13' overrides: 50657093!
+partyWithIdentificationType: anIdType number: anIdNumber
+
+	^parties detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:01:13' prior: 50654661!
+assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: aFirstName lastName: aLastName
+
+	| importedCustomer |
+
+	importedCustomer := system partyWithIdentificationType: anIdType number: anIdNumber.
+
+	self assert: aFirstName equals: importedCustomer firstName.
+	self assert: aLastName equals: importedCustomer lastName.
+	self assert: anIdType equals: importedCustomer identificationType.
+	self assert: anIdNumber equals: importedCustomer identificationNumber.
+
+	^importedCustomer
+
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:01:13' prior: 50654680!
+assertImportedOneCustomerWithoutAddress
+
+	| importedCustomer |
+
+	self assert: 1 equals: system numberOfCustomers.
+	importedCustomer := system partyWithIdentificationType: 'D' number: '22333444'.
+	self assert: importedCustomer isAddressesEmpty
+	! !
+
+!methodRemoval: CustomerSystem #customerWithIdentificationType:number: stamp: 'TAO 11/23/2023 21:01:13'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	self subclassResponsibility !
+
+!methodRemoval: PersistentCustomerSystem #customerWithIdentificationType:number: stamp: 'TAO 11/23/2023 21:01:13'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^(session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne!
+
+!methodRemoval: TransientPartySystem #customerWithIdentificationType:number: stamp: 'TAO 11/23/2023 21:01:13'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^parties detect: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:01:21'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:01:21'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:01:46'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:01:46'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:02:18' prior: 50657057!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	newCustomer := (customerSystem 
+		partyWithIdentificationType: [:customer| (customer identificationType =  record fourth)and: (customer identificationNumber =record fifth) ] 
+		number: Customer) anyOne.
+	
+	newSupplier addCustomer: newCustomer! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:02:24'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:06:54'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:06:54'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:10:22'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:10:22'!
+ERROR!
+
+parties!
+
+anIdType!
+
+anIdType!
+
+anIdNumber!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:11:43' prior: 50657189!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	newCustomer := customerSystem 
+		partyWithIdentificationType: record fourth
+		number: record fifth .
+	
+	newSupplier addCustomer: newCustomer! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:11:46'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:11:46'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:12:06' prior: 50657221!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	newCustomer := customerSystem 
+		partyWithIdentificationType: record second
+		number: record third .
+	
+	newSupplier addCustomer: newCustomer! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:12:07'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:12:07'!
+ERROR!
+
+parties!
+
+anIdType!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:12:23'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:12:23'!
+ERROR!
+
+parties!
+
+parties!
+!SupplierImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/23/2023 21:13:23' prior: 50657005 overrides: 16961394!
+setUp
+
+	supplierSystem := Environment current createSupplierSystem.
+	supplierSystem start.
+	supplierSystem beginTransaction.
+	
+	customerSystem := Environment current createSupplierSystem.
+	customerSystem start.
+	customerSystem beginTransaction.
+	
+	
+! !
+!SupplierImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/23/2023 21:13:32' prior: 50657265 overrides: 16961394!
+setUp
+
+	supplierSystem := Environment current createSupplierSystem.
+	supplierSystem start.
+	supplierSystem beginTransaction.
+	
+	customerSystem := Environment current createCustomerSystem.
+	customerSystem start.
+	customerSystem beginTransaction.
+	
+	
+! !
+!SupplierImportTest methodsFor: 'setUp/tearDown' stamp: 'TAO 11/23/2023 21:15:26' prior: 50657277 overrides: 16961394!
+setUp
+
+	supplierSystem := Environment current createSupplierSystem.
+	supplierSystem start.
+	supplierSystem beginTransaction.
+	
+	customerSystem := Environment current createCustomerSystem.
+	customerSystem start.
+	customerSystem beginTransaction.
+	
+	
+	
+! !
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 21:15:58' prior: 50656516!
+test01ValidDataIsImportedCorrectly
+
+	SupplierImporter valueFrom: self validImportData into: supplierSystem using:customerSystem.
+	CustomerImporter valueFrom: self  unChabonData into: customerSystem.
+	self assert: supplierSystem numberOfSuppliers equals:1! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:16:01'!
+ERROR!
+!SupplierImportTest methodsFor: 'tests' stamp: 'TAO 11/23/2023 21:16:07' prior: 50657300!
+test01ValidDataIsImportedCorrectly
+	CustomerImporter valueFrom: self  unChabonData into: customerSystem.
+	SupplierImporter valueFrom: self validImportData into: supplierSystem using:customerSystem.
+	
+	self assert: supplierSystem numberOfSuppliers equals:1! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:16:08'!
+ERROR!
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:16:12'!
+unChabonData
+	self shouldBeImplemented.! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:16:47' prior: 50657329!
+unChabonData
+	^ReadStream on:'C, Alberto, Rodriguez,D,5456774'! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:16:52' prior: 50657334!
+unChabonData
+	^ReadStream on:'C, Alberto, Rodriguez,D,5456774 '! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:16:52'!
+ERROR!
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:17:05' prior: 50657339!
+unChabonData
+	^ReadStream on:'C,Alberto,Rodriguez,D,5456774 '! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:17:08' prior: 50657348!
+unChabonData
+	^ReadStream on:'C,Alberto,Rodriguez,D,5456774'! !
+!SupplierImportTest methodsFor: 'data' stamp: 'TAO 11/23/2023 21:17:18' prior: 50657353!
+unChabonData
+	^ReadStream on:'C,Alberto,Rodriguez,D,5456774'! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:17:19'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:17:19'!
+ERROR!
+
+parties!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:17:37'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:17:37'!
+ERROR!
+!SupplierImporter methodsFor: 'as yet unclassified' stamp: 'TAO 11/23/2023 21:18:00' prior: 50657239!
+importExistingCustomer
+	
+	| newCustomer |
+	self assertValidExistingCustomerRecord.
+	newCustomer := customerSystem 
+		partyWithIdentificationType: record second
+		number: record third.
+	self halt.
+	
+	newSupplier addCustomer: newCustomer! !
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:18:02'!
+ERROR!
+
+!testRun: #SupplierImportTest #test01ValidDataIsImportedCorrectly stamp: 'TAO 11/23/2023 21:18:02'!
+ERROR!
